@@ -1,0 +1,567 @@
+---
+title: "picoCTF 2018 Crypto Writeups"
+publishedAt: "2018-10-14"
+summary: "Here are some short write-ups of the cryptography challenges from this year's picoCTF."
+---
+
+CMU's picoCTF was one of the very first CTFs that I took part in. It's a great competition for players of all levels and especially for those starting out in the field. 
+
+Here are some short write-ups of the cryptography challenges from this year's picoCTF. I have attempted to explain all steps taken to solve each challenge in a beginner-friendly fashion; I hope you enjoy!
+
+## Table of Contents
+
+1. [Crypto Warmup 1 (75)](#crypto-warmup-1-75)
+1. [Crypto Warmup 2 (75)](#crypto-warmup-2-75)
+1. [HEEEEEEERE'S Johnny! (100)](#heeeeeeeres-johnny-100)
+1. [Caesar Cipher 1 (150)](#caesar-cipher-1-150)
+1. [Hertz (150)](#hertz-150)
+1. [Blaise's Cipher (200)](#blaises-cipher-200)
+1. [Hertz 2 (200)](#hertz-2-200)
+1. [Safe RSA (250)](#safe-rsa-250)
+1. [Caesar Cipher 2 (250)](#caesar-cipher-2-250)
+1. [RSA-Madlibs (250)](#rsamadlibs-250)
+1. [Super Safe RSA (350)](#super-safe-rsa-350)
+1. [Super Safe RSA 2 (425)](#super-safe-rsa-2-425)
+1. [Super Safe RSA 3 (600)](#super-safe-rsa-3-600)
+
+## Crypto Warmup 1 (75)
+
+We are asked to make use of the table below to decode the message `llkjmlmpadkkc` which is said to have been 'encrypted' with the key `thisisalilkey`.
+
+```
+    A B C D E F G H I J K L M N O P Q R S T U V W X Y Z 
+   +----------------------------------------------------
+A | A B C D E F G H I J K L M N O P Q R S T U V W X Y Z
+B | B C D E F G H I J K L M N O P Q R S T U V W X Y Z A
+C | C D E F G H I J K L M N O P Q R S T U V W X Y Z A B
+D | D E F G H I J K L M N O P Q R S T U V W X Y Z A B C
+E | E F G H I J K L M N O P Q R S T U V W X Y Z A B C D
+F | F G H I J K L M N O P Q R S T U V W X Y Z A B C D E
+G | G H I J K L M N O P Q R S T U V W X Y Z A B C D E F
+H | H I J K L M N O P Q R S T U V W X Y Z A B C D E F G
+I | I J K L M N O P Q R S T U V W X Y Z A B C D E F G H
+J | J K L M N O P Q R S T U V W X Y Z A B C D E F G H I
+K | K L M N O P Q R S T U V W X Y Z A B C D E F G H I J
+L | L M N O P Q R S T U V W X Y Z A B C D E F G H I J K
+M | M N O P Q R S T U V W X Y Z A B C D E F G H I J K L
+N | N O P Q R S T U V W X Y Z A B C D E F G H I J K L M
+O | O P Q R S T U V W X Y Z A B C D E F G H I J K L M N
+P | P Q R S T U V W X Y Z A B C D E F G H I J K L M N O
+Q | Q R S T U V W X Y Z A B C D E F G H I J K L M N O P
+R | R S T U V W X Y Z A B C D E F G H I J K L M N O P Q
+S | S T U V W X Y Z A B C D E F G H I J K L M N O P Q R
+T | T U V W X Y Z A B C D E F G H I J K L M N O P Q R S
+U | U V W X Y Z A B C D E F G H I J K L M N O P Q R S T
+V | V W X Y Z A B C D E F G H I J K L M N O P Q R S T U
+W | W X Y Z A B C D E F G H I J K L M N O P Q R S T U V
+X | X Y Z A B C D E F G H I J K L M N O P Q R S T U V W
+Y | Y Z A B C D E F G H I J K L M N O P Q R S T U V W X
+Z | Z A B C D E F G H I J K L M N O P Q R S T U V W X Y
+```
+
+The table above is the Vigenère square (also known as the tabula recta), used for encryption and decryption operations by the [Vigenère cipher](https://en.wikipedia.org/wiki/Vigen%C3%A8re_cipher). Hence, decryption can be performed by going to the row in the table corresponding to the key, finding the position of the ciphertext letter in that row and then using the column's label as the plaintext (as is nicely explained in the Wikipedia page).
+
+So, in row `T` (from `THISISALILKEY`), the ciphertext `L` appears in column `S`, which is the first plaintext letter. Next, in row `H`, the ciphertext `L` is located in column `E`. Thus, `E` is the second plaintext letter. 
+
+Repeating this procedure, we end up with the following plaintext:
+
+```
+ciphertext: THISISALILKEY
+key:        LLKJMLMPADKKC
+plaintext:  SECRETMESSAGE
+```
+
+> flag: `picoCTF{SECRETMESSAGE}`
+
+## Crypto Warmup 2 (75)
+
+In this warmup challenge, we are given the ciphertext `cvpbPGS{guvf_vf_pelcgb!}` which, as clearly stated by the description, has been encoded with the [ROT13](https://en.wikipedia.org/wiki/ROT13) substitution cipher. ROT13 is simply a special case of the Caesar Cipher, where the shift is equal to 13:
+
+```
+alphabet:       ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz
+rot13 alphabet:	NOPQRSTUVWXYZABCDEFGHIJKLMnopqrstuvwxyzabcdefghijklm
+```
+
+I chose to use a simple tool called [`caesar-cli`](https://www.npmjs.com/package/caesar-cli) which I had developed in the past to decode the message. Alternatively, one could simply use an online ROT13 decoder such as [Cryptii](https://cryptii.com/) or even manually, by hand.
+
+Running `caesar-cli` with our message outputs the flag:
+
+```bash
+~ ❯❯❯ caesar "cvpbPGS{guvf_vf_pelcgb!}"
+picoCTF{this_is_crypto!}
+```
+
+> flag: `picoCTF{this_is_crypto!}`
+
+## HEEEEEEERE'S Johnny!	(100)
+
+Given a `passwd` and `shadow` file, we are asked to recover the password that will authenticate us to a service located at `2018shell1.picoctf.com 5221`. In UNIX systems, the `passwd` file usually stores general user information whereas the `shadow` file stores user password information.
+
+As also hinted by the challenge name, once converted to the appropriate format, we can go ahead and use [John The Ripper](https://en.wikipedia.org/wiki/John_the_Ripper) to crack the password hash:
+
+```bash
+~ ❯❯❯ unshadow passwd shadow > root_password.txt
+~ ❯❯❯ john --wordlist=/usr/share/wordlists/rockyou.txt root_password.txt
+Using default input encoding: UTF-8
+Loaded 1 password hash (sha512crypt, crypt(3) $6$ [SHA512 128/128 AVX 2x])
+Press 'q' or Ctrl-C to abort, almost any other key for status
+thematrix        (root)
+1g 0:00:00:14 DONE (2018-10-19 16:15) 0.06910g/s 760.7p/s 760.7c/s 760.7C/s
+```
+
+Subsequently, using the password `thematrix` which we just cracked and the username `root`, we manage to retrieve the flag:
+
+```bash
+nc 2018shell1.picoctf.com 5221
+Username: root
+Password: thematrix
+picoCTF{J0hn_1$_R1pp3d_289677b5}
+```
+
+> flag: `picoCTF{J0hn_1$_R1pp3d_289677b5}`
+
+## Caesar Cipher 1 (150)
+
+This was another caesar cipher substitution, but this time the alphabet was shifted by a number of characters other than 13 (which is the case in ROT13). Again, we can use [`caesar-cli`](https://www.npmjs.com/package/caesar-cli) to find the shift number and 'break' the given ciphertext, `grpqxdllaliazxbpxozfmebotlvlicmr`.
+
+```bash
+~ ❯❯❯ caesar grpqxdllaliazxbpxozfmebotlvlicmr -b
+ROT-1: hsqryemmbmjbaycqypagnfcpumwmjdns
+ROT-2: itrszfnncnkcbzdrzqbhogdqvnxnkeot
+ROT-3: justagoodoldcaesarcipherwoyolfpu
+[...]
+ROT-24: epnovbjjyjgyxvznvmxdkczmrjtjgakp
+ROT-25: fqopwckkzkhzywaownyeldanskukhblq
+```
+
+> flag: `picoCTF{justagoodoldcaesarcipherwoyolfpu}`
+
+## Hertz (150)
+
+Yet another substituted [ciphertext](https://gist.github.com/k4m4/1278f65d96de6e78400aa677057a0130) has been given. This time, however, "a bunch of substitutions" have been made.
+
+[Quipqiup](https://quipqiup.com/), an "automated cryptogram solver", can be used to quickly decipher the cipher:
+
+```
+----------------------------------------------------------------------
+congrats here is your flag - substitution_ciphers_are_solvable_mmpyigrueb
+----------------------------------------------------------------------
+stately, plump buck mulligan came from the stairhead, bearing a bowl oflather on which a mirror and a razor lay crossed. a yellow dressinggown,ungirdled, was sustained gently behind him on the mild morning air. heheld the bowl aloft and intoned:
+[...]
+```
+
+> flag: `substitution_ciphers_are_solvable_mmpyigrueb`
+
+## Blaise's Cipher (200)
+
+A bit of googling leads us to find that Blaise was the first name of Blaise de Vigenère, the man who created the poly-alphabetic substitution system known as the [Vigenère cipher](https://en.wikipedia.org/wiki/Vigen%C3%A8re_cipher). 
+
+Using an online [Vigenère solver](https://www.guballa.de/vigenere-solver) to decrypt the [ciphertext](https://gist.github.com/k4m4/f2ddfefff2037193341a96fed443d104) gives us the flag:
+
+```
+The first well-documented description of a polyalphabetic cipher was formulated by Leon Battista Alberti around 1467 and used a metal cipher disc to switch between cipher alphabets.
+[...]
+Blaise de Vigenere published his description of a similar but stronger autokey cipher before the court of Henry III of France, in 1586. Later, in the 19th century, the invention of Bellaso's cipher was misattributed to Vigenere. David Kahn in his book The Codebreakers lamented the misattribution by saying that history had "ignored this important contribution and instead named a regressive and elementary cipher for him [Vigenere] though he had nothing to do with it". picoCTF{v1gn3r3_c1ph3rs_ar3n7_bad_5352bf72}
+[...]
+```
+
+> flag: `picoCTF{v1gn3r3_c1ph3rs_ar3n7_bad_5352bf72}`
+
+## Hertz 2 (200)
+
+The following ciphertext is given:
+
+```
+Yhl jvawx enipk sir tvgfo ibln yhl mqzd ciu. A wqk'y elmalbl yhao ao ovwh qk lqod fniemlg ak Fawi. Ay'o qmgioy qo as A oimblc q fniemlg qmnlqcd! Ixqd, sakl. Hlnl'o yhl smqu: fawiWYS{oveoyayvyaik_wafhlno_qnl_yii_lqod_ououykfaei}
+```
+
+Again, we attempt to decipher it using [quipqiup](https://quipqiup.com) and after correcting some of the results using 'clues' (i.e. `f=q i=k m=w o=x c=j z=z u=g`), we manage to retrieve the plaintext:
+
+```
+The quick brown fox jumps over the lazy dog. I can't believe this is such an easy problem in Pico. It's almost as if I solved a problem already! Okay, fine. Here's the flag: picoCTF{substitution_ciphers_are_too_easy_sgsgtnpibo}
+```
+
+> flag: `picoCTF{substitution_ciphers_are_too_easy_sgsgtnpibo}`
+
+## Safe RSA (250)
+
+Based on the information stated by the challenge, we know that:
+
+```python
+n = 374159235470172130988938196520880526947952521620932362050308663243595788308583992120881359365258949723819911758198013202644666489247987314025169670926273213367237020188587742716017314320191350666762541039238241984934473188656610615918474673963331992408750047451253205158436452814354564283003696666945950908549197175404580533132142111356931324330631843602412540295482841975783884766801266552337129105407869020730226041538750535628619717708838029286366761470986056335230171148734027536820544543251801093230809186222940806718221638845816521738601843083746103374974120575519418797642878012234163709518203946599836959811
+e = 3
+c = 2205316413931134031046440767620541984801091216351222789180967130585669043554866325905770867150377611820746759815247778516899403229047066700396787852388511389893043279713280998235746440322483431305358901578692935378439077796777060321410661 
+```
+
+Using Python, we can easily solve for `m` and decrypt the message by performing what is known as a [low public exponent attack]():
+
+```python
+>>> import gmpy
+>>> m = gmpy.root(c, 3)[0]
+>>> m
+mpz(13016382529449106065839070830454998857466392684017754632234663461760173202301821L)
+>>> pow(m, 3, n) == c
+True
+>>> from Crypto.Util.number import long_to_bytes
+>>> long_to_bytes(m)
+'picoCTF{e_w4y_t00_sm411_a5b5aaac}'
+```
+
+> flag: `picoCTF{e_w4y_t00_sm411_a5b5aaac}`
+
+## Caesar Cipher 2 (250)
+
+All we are given is the ceaser encoded string:
+
+```
+d]Wc7H:oW5YgUFS7]D\9fGS^iGHSUF9bHSg9WIf9q
+```
+
+Obviously, this time the alphabet isn't the classic `abcdefghijklmnopqrstuvwxyz`, but also includes special characters. Hence, if we take ```0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\]^_`abcdefghijklmnopqrstuvwxyz{|}~``` (in regular ASCII order) as the alphabet, we can use an online [ceaser cipher solver](https://cryptii.com/pipes/caesar-cipher) to retrieve the flag.
+
+> flag: `picoCTF{cAesaR_CiPhErS_juST_aREnT_sEcUrE}`
+
+## RSA-Madlibs (250)
+
+Once we connect to the TCP address of the challenge, we receive the following information:
+
+```bash
+~ ❯❯❯ nc 2018shell1.picoctf.com 40440
+Hello, Welcome to RSA Madlibs
+Keeping young children entertained, since, well, nev3r
+Tell us how to fill in the blanks, or if it's even possible to do so
+Everything, input and output, is decimal, not hex
+```
+
+The first few questions are pretty straight forward:
+
+> MADLIB #1:
+
+```bash
+#### NEW MADLIB ####
+q : 93187
+p : 94603
+##### WE'RE GONNA NEED THE FOLLOWING ####
+n
+IS THIS POSSIBLE and FEASIBLE? (Y/N):y
+```
+
+In RSA, $n = pq$, so we can calculate the modulus by simply multiplying the two primes.
+
+```python
+>>> 93187 * 94603
+8815769761
+```
+
+```bash
+#### TIME TO FILL IN THE MADLIB! ###
+n: 8815769761
+YAHHH! That one was a great madlib!!!
+```
+
+> MADLIB #2:
+
+```bash
+#### NEW MADLIB ####
+p : 81203
+n : 6315400919
+##### WE'RE GONNA NEED THE FOLLOWING ####
+q
+IS THIS POSSIBLE and FEASIBLE? (Y/N):y
+```
+
+- Since $n = pq$, then obviously $q = n/p$:
+
+```python
+>>> 6315400919 / 81203
+77773
+```
+```
+#### TIME TO FILL IN THE MADLIB! ###
+q: 77773YAHHH! That one was a great madlib!!!
+```
+
+> MADLIB #3:
+
+Factoring a number of this size would take a *very very* long time.
+
+```bash
+#### NEW MADLIB ####
+e : 3
+n : 12738162802910546503821920886905393316386362759567480839428456525224226445173031635306683726182522494910808518920409019414034814409330094245825749680913204566832337704700165993198897029795786969124232138869784626202501366135975223827287812326250577148625360887698930625504334325804587329905617936581116392784684334664204309771430814449606147221349888320403451637882447709796221706470239625292297988766493746209684880843111138170600039888112404411310974758532603998608057008811836384597579147244737606088756299939654265086899096359070667266167754944587948695842171915048619846282873769413489072243477764350071787327913
+##### WE'RE GONNA NEED THE FOLLOWING ####
+q
+p
+IS THIS POSSIBLE and FEASIBLE? (Y/N):n
+YAHHH! That one was a great madlib!!!
+```
+
+> MADLIB #4:
+
+```bash
+#### NEW MADLIB ####
+q : 78203
+p : 79999
+##### WE'RE GONNA NEED THE FOLLOWING ####
+totient(n)
+IS THIS POSSIBLE and FEASIBLE? (Y/N):y
+```
+
+Since we know that $\phi(n) = (p-1)(q-1)$, we can easily solve for $\phi(n)$:
+
+```python
+>>> p = 78203
+>>> q = 79999
+>>> phi = (p-1)*(q-1)
+>>> phi
+6256003596
+```
+
+```bash
+#### TIME TO FILL IN THE MADLIB! ###
+totient(n): 6256003596
+YAHHH! That one was a great madlib!!!
+```
+
+> MADLIB #5:
+
+```bash
+#### NEW MADLIB ####
+plaintext : 1815907181716474805136452061793917684000871911998851410864797078911161933431337632774829806207517001958179617856720738101327521552576351369691667910371502971480153619360010341709624631317220940851114914911751279825748
+e : 3
+n : 29129463609326322559521123136222078780585451208149138547799121083622333250646678767769126248182207478527881025116332742616201890576280859777513414460842754045651093593251726785499360828237897586278068419875517543013545369871704159718105354690802726645710699029936754265654381929650494383622583174075805797766685192325859982797796060391271817578087472948205626257717479858369754502615173773514087437504532994142632207906501079835037052797306690891600559321673928943158514646572885986881016569647357891598545880304236145548059520898133142087545369179876065657214225826997676844000054327141666320553082128424707948750331
+##### WE'RE GONNA NEED THE FOLLOWING ####
+ciphertext
+IS THIS POSSIBLE and FEASIBLE? (Y/N):y
+```
+
+To encrypt a message $m$ using RSA, we use the formula $c = m^{e} \mod{n}$. Hence:
+
+```python
+>>> c = pow(m, e, n)
+>>> c
+26722917505435451150596710555980625220524134812001687080485341361511207096550823814926607028717403343344600191255790864873639087129323153797404989216681535785492257030896045464472300400447688001563694767148451912130180323038978568872458130612657140514751874493071944456290959151981399532582347021031424096175747508579453024891862161356081561032045394147561900547733602483979861042957169820579569242714893461713308057915755735700329990893197650028440038700231719057433874201113850357283873424698585951160069976869223244147124759020366717935504226979456299659682165757462057188430539271285705680101066120475874786208053L
+```
+
+```bash
+#### TIME TO FILL IN THE MADLIB! ###
+ciphertext: 26722917505435451150596710555980625220524134812001687080485341361511207096550823814926607028717403343344600191255790864873639087129323153797404989216681535785492257030896045464472300400447688001563694767148451912130180323038978568872458130612657140514751874493071944456290959151981399532582347021031424096175747508579453024891862161356081561032045394147561900547733602483979861042957169820579569242714893461713308057915755735700329990893197650028440038700231719057433874201113850357283873424698585951160069976869223244147124759020366717935504226979456299659682165757462057188430539271285705680101066120475874786208053
+YAHHH! That one was a great madlib!!!
+```
+
+> MADLIB #6:
+
+```bash
+#### NEW MADLIB ####
+ciphertext : 107524013451079348539944510756143604203925717262185033799328445011792760545528944993719783392542163428637172323512252624567111110666168664743115203791510985709942366609626436995887781674651272233566303814979677507101168587739375699009734588985482369702634499544891509228440194615376339573685285125730286623323
+e : 3
+n : 27566996291508213932419371385141522859343226560050921196294761870500846140132385080994630946107675330189606021165260590147068785820203600882092467797813519434652632126061353583124063944373336654246386074125394368479677295167494332556053947231141336142392086767742035970752738056297057898704112912616565299451359791548536846025854378347423520104947907334451056339439706623069503088916316369813499705073573777577169392401411708920615574908593784282546154486446779246790294398198854547069593987224578333683144886242572837465834139561122101527973799583927411936200068176539747586449939559180772690007261562703222558103359
+```
+
+Even with a small exponent, decryption against a modulus and ciphertext of this size cannot be achieved.
+
+```bash
+##### WE'RE GONNA NEED THE FOLLOWING ####
+plaintext
+IS THIS POSSIBLE and FEASIBLE? (Y/N):n
+YAHHH! That one was a great madlib!!!
+```
+
+> MADLIB #7:
+
+```bash
+#### NEW MADLIB ####
+q : 92092076805892533739724722602668675840671093008520241548191914215399824020372076186460768206814914423802230398410980218741906960527104568970225804374404612617736579286959865287226538692911376507934256844456333236362669879347073756238894784951597211105734179388300051579994253565459304743059533646753003894559
+p : 97846775312392801037224396977012615848433199640105786119757047098757998273009741128821931277074555731813289423891389911801250326299324018557072727051765547115514791337578758859803890173153277252326496062476389498019821358465433398338364421624871010292162533041884897182597065662521825095949253625730631876637
+e : 65537
+##### WE'RE GONNA NEED THE FOLLOWING ####
+d
+IS THIS POSSIBLE and FEASIBLE? (Y/N):y
+```
+
+We know that $d = 1 \mod \phi(n)$ and $\phi(n) = (p-1)(q-1)$, so we can go ahead and solve for $d$:
+
+```python
+>>> import gmpy
+>>> phi = (p-1)*(q-1)
+>>> d = gmpy.invert(e, phi)
+>>> d
+mpz(1405046269503207469140791548403639533127416416214210694972085079171787580463776820425965898174272870486015739516125786182821637006600742140682552321645503743280670839819078749092730110549881891271317396450158021688253989767145578723458252769465545504142139663476747479225923933192421405464414574786272963741656223941750084051228611576708609346787101088759062724389874160693008783334605903142528824559223515203978707969795087506678894006628296743079886244349469131831225757926844843554897638786146036869572653204735650843186722732736888918789379054050122205253165705085538743651258400390580971043144644984654914856729L)
+```
+
+```bash
+#### TIME TO FILL IN THE MADLIB! ###
+d: 1405046269503207469140791548403639533127416416214210694972085079171787580463776820425965898174272870486015739516125786182821637006600742140682552321645503743280670839819078749092730110549881891271317396450158021688253989767145578723458252769465545504142139663476747479225923933192421405464414574786272963741656223941750084051228611576708609346787101088759062724389874160693008783334605903142528824559223515203978707969795087506678894006628296743079886244349469131831225757926844843554897638786146036869572653204735650843186722732736888918789379054050122205253165705085538743651258400390580971043144644984654914856729
+YAHHH! That one was a great madlib!!!
+```
+
+> MADLIB #8:
+
+```bash
+#### NEW MADLIB ####
+p : 153143042272527868798412612417204434156935146874282990942386694020462861918068684561281763577034706600608387699148071015194725533394126069826857182428660427818277378724977554365910231524827258160904493774748749088477328204812171935987088715261127321911849092207070653272176072509933245978935455542420691737433
+ciphertext : 5315135537182226856134532843338546481354659841681272223692273789930341302489189252395544040217036010025492161730920090820789264419456405499853943420863961834511620167348215712366219204972198527365477630427263725627920265227612760416678425823843187407675643742844283110052895704455415142735463486037912801307917634230788549540802477270278755052542590491708620341889689884020271200598596327430790861785538107067664504281508756159305916221674161062222221931717498244841323828452111473034440447694160917521358885718436832783214139059379459896493819067235346238816701274408935126796953373891399167497687512301978797146598
+e : 65537
+n : 23952937352643527451379227516428377705004894508566304313177880191662177061878993798938496818120987817049538365206671401938265663712351239785237507341311858383628932183083145614696585411921662992078376103990806989257289472590902167457302888198293135333083734504191910953238278860923153746261500759411620299864395158783509535039259714359526738924736952759753503357614939203434092075676169179112452620687731670534906069845965633455748606649062394293289967059348143206600765820021392608270528856238306849191113241355842396325210132358046616312901337987464473799040762271876389031455051640937681745409057246190498795697239
+##### WE'RE GONNA NEED THE FOLLOWING ####
+plaintext
+IS THIS POSSIBLE and FEASIBLE? (Y/N):y
+```
+
+As we saw before, if we are given $p$ and $n$, then $q = n / p$. Once we have $p$ and $q$, we calculate $d$ using the method that we previously encountered and retrieve $m$ by calculating $m = c^{d} \mod{n}$:
+
+```python
+>>> import gmpy
+>>> q = n/p
+>>> phi = (p-1)*(q-1)
+>>> d = gmpy.invert(e, phi)
+>>> m = pow(c, d, n)
+>>> m
+mpz(240109877286251840533272915662757983981706320845661471802585807564915966910384301849411666983334013L)
+```
+
+```bash
+#### TIME TO FILL IN THE MADLIB! ###
+plaintext: 240109877286251840533272915662757983981706320845661471802585807564915966910384301849411666983334013
+YAHHH! That one was a great madlib!!!
+
+If you convert the last plaintext to a hex number, then ascii, you'll find what you're searching for ;)
+```
+```python
+>>> from Crypto.Util.number import long_to_bytes
+>>> long_to_bytes(2401098772862518405332729156627579839817063208456614718025
+85807564915966910384301849411666983334013)
+'picoCTF{d0_u_kn0w_th3_w@y_2_RS@_5d383e10}'
+```
+
+> flag: `picoCTF{d0_u_kn0w_th3_w@y_2_RS@_5d383e10}`
+
+## Super Safe RSA (350)
+
+We are given $c$, $n$, and $e$. Using [`yafu`](https://sourceforge.net/p/yafu/wiki/Home/), we can rapidly factor $n$ in and retrieve our two factors, $p$ and $q$:
+
+```python
+c = 2070229372759929130340731125123048673327072696935481135194570993342915941467133
+n = 18980934817443091088102628081974658255177571134474163279791660721010977507420631
+e = 65537
+```
+```bash
+~ ❯❯❯ ./yafu
+===============================================================
+======= Welcome to YAFU (Yet Another Factoring Utility) =======
+=======             bbuhrow@gmail.com                   =======
+=======     Type help at any time, or quit to quit      =======
+===============================================================
+cached 78498 primes. pmax = 999983
+
+>> factor(18980934817443091088102628081974658255177571134474163279791660721010977507420631)
+[...]
+***factors found***
+P39 = 121705474327093040997187139899713828833
+P42 = 155957937984205499953092734304382029543607
+```
+
+Subsequently, we follow the standard decryption process to find the flag.
+
+```python
+from Crypto.Util.number import long_to_bytes
+import gmpy
+
+p = 121705474327093040997187139899713828833
+q = 155957937984205499953092734304382029543607
+
+n = p*q
+phi = (p-1)*(q-1)
+d = gmpy.invert(e, phi)
+m = pow(c, d, n)
+
+print long_to_bytes(m)
+```
+
+> flag: `picoCTF{us3_l@rg3r_pr1m3$_5327}`
+
+## Super Safe RSA 2 (425)
+
+Once again, we are give `c`, `n`, and `e`. With python and the help of [SageMath](https://www.sagemath.org/), we make use of [Wiener's Attack](https://en.wikipedia.org/wiki/Wiener%27s_attack) to find `d` and, ultimately, our flag. What Wiener showed was that, when $n = pq$ with $q < p < 2q$, an attacker can retrieve $d$, given that $d < \frac{1}{3}n^{\frac{1}{4}}$.
+
+```python
+c = 53765582893988777334185959824549619895484497159888373165941727955812063051168803477858542123062627821951696213928970811926944365102835994459558265568555840814295969856251247035402284188574977905986659830164239016602983507327566178365415827015194248682761625483508078705495999434001584403872395447758676676074
+n = 61530588263809932691009511709191938639462577437578816193005772763228333969167656250736643112408585341610887665565158776039404655676711967432279053420961594123885530282309021209368870413385704569728209479987422575552992180127703850455882847385214678805967356793564170167631071168849174655346759688055980619531
+e = 39144221073333041239090278341873132699011447596090354815371312141496848012214582481071194306813725813628679058248137156864227814961459207137250874685752339711882779474357098305243573290971134537994095440554979758086035269168781642240725203176809018563677393825815869520337794681131755634878998467911774516921
+```
+
+```python
+>>> from sage.all import continued_fraction, Integer
+>>> def wiener(e, n):
+...     m = 12345
+...     c = pow(m, e, n)
+...     q0 = 1
+...  
+...     list1 = continued_fraction(Integer(e) / Integer(n))
+...     conv = list1.convergents()
+...     for i in conv:
+...         k = i.numerator()
+...         q1 = i.denominator()
+...  
+...         for r in range(20):
+...             for s in range(20):
+...                 d = r*q1 + s*q0
+...                 m1 = pow(c, d, n)
+...                 if m1 == m:
+...                     return d
+...         q0 = q1
+... 
+>>> d = wiener(e, n)
+>>> d
+65537
+>>> m = pow(c, d, n)
+>>> m
+264003602020102370693041857442610586342633199683725005643958437442448465210344626586049655751739407427131422589
+>>> from Crypto.Util.number import long_to_bytes
+>>> flag = long_to_bytes(m)
+>>> flag
+'picoCTF{w@tch_y0ur_Xp0n3nt$_c@r3fu11y_2087907}'
+```
+
+> flag: `picoCTF{w@tch_y0ur_Xp0n3nt$_c@r3fu11y_2087907}`
+
+## Super Safe RSA 3 (600)
+
+The description states that `the more primes, the safer.. right.?.?`. In other words, we are hinted that the challenge involves multi-prime RSA which entails that there are more than two usual prime numbers.
+
+```python
+c = 17608779341597230016071981693244498678107478697409503800696980883561230434277473860554874120205986644513428498794666464215818085269232797859679431889865175175243962757765271682942183377348151370385935686701795888445157967243099477444683879457045782357902952943394195797685679795282936212313440781849479801
+n = 36229398100407089819602169238156765149555463993512612323725875106422433826650975136522589358418619340746075632619623128623627021637194717234458340704987118325286575351492748117736669440966060966641228902113818950097115170770797122868476075776606191611617754890086591309513321170639859149550423064755142093
+e = 65537
+```
+
+Firstly, we can use an online ['Integer Factorization Calculator'](https://www.alpertron.com.ar/ECM.HTM) to factor our modulus into primes of equal lengths. The parsed resulting factors are:
+
+```python
+>>> factors = '2156 330173 × 2359 482403 × 2481 618089 × 2566 978289 × 2633 652551 × 2724 934409 × 2846 629007 × 2850 704267 × 2929 186907 × 3104 537879 × 3175 829737 × 3197 951849 × 3241 126099 × 3287 477441 × 3329 431081 × 3390 914641 × 3402 553849 × 3452 876029 × 3454 264111 × 3455 112149 × 3484 855259 × 3488 029459 × 3767 324447 × 3827 010907 × 3831 830087 × 3860 380091 × 3907 571699 × 4034 766187 × 4041 955903 × 4171 283407 × 4224 464213 × 4232 527549'
+>>> factors = factors.replace(' ','').split('×')
+>>> factors
+['2156330173', '2359482403', '2481618089', '2566978289', '2633652551', '2724934409', '2846629007', '2850704267', '2929186907', '3104537879', '3175829737', '3197951849', '3241126099', '3287477441', '3329431081', '3390914641', '3402553849', '3452876029', '3454264111', '3455112149', '3484855259', '3488029459', '3767324447', '3827010907', '3831830087', '3860380091', '3907571699', '4034766187', '4041955903', '4171283407', '4224464213', '4232527549']
+```
+
+Finally, after a little research, we discover that no matter how many factors you have, $\phi(n)$ can be calculated by subtracting one from each prime number and multiplying all of them together. So, if we assumed that there were three factors, $p$, $q$, and $r$, then $\phi(n) = (p-1)(q-1)(r-1)$. Hence, we can go ahead and decrypt the message accordingly:
+
+```python
+>>> import gmpy
+>>> phi = 1
+>>> for factor in factors:
+...     phi *= int(factor) - 1
+...
+>>> d = gmpy.invert(e, phi)
+>>> m = pow(c, d, n)
+>>> from Crypto.Util.number import long_to_bytes
+>>> long_to_bytes(m)
+'picoCTF{p_&_q_n0_r_$_t!!_5626788}'
+```
+
+> flag: `picoCTF{p_&_q_n0_r_$_t!!_5626788}`
+
+
+## Conclusion
+
+Congratulations to everyone who took part in this year's picoCTF and especially to the organizers! CMU's [CyLab Security & Privacy Institute](https://www.cylab.cmu.edu/) always does a great job preparing and running the competition. Looking forward to participating in picoCTF again next year.

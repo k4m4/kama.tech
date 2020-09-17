@@ -1,0 +1,74 @@
+---
+title: "KickThemOut v2.0!"
+publishedAt: "2018-02-05"
+summary: "KickThemOut v2.0 is finally here, along with major fixes and modifications!"
+---
+
+> KickThemOut v2.0 is finally here, along with major fixes and modifications! 
+
+## Major new changes
+
+### Python 3 compatibility (yay)
+
+Following several requests and recommendations from the community, KickThemOut has officially shifted to compatibility with Python 3! 🎊
+
+Here's what the new *Debian* installation looks like:
+
+```bash
+~ ❯❯❯ sudo apt-get update && sudo apt-get install nmap
+~ ❯❯❯ git clone https://github.com/k4m4/kickthemout.git
+~ ❯❯❯ cd kickthemout/
+~/kickthemout ❯❯❯ sudo -H pip3 install -r requirements.txt
+~/kickthemout ❯❯❯ sudo python3 kickthemout.py
+```
+
+For installation instructions on *Arch* and *macOS* devices, refer to the repository's [readme page](https://github.com/k4m4/kickthemout).
+
+### Non-interactive attack (using optparser)
+
+KickThemOut can now be run using terminal arguments, meaning that users are not required to go through the interactive selection process anymore.
+
+Here are v2.0's usage arguments:
+
+```bash
+Usage: sudo python3 kickthemout.py [options]
+
+Options:
+  --version             show program's version number and exit
+  -h, --help            show this help message and exit
+  -p PACKETS, --packets=PACKETS
+                        number of packets broadcasted per minute (default: 6)
+  -s, --scan            perform a quick network scan and exit
+  -t TARGETS, --target=TARGETS
+                        specify target IP address(es) and perform attack
+
+Examples:
+  sudo python3 kickthemout.py --target 192.168.1.10 
+  sudo python3 kickthemout.py -t 192.168.1.5,192.168.1.10 -p 30
+  sudo python3 kickthemout.py -s
+  sudo python3 kickthemout.py (interactive mode)
+```
+
+To view all available options from your terminal run:
+
+```bash
+~/kickthemout ❯❯❯ sudo python3 kickthemout.py -h
+```
+
+In addition, users can now avoid the full network scan that occurs when running KickThemOut interactively (i.e. `~ ❯❯❯ sudo python3 kickthemout.py`) and can immediately initiate an attack using short and simple commands such as:
+
+```bash
+~/kickthemout ❯❯❯ sudo python3 kickthemout.py -t {TARGET_IP} -p {#_OF_PACKETS/MIN}
+```
+
+> An example of a non-interactive attack:
+
+![KTO_Scan](/static/images/kickthemout-v2-0/kto_scan_blurred.png)
+
+The image above displays KickThemOut's network scanning argument for fast  active host discovery. As you can see, each device's host name is also shown (shoutout to [R3DDY](https://github.com/R3DDY97) for his commits).
+
+![KTO_Non-Interactive_Attack](/static/images/kickthemout-v2-0/kto_attack_blurred.png)
+
+In this example, KickThemOut is broadcasting 60 packets per minute (i.e. 1 packet/sec), kicking out the host with IP address `192.168.1.16`, using the non-interactive attack method.
+
+Finally, I would like to thank you all for your inspiring messages and great support. If you haven't done so already, do check out our GitHub repository [here](https://github.com/k4m4/kickthemout) and make sure to follow [David](https://twitter.com/xdavidhu) and [myself](https://twitter.com/NikolasKAMA) for upcoming updates on this project and on  many more to come.

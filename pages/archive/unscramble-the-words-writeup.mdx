@@ -1,0 +1,142 @@
+---
+title: "Unscramble The Words ~ Writeup"
+publishedAt: "2016-08-08"
+summary: "Writeup of the Unscramble The Words HackThisSite challenge."
+---
+
+- Name: Level 1
+- Type: Programming Mission
+- Level: Begginer [>]
+- Creator: [HTS](https://www.hackthissite.org)
+- Host: [HackThisSite.org](https://hackthissite.org)
+- Link: [Try It Here](https://www.hackthissite.org/missions/prog/1)
+
+## Brief Description
+
+```
+This level is about unscrambling words.
+
+Find the original (unscrambled) words, which were randomly taken from a wordlist.<--
+Send a comma separated list of the original words, in the same order as in the list below.
+
+You have 30 seconds time to send the solution.
+```
+
+```
+List of scrambled words:     anbdnor
+                             foloabtl
+                             lddaie
+                             aenvass
+                             cgaillo
+                             oternh
+                             lonecle
+                             cawtrfar
+                             gsneeis
+                             kaytde
+```
+
+As you can understand, we are primarily given a (pretty long) [wordlist](https://www.hackthissite.org/missions/prog/1/wordlist.zip) or dictionary if you like, as well as a list of scrambled words.
+
+Our objective is obvious. We must find which original, 'unscrambled' word from the given wordlist matches which 'scrambled' word from the list, in the given time (of 30 seconds).
+
+We are lastly asked to submit our output in comma-separated format: `(Example: word1,word2,word3, ... word9,word10)`. 
+
+I bet you've already thought of a way to approach this easy task. No? Don't worry, I'll give you a hand.
+
+## The Code
+
+You can use most languages to solve this challenge (e.g. ruby, java & python). Personally, I chose to use my, by far, favorite language - Python.
+
+What I want Python to do for me is, firstly, read through the two lists and sort all strings alphabetically. Subsequently, I want it to iterate through each one of the scrambled words, and look for a match in the wordlist. Once a match is established, it will append the unscrambled form of the word to a list, and once all strings are matched, it displays the final list in comma-separated format (as requested by HTS).
+
+Here is my final piece of code:
+
+```py
+#!/usr/bin/env python
+# scrambled.py
+
+"""
+author  : k4m4 (Nikolaos Kamarinakis)
+email   : nikolaskam{at}gmail{dot}com
+twitter : @NikolasKama (https://twitter.com/nikolaskama/)
+"""
+
+unscrambled = []
+
+def main():
+
+    logo = [
+        "                                 ___     __              ___ ",
+        "  ______ ___________ __ __  _____\_ |__ |  |   ____   __| _/ ",
+        " /  ___// ___\_  __ \  |  \/     \| __ \|  | _/ __ \ / __ |  ",
+        " \___ \\  \___|  | \/  |  /  | |  \ \_\ \  |_\  ___// /_/ |  ",
+        "/____  >\___  >__|  |____/|__|_|  /___  /____/\___  >____ |  ",
+        "     \/     \/                  \/    \/          \/     \/\n"
+        ]
+
+    for line in logo:
+        print(line)
+
+    readFiles()
+
+def readFiles():
+    
+    global words
+    global scrambled
+
+    print("[+] Reading Wordlist")
+    mf = open("wordlist.txt", "r")
+    words = mf.readlines()
+    mf.close()
+
+    print("[+] Reading Scrambled Wordlist")
+    mf2 = open("scrambled.txt", "r")
+    scrambled = mf2.readlines()
+    mf2.close()
+
+    matchStrings()
+
+def matchStrings():
+
+    print("[+] Matching Scrambled With Uscrambled")
+    for text in scrambled:
+        text = text.rstrip("\n")
+        txtSorted = ''.join(sorted(text))
+        for word in words:
+            word = word.rstrip("\n").rstrip("\r")
+            wrdSorted = ''.join(sorted(word))
+            if txtSorted == wrdSorted:
+                unscrambled.append(word)
+
+    displayUnscrambled()
+
+def displayUnscrambled():
+
+    global unscrambled
+
+    print("[+] Task Complete --> All Strings Matched")
+    print("[+] Unscrambled Words:")
+    unscrambled = ','.join(map(str, unscrambled))
+    print('-'*80)
+    print(unscrambled)
+    print('-'*80)
+
+if __name__ == '__main__':
+
+    main()
+```
+
+## How To Use
+
+1. **Download** the [ZIP file](https://gist.github.com/nikolaskama/0b9c554c3a04205ea9f84abbafe1cb48/archive/fead0747013a9d0421acb1c0625f690ec36ec672.zip) from Github Gist.
+2. **Paste** your **list of scrambled words** into the `scrambled.txt` file. (Overwrite the original file, and replace its contents with your scrambled words.)
+3. **Run** the python file using either your compiler (e.g. IDLE or Atom), or by simply executing it through terminal: `$ python scrambled.py`. (If you're using terminal, make sure you are in the right directory.)
+4. **Submit** the **comma-separated** output to the HackThisSite website by copying and pasting it to the `Answer:` form of Level 1.
+
+![Congrats Lvl 1](/static/images/unscramble-the-words-writeup/congrats_lvl_1.png)
+
+Woo-hoo! Piece of cake, wasn't it?
+
+Stay put. More coming!
+
+&#9889; **k4m4** from 127.0.0.1

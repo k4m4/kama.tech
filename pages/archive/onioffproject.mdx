@@ -1,0 +1,107 @@
+---
+title: "ONIOFF ~ Project"
+publishedAt: "2016-09-29"
+summary: "ONIOFF - Onion URL Inspector"
+---
+
+import Tweet from 'react-tweet-embed';
+import AsciinemaPlayer from '../../components/asciinema-player';
+
+## ONIOFF - Onion URL Inspector
+
+![ONIOFF Screenshot](/static/images/onioffproject/onioff.png)
+
+> A simple tool - written in pure python - for inspecting Deep Web URLs (or onions). It takes specified onion links and returns their current status along with the site's title.
+
+### The Idea
+
+While checking out some exceedingly peculiar Deep Web Links, I was truly frustrated by the fact that more than half of the URLs I tried navigating to were not responding.
+
+It was at that point that the brainstorming began. I thought - why not create a tool which effortlessly allows me to check which of the onion links are actually active. And that is precisely what I did. I created ONIOFF.
+
+### Installation
+
+You can download ONIOFF by cloning the [Git Repo](https://github.com/k4m4/onioff) and simply installing its requirements:
+
+```bash
+~ ❯❯❯ git clone https://github.com/k4m4/onioff.git
+~ ❯❯❯ cd onioff
+~/onioff ❯❯❯ pip install -r requirements.txt
+~/onioff ❯❯❯ python onioff.py
+```
+**NOTE**: In order for ONIOFF to work, Tor must be correctly configured and running.
+
+### Usage
+
+```bash
+Usage: python onioff.py {onion} [options]
+
+Options:
+  --version             show program's version number and exit
+  -h, --help            show this help message and exit
+  -f FILE, --file=FILE  name of onion file
+  -o OUTPUT_FILE, --output=OUTPUT_FILE
+                        output filename
+
+Examples:
+  python onioff.py http://xmh57jrzrnw6insl.onion/
+  python onioff.py -f ~/onions.txt -o ~/report.txt
+  python onioff.py https://facebookcorewwwi.onion/ -o ~/report.txt
+```
+
+To view all available options run:
+
+```bash
+~/onioff ❯❯❯ python onioff.py -h
+```
+
+### Demo
+
+Here's a short demo:
+
+<AsciinemaPlayer id="87557" size='medium' speed={1.5} />
+
+(For more demos click [here](https://asciinema.org/~k4m4).)
+
+### License
+
+Copyright &copy; 2016 by [Nikolaos Kamarinakis](mailto:nikolaskam@gmail.com). Some rights reserved.
+
+ONIOFF is under the terms of the [MIT License](https://www.tldrlegal.com/l/mit), following all clarifications stated in the [license file](https://raw.githubusercontent.com/k4m4/onioff/master/LICENSE).
+
+### Developer
+
+* [**Nikolaos Kamarinakis**](https://nikolaskama.me) ([@nikolaskama](https://twitter.com/nikolaskama/))
+
+You can contact me anytime at [nikolaskam{at}gmail{dot}com](mailto:nikolaskam@gmail.com).
+I will be more than grateful to hear any sort of feedback.
+
+### Featured
+
+* [**BlackArch OS**](https://blackarch.org/tools.html) **:)**
+* [**ArchStrike OS**](https://archstrike.org/packages/onioff) **:)**
+* [**Darknet**](https://www.darknet.org.uk/2017/02/onioff-onion-url-inspector/)
+* [**KitPloit**](https://www.kitploit.com/2016/10/onioff-onion-url-inspector.html)
+* [**ITSecurityNews**](https://www.itsecuritynews.info/onioff-onion-url-inspector/)
+* [**HackerTor**](https://hackertor.com/2017/02/17/onioff-onion-url-inspector/)
+* [**Sapsi**](https://sapsi.org/onioff-onion-url-inspector/)
+* [**HaXF4RALL**](https://www.haxf4rall.com/2016/10/07/onioff-onion-url-inspector/)
+* [**DigitalMunition**](https://www.digitalmunition.me/2016/10/onioff-onion-url-inspector/)
+* [**HowUCan**](https://howucan.gr/scripts-tools/892-onioff-an-onion-url-inspector-for-inspecting-deep-web-links/)
+* [**F-Sec**](https://futursec.co.za/2016/10/07/onioff-onion-url-inspector/)
+* [**CTOLib**](https://www.ctolib.com/onioff.html)
+* [**PlayOurHack**](https://playourhack.fr/onioff-onion-url-inspector) (FR)
+* [**HackingKnight**](https://hackingknight.com/onioff-%D8%A7%D8%AF%D8%A7%D9%87/) (AR)
+* [**RedesZone**](https://www.redeszone.net/2016/10/03/comprueba-una-direccion-onion-tor-esta-disponible-la-herramienta-onioff/) (ES)
+* [**SysGuru**](https://www.sysguru.org/onioff-inspertor-de-url-onion/) (ES)
+* [**NoticiasSeguridad**](https://noticiasseguridad.com/seguridad-informatica/comprueba-si-una-direccion-onion-en-tor-esta-disponible-con-la-herramienta-onioff/) (ES)
+
+### Social
+
+<Tweet id="782236930087919616" options={{ cards: 'hidden' }} />
+
+<Tweet id="782470570223034369" options={{ cards: 'hidden' }} />
+
+<Tweet id="844553373672181761" options={{ cards: 'hidden' }} />
+
+### [GITHUB REPOSITORY](https://github.com/k4m4/onioff)

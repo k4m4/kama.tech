@@ -1,0 +1,181 @@
+---
+title: "KickThemOut ~ Project"
+publishedAt: "2016-09-29"
+summary: "KickThemOut - Onion URL Inspector"
+---
+
+import Tweet from 'react-tweet-embed';
+import FacebookPost from '../../components/facebook-post';
+import AsciinemaPlayer from '../../components/asciinema-player';
+import YoutubePlayer from '../../components/youtube-player';
+
+![KickThemOut Logo](/static/images/kickthemoutproject/kickthemout_small.png)
+
+## KickThemOut
+
+> [KickThemOut](https://nikolaskama.me/kickthemoutproject) - **Kick Devices Off Your Network**
+
+A tool to kick devices out of your network and enjoy all the bandwidth for yourself.
+It allows you to select specific or all devices and ARP spoofs them off your local area network.
+
+- Compatible with Python **3+** 🎉.
+- *Not* compatible with Windows.
+
+Authors: [Nikolaos Kamarinakis](mailto:nikolaskam@gmail.com) & [David Schütz](mailto:xdavid@protonmail.com).
+
+-------------
+
+### The Idea
+
+Don't you find it utterly frustrating when all you wanna do is sit back and enjoy a movie but you can't due to your 'laggy' network? Yeah, I feel you. 
+
+Impossible to happen when your brother, sister, mother, father and everyone else are connected on your network via all their devices.
+
+KickThemOut ARP Spoofs devices in your Local Area Network killing their internet connectivity and therefore allowing you to relish all the network bandwidth for yourself.
+
+### Installation
+
+> #### Debian Installation
+
+You can download KickThemOut by cloning the [Git Repo](https://github.com/k4m4/kickthemout) and simply installing its requirements:
+
+```bash
+~ ❯❯❯ sudo apt-get update && sudo apt-get install nmap
+~ ❯❯❯ git clone https://github.com/k4m4/kickthemout.git
+~ ❯❯❯ cd kickthemout/
+~/kickthemout ❯❯❯ sudo -H pip3 install -r requirements.txt
+~/kickthemout ❯❯❯ sudo python3 kickthemout.py
+```
+
+> #### MacOS Installation
+
+If you would like to install KickThemOut on a Mac, please run the following:
+
+```bash
+~ ❯❯❯ brew install libdnet nmap
+~ ❯❯❯ git clone https://github.com/k4m4/kickthemout.git
+~ ❯❯❯ cd kickthemout/
+~/kickthemout ❯❯❯ sudo -H pip3 install -r requirements.txt
+~/kickthemout ❯❯❯ sudo python3 kickthemout.py
+```
+
+**NOTE**: You need to have [Homebrew](https://brew.sh/) installed before running the Mac OS installation. 
+
+Also, **keep in mind** that you might be asked to run some commands after executing the 2nd last command.
+
+> #### Arch Installation
+
+You can download KickThemOut on an Arch based system by executing the following:
+
+```bash
+~ ❯❯❯ git clone https://github.com/k4m4/kickthemout.git
+~ ❯❯❯ cd kickthemout/
+~ ❯❯❯ sudo -H pip3 install -r requirements.txt
+~/kickthemout ❯❯❯ sudo python3 kickthemout.py
+```
+
+### Usage
+
+```bash
+Usage: sudo python3 kickthemout.py [options]
+
+Options:
+  --version             show program's version number and exit
+  -h, --help            show this help message and exit
+  -p PACKETS, --packets=PACKETS
+						number of packets broadcasted per minute (default: 6)
+  -s, --scan            perform a quick network scan and exit
+  -t TARGETS, --target=TARGETS
+						specify target IP address(es) and perform attack
+
+Examples:
+  sudo python3 kickthemout.py --target 192.168.1.10 
+  sudo python3 kickthemout.py -t 192.168.1.5,192.168.1.10 -p 30
+  sudo python3 kickthemout.py (interactive mode)
+```
+
+To view all available options run:
+
+```bash
+~/kickthemout ❯❯❯ sudo python3 kickthemout.py -h
+```
+
+### Demo
+
+Here's a short demo:
+
+<AsciinemaPlayer id="98200" size='medium' speed={1.5} />
+
+(For more demos click [here](https://asciinema.org/~k4m4).)
+
+### Developers
+
+* Nikolaos Kamarinakis - [@nikolaskama](https://twitter.com/nikolaskama)
+* David Schütz - [@xdavidhu](https://twitter.com/xdavidhu)
+
+### Disclaimer
+
+KickThemOut is provided as is under the MIT Licence (as stated below). 
+It is built for educational purposes *only*. If you choose to use it otherwise, the developers will not be held responsible. Please, do not use it with evil intent.
+
+### License
+
+Copyright (c) 2017-18 by [Nikolaos Kamarinakis](mailto:nikolaskam@gmail.com) & [David Schütz](mailto:xdavid@protonmail.com). Some rights reserved.
+
+KickThemOut is under the terms of the [MIT License](https://www.tldrlegal.com/l/mit), following all clarifications stated in the [license file](https://raw.githubusercontent.com/k4m4/kickthemout/master/LICENSE).
+
+For more information head over to the [official project page](https://nikolaskama.me/kickthemoutproject).
+You can also go ahead and email me anytime at **nikolaskam{at}gmail{dot}com** or David at **xdavid{at}protonmail{dot}com**.
+
+### Featured
+
+* [**BlackArch Linux** :)](https://blackarch.org/tools.html)
+* [**Latest Hacking News**](https://latesthackingnews.com/2017/01/10/kickthemout-tool-to-kick-devices-off-your-network/)
+* [**KitPloit**](https://www.kitploit.com/2017/01/kickthemout-kick-devices-off-your.html)
+* [**TechWorm**](https://www.techworm.net/2017/01/kickthemout-powerful-python-tool-kick-nasties-connected-network.html)
+* [**Sapsi**](https://sapsi.org/kickthemout-kick-devices-off-your-network/)
+* [**Pantomath**](https://www.pantomath.xyz/how-to-prevent-neigbhours-using-youre-wifi-kickthemout/)
+* [**HackersDirectory**](https://hackersdirectory.tk/)
+* [**TrueViralNews**](https://trueviralnews.com/kickthemout-a-tool-to-kick-devices-off-your-network/)
+* [**CyberPedia**](https://cyberpedia.in/how-to-kick-someone-off-your-wifi/)
+* [**HackerTor**](https://hackertor.com/2017/01/09/kickthemout-kick-devices-off-your-network/)
+* [**TechWorldBlog**](https://techworldblog.in/tools-to-kick-devices-off-your-network/)
+* [**KaliLinux.co**](https://kalilinux.co/2017/01/22/kickthemout-kick-devices-off-network/)
+* [**HEADLEAKS**](https://headleaks.com/2017/01/kickthemout-a-powerful-python-tool-to-kick-those-nasties-connected-to-your-network/)
+* [**HackerBytes**](https://www.hackerbytes.net/2017/01/18/kickthemout-script-to-kill-all-wifi-users/)
+* [**HaXF4RALL**](https://haxf4rall.com/2017/01/09/kickthemout-kick-devices-off-your-network/)
+* [**95cn**](https://95cnweb.com/1762.html)
+* [**Acyber**](https://acyber.ir/blog/kickthemout-kick-devices-off-network/)
+* [**HowToBeAHacker**](https://howtobeahacker.tk/tag/kickthemout)
+* [**Hacking.Land**](https://www.hacking.land/2017/01/kickthemout-kick-devices-off-your_11.html)
+* [**HowUCan**](https://howucan.gr/scripts-tools/1504-kickthemout-kick-devices-off-your-network)
+* [**TechWorldNews**](https://www.techworldnews.co/2017/01/kickthemout-tool-to-kick-devices-off.html)
+* [**TutorialsHub**](https://www.tutorialshub.us/kickthemout-kick-devices/)
+* [**Cybersec**](https://www.cybersecsolution.com/kickthemout-tool-to-kick-devices-off-your-network/)
+* [**BuzzWaw**](https://www.buzzwaw.com/2017/01/how-to-kick-someone-off-your-wireless.html)
+* [**CyberNovaNet**](https://cybernovanet.wordpress.com/2017/01/09/kickthemout-kick-devices-off-your-network/)
+* [**TH3 R4V3N**](https://th3-r4v3n.blogspot.gr/2017/01/kickthemout-kick-devices-off-your.html)
+* [**TirateUnPing**](https://tirateunping.wordpress.com/2017/01/09/kickthemout-kick-devices-off-your-network/)
+* [**Appmarsh**](https://www.appmarsh.com/kickthemout-kick-devices-off-your-network/)
+* [**Korben**](https://korben.info/deconnecter-machine-a-distance.html) (FR)
+* [**Shak**](https://www.shak.fr/blog/kickthemout-deconnectez-les-tous/) (FR)
+* [**Webissimo**](https://webissimo.biz/kickthemout-deconnectez-les-tous-2/) (FR)
+* [**SysGuru**](https://www.sysguru.org/kickthemout-echalos-a-todos/) (ES)
+* [**StateX**](https://infostatex.blogspot.gr/2017/01/kickthemout-echalos-todos.html) (ES)
+* [**TKJ Cyber Art**](https://www.tkjcyberart.org/2017/01/tutorial-tool-kickthemout-kick-devices.html) (ID)
+* [**CTOLib**](https://www.ctolib.com/kickthemout.html) (CN)
+
+### Video (By JackkTuts)
+
+<YoutubePlayer id="n6G3Nw4qDzg" />
+
+### Social
+
+<FacebookPost
+	href="https%3A%2F%2Fwww.facebook.com%2Fethicalhackingnewsandtutorials%2Fposts%2F1367308333308721"
+	height="410"
+/>
+
+<Tweet id="818467654717476864" />
+
+### [GITHUB REPOSITORY](https://github.com/k4m4/kickthemout)

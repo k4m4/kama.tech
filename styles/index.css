@@ -1,0 +1,41 @@
+@import "tailwindcss/base";
+
+html, body {
+    overscroll-behavior: none;
+}
+
+.token-line:last-child {
+	max-height: 0;
+}
+
+a > code {
+	color: #f56565;
+}
+
+a > code:hover {
+	color: #fff;
+}
+
+::selection {
+	background: #f56565;
+}
+
+::-moz-selection {
+	background: #f56565;
+}
+
+#nprogress .bar {
+	background: #f56565;
+}
+
+@import "tailwindcss/components";
+
+.max-h-wfa {
+	max-height: -webkit-fill-available;
+}
+
+.max-h-ma {
+	max-height: -moz-available;
+}
+
+@import "tailwindcss/utilities";

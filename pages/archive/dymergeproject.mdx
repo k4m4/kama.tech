@@ -1,0 +1,85 @@
+---
+title: "DyMerge ~ Project"
+publishedAt: "2016-08-19"
+summary: "DyMerge - Dynamic Dictionary Merger"
+---
+
+import Tweet from 'react-tweet-embed';
+import AsciinemaPlayer from '../../components/asciinema-player';
+import YoutubePlayer from '../../components/youtube-player';
+
+## DyMerge - Dynamic Dictionary Merger
+
+> A simple, yet powerful tool - written purely in python - which takes given wordlists and merges them into one dynamic dictionary that can then be used as ammunition for a successful dictionary based (or bruteforce) attack.
+
+![DyMerge Screenshot](/static/images/dymergeproject/dymerge.png)
+
+### The Idea
+
+Meanwhile making my way through a ctf challenge, I thought about how powerful a single dictionary could become if only it contained every possibly relevant wordlist extracted from previous leaked content, provided by everyday cracking tools, and created by custom word list generators. All into one. Dangerously powerful don't you think?
+
+That is when I came up with the idea of **DyMerge**. DyMerge is a simple, yet powerful tool written - purely in python - which takes given wordlists, and merges them into one dynamic dictionary that can then be used as ammunition for a successful dictionary based (or bruteforce) attack.
+
+DyMerge gives you the opportunity to sit back and relax while your password cracking tool does its job for you, without thinking that you'll most probably gonna have to try using a different dictionary, which  - undoubtedly - contains many of the same words as the previous one.
+
+### Installation
+
+You can install DyMerge by cloning the [Git Repo](https://github.com/k4m4/dymerge):
+
+```bash
+$ git clone https://github.com/k4m4/dymerge.git
+```
+
+### Usage
+
+Usage: `python dymerge.py {dictionaries} [options]`
+
+To view all available options run:
+
+```bash
+$ python dymerge.py -h
+```
+
+### Demo
+
+Here's a short demo:
+
+<AsciinemaPlayer id="84067" size='medium' speed={1.5} />
+
+(For more demos click [here](https://asciinema.org/~k4m4).)
+
+### License
+
+Copyright &copy; 2016 by [Nikolaos Kamarinakis](mailto:nikolaskam@gmail.com). Some rights reserved.
+
+DyMerge is under the terms of the [MIT License](https://www.tldrlegal.com/l/mit), following all clarifications stated in the [license file](https://raw.githubusercontent.com/k4m4/dymerge/master/doc/LICENSE).
+
+### Developer
+
+- [**Nikolaos Kamarinakis**](https://nikolaskama.me) ([@nikolaskama](https://twitter.com/nikolaskama/))
+
+You can contact me anytime at [nikolaskam{at}gmail{dot}com](mailto:nikolaskam@gmail.com).
+I will be more than grateful to hear any sort of feedback.
+
+### Featured
+
+* [**Darknet**](https://www.darknet.org.uk/2016/10/dymerge-bruteforce-dictionary-merging-tool/) **:)**
+* [**KitPloit**](https://www.kitploit.com/2016/09/dymerge-dynamic-dictionary-merger.html)
+* [**Cybrary**](https://www.cybrary.it/0p3n/dymerge-dictionaries-merger/)
+* [**DigitalMunition**](https://www.digitalmunition.me/2016/09/dymerge-dynamic-dictionary-merger/)
+* [**Sapsi**](https://sapsi.org/dymerge-dynamic-dictionary-merger/)
+* [**HowUCan**](https://howucan.gr/scripts-tools/620-dymerge-dynamic-dictionary-merger/)
+* [**ITSecurityNews**](https://www.itsecuritynews.info/dymerge-bruteforce-dictionary-merging-tool/)
+* [**Poftut**](https://www.poftut.com/dymerge-dictionary-merge-tool/)
+* [**SysGuru**](https://www.sysguru.org/dymerge-mezclando-diccionarios/) (ES)
+* [**Netamooz**](https://netamooz.net/dymerge/) (IR)
+
+### Video (By JackkTuts)
+
+<YoutubePlayer id="y5xI--ggxKc" />
+
+### Social
+
+<Tweet id="771354199367921664" />
+
+### [GITHUB REPOSITORY](https://github.com/k4m4/dymerge)

