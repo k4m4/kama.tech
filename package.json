@@ -9,7 +9,7 @@
     "lint": "xo"
   },
   "dependencies": {
-    "@mdx-js/react": "^1.6.16",
+    "@mdx-js/react": "^1.6.18",
     "date-fns": "^2.16.1",
     "lodash.debounce": "^4.0.8",
     "next": "^9.5.3",
@@ -18,8 +18,8 @@
     "nprogress": "^0.2.0",
     "postcss-preset-env": "^6.7.0",
     "prism-react-renderer": "^1.1.1",
-    "react": "16.11.0",
-    "react-dom": "16.11.0",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1",
     "react-icons": "^3.11.0",
     "react-tweet-embed": "^1.2.2",
     "reading-time": "^1.2.0",
@@ -27,16 +27,16 @@
     "remark-autolink-headings": "^6.0.1",
     "remark-math": "^3.0.1",
     "remark-slug": "^6.0.0",
-    "sass": "^1.26.10",
+    "sass": "^1.26.11",
     "swr": "^0.3.2",
-    "tailwindcss": "^1.8.3",
+    "tailwindcss": "^1.8.10",
     "timeago.js": "^4.0.2",
     "truncate": "^2.1.0"
   },
   "devDependencies": {
     "eslint-config-xo-react": "^0.23.0",
     "eslint-plugin-react": "^7.20.6",
-    "eslint-plugin-react-hooks": "^4.1.0",
+    "eslint-plugin-react-hooks": "^4.1.2",
     "xo": "^0.33.1"
   }
 }
