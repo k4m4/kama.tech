@@ -28,7 +28,7 @@
     "remark-math": "^3.0.1",
     "remark-slug": "^6.0.0",
     "sass": "^1.26.11",
-    "swr": "^0.3.2",
+    "swr": "^0.3.3",
     "tailwindcss": "^1.8.10",
     "timeago.js": "^4.0.2",
     "truncate": "^2.1.0"
