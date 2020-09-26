@@ -17,7 +17,7 @@ const LatestCommit = () => {
 			<div className="w-80 bg-gray-300 dark:bg-black text-black dark:text-white p-4 md:p-5 lg:p-6 rounded-lg text-center">
 				{data ? (
 					<>
-						<div className="font-semibold text-lg mb-1">
+						<div className="font-semibold text-base lg:text-lg mb-1">
 							<Link
 								as={OutboundLink}
 								href={data?.commitURL}
