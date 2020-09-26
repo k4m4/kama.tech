@@ -10,8 +10,8 @@ const LatestCommit = () => {
 	const { data } = useSWR('/api/latest-commit', fetcher);
 
 	return (
-		<div className="flex justify-center">
-			<div className="text-sm text-light transform -rotate-90 uppercase -mr-10 lg:-mr-8">
+		<div className="flex justify-center items-center">
+			<div className="text-sm text-light transform -rotate-90 uppercase">
 				latest
 			</div>
 			<div className="w-80 bg-gray-300 dark:bg-black text-black dark:text-white p-4 md:p-5 lg:p-6 rounded-lg text-center">
@@ -51,13 +51,13 @@ const LatestCommit = () => {
 				) : (
 					<div className="animate-pulse flex space-x-4">
 						<div className="flex-1 space-y-4 py-1">
-							<div className="w-3/5 m-auto m-0 h-4 bg-gray-400 rounded" />
+							<div className="w-3/5 m-auto h-4 bg-gray-400 rounded" />
 							<div className="h-4 bg-gray-400 rounded" />
 						</div>
 					</div>
 				)}
 			</div>
-			<div className="text-sm text-light transform rotate-90 uppercase -ml-10 lg:-ml-8">
+			<div className="text-sm text-light transform rotate-90 uppercase">
 				commit
 			</div>
 		</div>
