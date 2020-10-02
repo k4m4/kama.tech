@@ -56,6 +56,7 @@ module.exports = {
 			},
 			fontFamily: {
 				'space-mono': ['Space Mono', 'monospace'],
+				'meie': ['Meie Script', 'cursive'],
 			},
 		},
 	},

@@ -40,6 +40,11 @@ const Meta = () => {
 				rel="stylesheet"
 			/>
 
+			<link
+				href="https://fonts.googleapis.com/css2?family=Meie+Script&display=swap"
+				rel="stylesheet"
+			/>
+
 			<GoogleAnalytics />
 		</>
 	);
