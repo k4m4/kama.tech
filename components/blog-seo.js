@@ -3,7 +3,7 @@ import { string } from 'prop-types';
 
 const BlogSEO = ({ title, summary, publishedAt, url }) => {
 	const date = new Date(publishedAt).toISOString();
-	const fullTitle = `${title} – Nikolaos Kamarinakis`;
+	const fullTitle = `${title} – k4m4`;
 	const featuredImage = {
 		url: `https://og-image.k4m4.dev/${encodeURIComponent(title)}.png?theme=light&md=1&fontSize=100px&images=https://k4m4.dev/static/assets/design/profile-black.svg&widths=350&heights=350`,
 		alt: fullTitle,

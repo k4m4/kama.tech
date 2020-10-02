@@ -4,12 +4,13 @@ import Nav from './nav';
 import Footer from './footer';
 
 const Page = ({ children, title, description }) => {
+	const fullTitle = title && `${title} – k4m4`;
 	return (
 		<>
 			<NextSEO
-				title={title}
+				title={fullTitle}
 				description={description}
-				openGraph={{ title, description }}
+				openGraph={{ title: fullTitle, description }}
 			/>
 			<div className="min-h-screen min-w-full bg-gray-300 dark:bg-black text-black dark:text-white">
 				<Nav page={title.toLowerCase()} />
