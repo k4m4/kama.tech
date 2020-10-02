@@ -12,7 +12,7 @@ const Projects = () => {
 				<h1 className="text-5xl md:text-6xl lg:text-10vw p-5 lg:px-10 bg-gray-100 dark:bg-gray-900 font-bold uppercase">
 					Projects
 				</h1>
-				<ol className="divide-y lg:divide-y-2 divide-gray-600 dark:divide-white">
+				<ol className="divide-y lg:divide-y-2 divide-gray-600 dark:divide-gray-300">
 					{projects.map(project => (
 						<Project
 							key={project.name}
