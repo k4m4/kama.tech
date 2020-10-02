@@ -12,7 +12,7 @@ const Nav = ({ page, bottom }) => {
 						as={NextLink}
 						href="/"
 					>
-						<a className="font-semibold text-3xl md:text-4xl lg:text-5xl hover:text-red-500">
+						<a className="text-3xl md:text-4xl lg:text-5xl hover:text-red-500">
 							<Logo />
 						</a>
 					</Link>
