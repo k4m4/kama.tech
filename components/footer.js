@@ -10,7 +10,7 @@ import logOutboundLink from '../utils/log-outbound-link';
 
 const Footer = () => {
 	return (
-		<footer className="text-black dark:text-white bg-gray-100 dark:bg-gray-900 p-10">
+		<footer className="text-black dark:text-white bg-gray-100 dark:bg-gray-900 px-5 py-10">
 			<div className="pb-2">
 				<LatestCommit />
 			</div>
