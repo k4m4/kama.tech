@@ -8,7 +8,7 @@ const Project = ({ name, url, year, at }) => {
 		<li key={name}>
 			<Link
 				as={OutboundLink}
-				className="w-screen inline-flex items-center py-6 md:py-7 lg:py-8 px-2 md:px-4 lg:px-6 border-b-2 border-gray-600 dark:border-white md:hover:bg-red-500 lg:hover:bg-red-500"
+				className="w-screen inline-flex items-center py-6 md:py-7 lg:py-8 px-2 md:px-4 lg:px-6 md:hover:bg-red-500 lg:hover:bg-red-500"
 				href={url}
 				onClick={() => logOutboundLink(`Projects > ${name}`)}
 			>
