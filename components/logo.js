@@ -13,7 +13,7 @@ const Logo = ({ animated = false }) => {
 	}
 
 	return (
-		<h1 className="font-meie mb-1">k4m4</h1>
+		<h1 className="font-meie mb-2">k4m4</h1>
 	);
 };
 
