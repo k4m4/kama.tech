@@ -14,7 +14,7 @@ module.exports = {
 			{
 				config: 'always',
 				css: 'always',
-				sass: 'always',
+				mdx: 'always',
 			},
 		],
 		'comma-dangle': [
@@ -31,6 +31,12 @@ module.exports = {
 		},
 		{
 			files: 'components/google-analytics.js',
+			rules: {
+				'react/no-danger': 0,
+			},
+		},
+		{
+			files: 'components/hero.js',
 			rules: {
 				'react/no-danger': 0,
 			},

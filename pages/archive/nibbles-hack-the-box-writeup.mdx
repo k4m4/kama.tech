@@ -1,15 +1,14 @@
 ---
-title: "Nibbles ~ HTB Writeup"
+title: "Nibbles HTB Writeup"
 publishedAt: "2018-07-01"
+updatedAt: "2020-10-12"
 summary: "Writeup of the Nibbles HackTheBox machine."
 ---
 
 - Creator: [@mrb3n](https://www.hackthebox.eu/home/users/profile/2984)
 - Host: [hackthebox.eu](https://hackthebox.eu)
 
----
-
-## Owning user
+## Owning User
 
 Let's start up with the usual Nmap port scan.
 
@@ -161,7 +160,7 @@ We can subsequently navigate to the `/home/` directory where we can retrieve our
 {USER_HASH_GOES_HERE}
 ```
 
-## Owning root
+## Owning Root
 
 Taking a look at the contents of nibbler's home directory, we can also find a zip folder called `personal.zip`. Let's try unzipping it.
 

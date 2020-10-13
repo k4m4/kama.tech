@@ -25,17 +25,18 @@ a > code:hover {
 }
 
 #nprogress .bar {
-	background: #f56565;
+	background: white;
 }
 
 @import "tailwindcss/components";
 
-.max-h-wfa {
-	max-height: -webkit-fill-available;
-}
-
-.max-h-ma {
-	max-height: -moz-available;
+.anchor-link::before {
+	display: block;
+	content: "";
+	margin-top: -6rem;
+	height: 6rem;
+	visibility: hidden;
+	pointer-events: none;
 }
 
 @import "tailwindcss/utilities";

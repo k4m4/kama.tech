@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<svg width="260px" height="50px" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"  version="1.2" baseProfile="tiny">
-	<g fill="#fff" fill-opacity="1">
-		<text xml:space="preserve" x="0" y="30" font-family="Courier New" font-size="20" font-weight="100" font-style="italic">Hey, I'm</text>
-	</g>
-	<g fill="#fff" fill-opacity="1">
-		<text xml:space="preserve" x="108" y="46" font-family="Roboto Mono" font-size="64" font-weight="700" font-style="normal">k4m4</text>
-	</g>
-</svg>

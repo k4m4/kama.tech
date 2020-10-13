@@ -1,18 +1,15 @@
-import Logo from '../components/logo';
-import Nav from '../components/nav';
-import Footer from '../components/footer';
+import Page from '../components/page';
+import Hero from '../components/hero';
+import Projects from '../components/projects';
 
 const Home = () => {
 	return (
-		<>
-			<div className="flex flex-col content-center justify-center h-screen max-h-wfa max-h-ma bg-gray-300 dark:bg-black text-black dark:text-white">
-				<div className="m-auto p-6">
-					<span className="text-6xl inline-block align-middle"><Logo /></span>
-				</div>
-				<Nav bottom />
+		<Page>
+			<div className="min-h-full w-full font-normal p-0 m-0 font-space-mono bg-black text-white lg:mb-16">
+				<Hero title="Full-stack Software Engineer &amp; Open Sourcerer." />
+				<Projects />
 			</div>
-			<Footer />
-		</>
+		</Page>
 	);
 };
 

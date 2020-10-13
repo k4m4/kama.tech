@@ -1,24 +1,9 @@
-import { bool } from 'prop-types';
-
-const Logo = ({ animated = false }) => {
-	if (animated) {
-		return (
-			<div
-				className="glitch"
-				data-trick="k4m4"
-			>
-				kama
-			</div>
-		);
-	}
-
+const Logo = () => {
 	return (
-		<h1 className="font-meie mb-2">k4m4</h1>
+		<h2 className="font-extralight font-meie text-6xl">
+			k4m4
+		</h2>
 	);
-};
-
-Logo.propTypes = {
-	animated: bool,
 };
 
 export default Logo;

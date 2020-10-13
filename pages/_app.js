@@ -6,7 +6,6 @@ import debounce from 'lodash.debounce';
 import SEO from '../next-seo.config';
 import { pageview } from '../utils/gtag';
 import 'nprogress/nprogress.css';
-import '../styles/logo.sass';
 import '../styles/index.css';
 
 NProgress.configure({ showSpinner: false });
