@@ -1,9 +1,9 @@
 import { string } from 'prop-types';
-import Link from '../components/link';
-import OutboundLink from '../components/outbound-link';
-import Card from '../components/card';
-import logOutboundLink from '../utils/log-outbound-link';
-import { projects } from '../data/projects';
+import Link from '../atoms/link';
+import OutboundLink from '../atoms/outbound-link';
+import Card from '../molecules/card';
+import logOutboundLink from '../../utils/log-outbound-link';
+import { projects } from '../../data/projects';
 
 const Project = ({ name, description, iconPath, url }) => {
 	return (

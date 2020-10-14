@@ -1,6 +1,6 @@
 import Document, { Html, Main, Head, NextScript } from 'next/document';
 import React from 'react';
-import Meta from '../components/meta';
+import Meta from '../components/molecules/meta';
 
 class MyDocument extends Document {
 	static async getInitialProps(ctx) {

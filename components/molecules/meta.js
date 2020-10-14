@@ -1,4 +1,4 @@
-import GoogleAnalytics from './google-analytics';
+import GoogleAnalytics from '../atoms/google-analytics';
 
 const Meta = () => {
 	return (

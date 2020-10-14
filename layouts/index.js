@@ -1,8 +1,8 @@
 import { MDXProvider } from '@mdx-js/react';
 import formatDate from '../utils/format-date';
 import { node, shape, string } from 'prop-types';
-import BlogPage from '../components/blog-page';
-import MDXComponents from '../components/mdx-components';
+import BlogPage from '../components/templates/blog-page';
+import MDXComponents from '../components/organisms/mdx-components';
 
 const Layout = ({ children, frontMatter }) => {
 	const slug = frontMatter.__resourcePath

@@ -1,7 +1,7 @@
 import { string, node, object } from 'prop-types';
 import Highlight, { defaultProps } from 'prism-react-renderer';
 import { FaAnchor } from 'react-icons/fa';
-import prismTheme from '../prism.config';
+import prismTheme from '../../prism.config';
 
 const Heading = ({ as: Component, className, ...props }) => {
 	const size = Number(Component.replace('h', ''));

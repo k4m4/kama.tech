@@ -30,19 +30,19 @@ module.exports = {
 			},
 		},
 		{
-			files: 'components/google-analytics.js',
+			files: 'components/atoms/google-analytics.js',
 			rules: {
 				'react/no-danger': 0,
 			},
 		},
 		{
-			files: 'components/hero.js',
+			files: 'components/organisms/hero.js',
 			rules: {
 				'react/no-danger': 0,
 			},
 		},
 		{
-			files: 'components/mdx-components.js',
+			files: 'components/organisms/mdx-components.js',
 			rules: {
 				'react/no-array-index-key': 0,
 			},

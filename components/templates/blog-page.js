@@ -1,8 +1,8 @@
 import Head from 'next/head';
 import { node } from 'prop-types';
-import BlogSEO from './blog-seo';
-import Nav from './nav';
-import Footer from './footer';
+import BlogSEO from '../molecules/blog-seo';
+import Nav from '../organisms/nav';
+import Footer from '../organisms/footer';
 
 const BlogPage = ({ children, ...props }) => {
 	return (

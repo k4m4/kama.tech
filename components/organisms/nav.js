@@ -4,8 +4,8 @@ import {
 	FiMenu as MenuIcon,
 	FiX as CrossIcon,
 } from 'react-icons/fi';
-import Link from './link';
-import Logo from './logo';
+import Link from '../atoms/link';
+import Logo from '../atoms/logo';
 
 const Nav = () => {
 	const [isNavTop, setIsNavTop] = useState(true);
