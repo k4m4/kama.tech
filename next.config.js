@@ -30,6 +30,6 @@ module.exports = withMdxEnhanced({
 		return archivedBlogRedirects();
 	},
 	env: {
-		DEFAULT_DOMAIN: 'kama.fyi',
+		DEFAULT_DOMAIN: 'kama.tech',
 	},
 });
