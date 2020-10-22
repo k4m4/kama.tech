@@ -1,18 +1,19 @@
 ---
-title: "Why DyMerge Sucks."
+title: "Why DyMerge Sucks"
 publishedAt: "2017-08-15"
+updatedAt: "2020-10-12"
 summary: "DyMerge. My first ever open-source project. Here's what I learned from it and why it sucks."
 ---
 
-[![DyMerge Image](https://nikolaskama.me/content/images/2016/08/dymerge.png)](https://nikolaskama.me/dymergeproject/)
+[![DyMerge Image](/static/images/why-dymerge-sucks/dymerge.png)](https://nikolaskama.me/dymergeproject/)
 
 > **DyMerge**. My first ever open-source project. Here's *what I learned* from it and *why it sucks*.
 
-### What is DyMerge?
+## What is DyMerge?
 
-DyMerge was my very first GitHub project, designed to merge multiple dictionaries into one for efficient dictionary based password attacks. You can read more about the initial idea and the project itself [here](/dymergeproject).
+DyMerge was my very first GitHub project, designed to merge multiple dictionaries into one for efficient dictionary based password attacks. You can read more about [the initial idea and the project itself here](/dymergeproject).
 
-### What it Does
+## What it Does
 
 DyMerge's main features are aligned in the program's *usage manual*:
 
@@ -44,15 +45,15 @@ Examples:
 
 In brief, DyMerge is capable of merging user-specified wordlists into one sorted file, removing duplicates and compressing the final dictionary. Other features such as reversing the order of the dictionary and appending values are also provided.
 
-### How it Works
+## How it Works
 
 The tool accomplishes the previously mentioned capabilities by storing each word from each file into an array (or list) and subsequently sorting and removing duplicate items using in-built Python functions. It then uses either the `zipfile`, `tarfile`, `bz2`, or `gzip` framework to compress the output file, depending on user input.
 
-### Why it Sucks
+## Why it Sucks
 
 Arguably, all of DyMerge's features can be implemented with a single line of bash code, faster and - overall - more efficiently. Some example cases have been outlined below.
 
-#### DyMerge vs. Bash
+### DyMerge vs. Bash
 
 Here are some cases where DyMerge commands can be replaced by simple `bash` commands:
 
@@ -78,13 +79,13 @@ $ python dymerge.py /dicts/crunch.txt /dicts/john.txt -s -u -f -z bz2
 
 Moreover, DyMerge doesn't work well with large files. This is because it loads every word from each dictionary into an array, causing the computer system's memory to overload and possibly even crash. 
 
-### Impact & Publicity
+## Impact & Publicity
 
 Even though all of DyMerge's main features can be fulfilled with classic bash, the tool has actually gained publicity.
 
 DyMerge has received around [100 stars](https://github.com/k4m4/dymerge/stargazers) on GitHub and has been featured on YouTube videos by respected YouTubers such as [JackkTutorials](https://youtu.be/y5xI--ggxKc). It has also been featured on several infosec websites, including [KitPloit](https://www.kitploit.com/2016/09/dymerge-dynamic-dictionary-merger.html) and [DarkNet](https://www.darknet.org.uk/2016/10/dymerge-bruteforce-dictionary-merging-tool/).
 
-### What I Gained
+## What I Gained
 
 My programming knowledge while developing this tool was nowhere near (and still isn't) perfect. I chose to write DyMerge in Python and approached its development as an opportunity for learning and improving my coding abilities.
 

@@ -55,8 +55,9 @@ module.exports = {
 				'6em': '6em',
 			},
 			fontFamily: {
+				space: ['Space', 'sans-serif'],
 				'space-mono': ['Space Mono', 'monospace'],
-				'meie': ['Meie Script', 'cursive'],
+				meie: ['Meie Script', 'cursive'],
 			},
 		},
 	},

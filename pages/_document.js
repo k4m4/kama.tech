@@ -1,6 +1,6 @@
 import Document, { Html, Main, Head, NextScript } from 'next/document';
 import React from 'react';
-import Meta from '../components/meta';
+import Meta from '../components/molecules/meta';
 
 class MyDocument extends Document {
 	static async getInitialProps(ctx) {
@@ -10,7 +10,7 @@ class MyDocument extends Document {
 
 	render() {
 		return (
-			<Html lang="en" className="bg-gray-300 dark:bg-black">
+			<Html lang="en" className="bg-black">
 				<Head>
 					<Meta />
 				</Head>

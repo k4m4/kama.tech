@@ -1,6 +1,7 @@
 ---
 title: "picoCTF 2018 Crypto Writeups"
 publishedAt: "2018-10-14"
+updatedAt: "2020-10-12"
 summary: "Here are some short write-ups of the cryptography challenges from this year's picoCTF."
 ---
 
@@ -23,6 +24,7 @@ Here are some short write-ups of the cryptography challenges from this year's pi
 1. [Super Safe RSA (350)](#super-safe-rsa-350)
 1. [Super Safe RSA 2 (425)](#super-safe-rsa-2-425)
 1. [Super Safe RSA 3 (600)](#super-safe-rsa-3-600)
+1. [Conclusion](#conclusion)
 
 ## Crypto Warmup 1 (75)
 
@@ -82,7 +84,7 @@ alphabet:       ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz
 rot13 alphabet:	NOPQRSTUVWXYZABCDEFGHIJKLMnopqrstuvwxyzabcdefghijklm
 ```
 
-I chose to use a simple tool called [`caesar-cli`](https://www.npmjs.com/package/caesar-cli) which I had developed in the past to decode the message. Alternatively, one could simply use an online ROT13 decoder such as [Cryptii](https://cryptii.com/) or even manually, by hand.
+I chose to use a simple tool called [caesar-cli](https://www.npmjs.com/package/caesar-cli) which I had developed in the past to decode the message. Alternatively, one could simply use an online ROT13 decoder such as [Cryptii](https://cryptii.com/) or even manually, by hand.
 
 Running `caesar-cli` with our message outputs the flag:
 
@@ -93,7 +95,7 @@ picoCTF{this_is_crypto!}
 
 > flag: `picoCTF{this_is_crypto!}`
 
-## HEEEEEEERE'S Johnny!	(100)
+## HEEEEEEERE'S Johnny! (100)
 
 Given a `passwd` and `shadow` file, we are asked to recover the password that will authenticate us to a service located at `2018shell1.picoctf.com 5221`. In UNIX systems, the `passwd` file usually stores general user information whereas the `shadow` file stores user password information.
 
@@ -161,7 +163,7 @@ Using an online [Vigenère solver](https://www.guballa.de/vigenere-solver) to de
 ```
 The first well-documented description of a polyalphabetic cipher was formulated by Leon Battista Alberti around 1467 and used a metal cipher disc to switch between cipher alphabets.
 [...]
-Blaise de Vigenere published his description of a similar but stronger autokey cipher before the court of Henry III of France, in 1586. Later, in the 19th century, the invention of Bellaso's cipher was misattributed to Vigenere. David Kahn in his book The Codebreakers lamented the misattribution by saying that history had "ignored this important contribution and instead named a regressive and elementary cipher for him [Vigenere] though he had nothing to do with it". picoCTF{v1gn3r3_c1ph3rs_ar3n7_bad_5352bf72}
+[...] picoCTF{v1gn3r3_c1ph3rs_ar3n7_bad_5352bf72}
 [...]
 ```
 
@@ -193,7 +195,7 @@ e = 3
 c = 2205316413931134031046440767620541984801091216351222789180967130585669043554866325905770867150377611820746759815247778516899403229047066700396787852388511389893043279713280998235746440322483431305358901578692935378439077796777060321410661 
 ```
 
-Using Python, we can easily solve for `m` and decrypt the message by performing what is known as a [low public exponent attack]():
+Using Python, we can easily solve for `m` and decrypt the message by performing what is known as a [low public exponent attack](https://en.wikipedia.org/wiki/Coppersmith%27s_attack#Low_public_exponent_attack):
 
 ```python
 >>> import gmpy
