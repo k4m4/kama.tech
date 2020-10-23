@@ -1,15 +1,13 @@
 import { useState, useEffect } from 'react';
 import NextLink from 'next/link';
-import {
-	FiMenu as MenuIcon,
-	FiX as CrossIcon,
-} from 'react-icons/fi';
+import { motion, useCycle } from 'framer-motion';
+import MenuIcon from '../molecules/menu-icon';
 import Link from '../atoms/link';
 import Logo from '../atoms/logo';
 
 const Nav = () => {
 	const [isNavTop, setIsNavTop] = useState(true);
-	const [isNavToggled, setIsNavToggled] = useState(false);
+	const [isOpen, toggleOpen] = useCycle(false, true);
 
 	const handleScroll = () => {
 		const scroll = document.body.scrollTop || document.documentElement.scrollTop;
@@ -34,7 +32,15 @@ const Nav = () => {
 				</Link>
 				<div className="flex items-center font-space h-full ml-2">
 					<div className="flex-1 flex items-stretch justify-start">
-						<div className={`${isNavToggled ? 'block opacity-100' : 'hidden opacity-0'} mr-4 lg:mr-7 flex tracking-wider uppercase`}>
+						<motion.div
+							initial="hidden"
+							animate={isOpen ? 'visible' : 'hidden'}
+							variants={{
+								visible: { opacity: 1 },
+								hidden: { opacity: 0 },
+							}}
+							className={`${isOpen ? 'block' : 'hidden'} mr-4 lg:mr-7 flex tracking-wider uppercase`}
+						>
 							<Link
 								as={NextLink}
 								href="/archive"
@@ -43,20 +49,22 @@ const Nav = () => {
 									Archive
 								</a>
 							</Link>
-						</div>
-						<button
-							className="inline-flex items-center justify-center lg:px-2 text-gray-500 hover:text-white focus:outline-none transition duration-150 ease-in-out w-full"
-							aria-label="Menu"
-							aria-expanded={isNavToggled}
-							type="button"
-							onClick={() => setIsNavToggled(!isNavToggled)}
+						</motion.div>
+						<motion.div
+							initial={false}
+							animate={isOpen ? 'open' : 'closed'}
+							className="inline-flex items-center justify-center w-full"
 						>
-							{isNavToggled ? (
-								<CrossIcon size={22} />
-							) : (
-								<MenuIcon size={22} />
-							)}
-						</button>
+							<button
+								className={`lg:px-2 focus:outline-none ${isNavTop ? 'hover:text-gray-500' : 'hover:text-white'} transition-all ease-in duration-200`}
+								aria-label="Menu"
+								aria-expanded={isOpen}
+								type="button"
+								onClick={() => toggleOpen()}
+							>
+								<MenuIcon />
+							</button>
+						</motion.div>
 					</div>
 				</div>
 			</div>
