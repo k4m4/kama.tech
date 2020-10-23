@@ -1,6 +1,6 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import NextLink from 'next/link';
-import { motion, useCycle } from 'framer-motion';
+import { motion, useCycle, useViewportScroll } from 'framer-motion';
 import MenuIcon from '../molecules/menu-icon';
 import Link from '../atoms/link';
 import Logo from '../atoms/logo';
@@ -9,15 +9,8 @@ const Nav = () => {
 	const [isNavTop, setIsNavTop] = useState(true);
 	const [isOpen, toggleOpen] = useCycle(false, true);
 
-	const handleScroll = () => {
-		const scroll = document.body.scrollTop || document.documentElement.scrollTop;
-		setIsNavTop(!(scroll > 0));
-	};
-
-	useEffect(() => {
-		document.addEventListener('scroll', handleScroll);
-		return () => document.removeEventListener('scroll', handleScroll);
-	}, []);
+	const { scrollY } = useViewportScroll();
+	scrollY.onChange(distance => setIsNavTop(distance < 10));
 
 	return (
 		<nav className={`transition-all ease-in duration-200 fixed w-full ${isNavTop ? 'h-40 text-white' : 'h-24 text-gray-500 bg-black'} z-10 top-0`}>
