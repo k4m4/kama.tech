@@ -1,8 +1,8 @@
+import { NextSeo as NextSEO } from 'next-seo';
 import { useRouter } from 'next/router';
 import { node, string, bool } from 'prop-types';
-import { NextSeo as NextSEO } from 'next-seo';
-import Nav from '../organisms/nav';
 import Footer from '../organisms/footer';
+import Nav from '../organisms/nav';
 
 const Page = ({ children, title, description, showNav = true }) => {
 	const router = useRouter();

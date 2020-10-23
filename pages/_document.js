@@ -1,9 +1,9 @@
 import Document, { Html, Main, Head, NextScript } from 'next/document';
 import React from 'react';
-import Meta from '../components/atoms/meta';
-import GoogleAnalytics from '../components/atoms/google-analytics';
-import Fonts from '../components/atoms/fonts';
 import Favicons from '../components/atoms/favicons';
+import Fonts from '../components/atoms/fonts';
+import GoogleAnalytics from '../components/atoms/google-analytics';
+import Meta from '../components/atoms/meta';
 
 class MyDocument extends Document {
 	static async getInitialProps(ctx) {

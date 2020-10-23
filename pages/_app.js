@@ -1,8 +1,8 @@
-import Router from 'next/router';
-import { elementType, object } from 'prop-types';
-import { DefaultSeo as DefaultSEO } from 'next-seo';
-import NProgress from 'nprogress';
 import debounce from 'lodash.debounce';
+import { DefaultSeo as DefaultSEO } from 'next-seo';
+import Router from 'next/router';
+import NProgress from 'nprogress';
+import { elementType, object } from 'prop-types';
 import SEO from '../next-seo.config';
 import { pageview } from '../utils/gtag';
 import 'nprogress/nprogress.css';

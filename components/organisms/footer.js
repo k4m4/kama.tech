@@ -4,10 +4,10 @@ import {
 	FiTwitter as TwitterIcon,
 	FiAtSign as MailIcon,
 } from 'react-icons/fi';
-import Link from '../atoms/link';
-import OutboundLink from '../atoms/outbound-link';
-import Logo from '../atoms/logo';
 import logOutboundLink from '../../utils/log-outbound-link';
+import Link from '../atoms/link';
+import Logo from '../atoms/logo';
+import OutboundLink from '../atoms/outbound-link';
 
 const Footer = () => {
 	return (

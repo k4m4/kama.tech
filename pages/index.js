@@ -1,6 +1,6 @@
-import Page from '../components/templates/page';
 import Hero from '../components/organisms/hero';
 import Projects from '../components/organisms/projects';
+import Page from '../components/templates/page';
 
 const Home = () => {
 	return (

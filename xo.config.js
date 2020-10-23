@@ -34,6 +34,24 @@ module.exports = {
 				location: 'tag-aligned',
 			},
 		],
+		'import/order': [
+			'error',
+			{
+				groups: [
+					'builtin',
+					'external',
+					'internal',
+					'parent',
+					'sibling',
+					'index',
+					'object',
+				],
+				alphabetize: {
+					order: 'asc',
+					caseInsensitive: true,
+				},
+			},
+		],
 	},
 	overrides: [
 		{

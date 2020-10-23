@@ -1,8 +1,8 @@
 const withMdxEnhanced = require('next-mdx-enhanced');
-const remarkAutolinkHeadings = require('remark-autolink-headings');
-const remarkSlug = require('remark-slug');
-const remarkMath = require('remark-math');
 const rehypeKatex = require('rehype-katex');
+const remarkAutolinkHeadings = require('remark-autolink-headings');
+const remarkMath = require('remark-math');
+const remarkSlug = require('remark-slug');
 const { archivedBlogSlugs } = require('./data/archive');
 
 const archivedBlogRedirects = () => archivedBlogSlugs.map(slug => {

@@ -1,5 +1,5 @@
-import { useEffect } from 'react';
 import { string, bool, number } from 'prop-types';
+import { useEffect } from 'react';
 
 const AsciinemaPlayer = ({ id, autoplay, size, cols, rows, speed }) => {
 	const playerDivId = `div_${id}`;

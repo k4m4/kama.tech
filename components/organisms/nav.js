@@ -1,9 +1,9 @@
-import { useState } from 'react';
-import NextLink from 'next/link';
 import { motion, useCycle, useViewportScroll } from 'framer-motion';
-import MenuIcon from '../molecules/menu-icon';
+import NextLink from 'next/link';
+import { useState } from 'react';
 import Link from '../atoms/link';
 import Logo from '../atoms/logo';
+import MenuIcon from '../molecules/menu-icon';
 
 const Nav = () => {
 	const [isNavTop, setIsNavTop] = useState(true);

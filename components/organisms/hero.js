@@ -1,7 +1,7 @@
-import { FiChevronDown as ArrowDown } from 'react-icons/fi';
 import { motion } from 'framer-motion';
-import { Link } from 'react-scroll';
 import { string } from 'prop-types';
+import { FiChevronDown as ArrowDown } from 'react-icons/fi';
+import { Link } from 'react-scroll';
 
 const Hero = ({ title, subtitle }) => {
 	return (
