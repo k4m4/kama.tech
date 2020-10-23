@@ -1,4 +1,5 @@
 import { FiChevronDown as ArrowDown } from 'react-icons/fi';
+import { motion } from 'framer-motion';
 import { Link } from 'react-scroll';
 import { string } from 'prop-types';
 
@@ -18,7 +19,10 @@ const Hero = ({ title, subtitle }) => {
 							/>
 						)}
 					</div>
-					<div className="inline-flex items-center justify-center">
+					<motion.div
+						whileHover={{ scale: 1.2 }}
+						className="inline-flex items-center justify-center"
+					>
 						<Link
 							smooth
 							to={title.toLowerCase() === 'archive' ? 'archived-posts' : 'projects'}
@@ -28,7 +32,7 @@ const Hero = ({ title, subtitle }) => {
 						>
 							<ArrowDown size={22} />
 						</Link>
-					</div>
+					</motion.div>
 				</div>
 			</div>
 		</div>
