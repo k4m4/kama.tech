@@ -30,7 +30,10 @@ Project.propTypes = {
 
 const Projects = () => {
 	return (
-		<div className="relative mx-auto mb-0 w-10/12 lg:w-11/12 box-border">
+		<div
+			id="projects"
+			className="relative mx-auto mb-0 w-10/12 lg:w-11/12 box-border"
+		>
 			{projects.map(project => (
 				<Project
 					key={project.name}

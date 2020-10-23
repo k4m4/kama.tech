@@ -42,7 +42,10 @@ ArchivedPost.propTypes = {
 
 const ArchivedPosts = () => {
 	return (
-		<div className="relative mx-auto mb-0 w-10/12 lg:w-11/12 box-border">
+		<div
+			id="archived-posts"
+			className="relative mx-auto mb-0 w-10/12 lg:w-11/12 box-border"
+		>
 			{archivedPosts.map(post => (
 				<ArchivedPost
 					key={post.title}

@@ -1,4 +1,5 @@
 import { FiChevronDown as ArrowDown } from 'react-icons/fi';
+import { Link } from 'react-scroll';
 import { string } from 'prop-types';
 
 const Hero = ({ title, subtitle }) => {
@@ -17,8 +18,16 @@ const Hero = ({ title, subtitle }) => {
 							/>
 						)}
 					</div>
-					<div className="inline-flex items-center justify-center lg:px-2">
-						<ArrowDown size={22} />
+					<div className="inline-flex items-center justify-center">
+						<Link
+							smooth
+							to={title.toLowerCase() === 'archive' ? 'archived-posts' : 'projects'}
+							duration={500}
+							offset={-100}
+							className="cursor-pointer lg:p-2"
+						>
+							<ArrowDown size={22} />
+						</Link>
 					</div>
 				</div>
 			</div>
