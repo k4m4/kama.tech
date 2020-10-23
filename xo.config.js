@@ -21,6 +21,13 @@ module.exports = {
 			'error',
 			'always-multiline',
 		],
+		'react/jsx-max-props-per-line': [
+			'error',
+			{
+				maximum: 1,
+				when: 'always',
+			},
+		],
 	},
 	overrides: [
 		{

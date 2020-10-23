@@ -67,13 +67,27 @@ const CodeBlock = ({ children, className }) => {
 	}
 
 	return (
-		<Highlight {...defaultProps} theme={prismTheme} code={children} language={language}>
+		<Highlight
+			{...defaultProps}
+			theme={prismTheme}
+			code={children}
+			language={language}
+		>
 			{({ className, style, tokens, getLineProps, getTokenProps }) => (
-				<Pre className={className} style={style}>
+				<Pre
+					className={className}
+					style={style}
+				>
 					{tokens.map((line, i) => (
-						<div key={i} {...getLineProps({ line, key: i })}>
+						<div
+							key={i}
+							{...getLineProps({ line, key: i })}
+						>
 							{line.map((token, key) => (
-								<span key={key} {...getTokenProps({ token, key })} />
+								<span
+									key={key}
+									{...getTokenProps({ token, key })}
+								/>
 							))}
 						</div>
 					))}
@@ -89,23 +103,102 @@ CodeBlock.propTypes = {
 };
 
 const MDXComponents = {
-	h1: props => <Heading as="h1" className="mt-24" {...props} />,
-	h2: props => <Heading as="h2" className="mt-20" {...props} />,
-	h3: props => <Heading as="h3" className="mt-16" {...props} />,
-	h4: props => <Heading as="h4" className="mt-12" {...props} />,
-	p: props => <p className="text-base md:text-lg lg:text-xl my-8 tracking-wide break-words" {...props} />,
-	a: props => <a className="border-b border-red-500 hover:text-white focus:text-white" {...props} />,
+	h1: props => (
+		<Heading
+			as="h1"
+			className="mt-24"
+			{...props}
+		/>
+	),
+	h2: props => (
+		<Heading
+			as="h2"
+			className="mt-20"
+			{...props}
+		/>
+	),
+	h3: props => (
+		<Heading
+			as="h3"
+			className="mt-16"
+			{...props}
+		/>
+	),
+	h4: props => (
+		<Heading
+			as="h4"
+			className="mt-12"
+			{...props}
+		/>
+	),
+	p: props => (
+		<p
+			className="text-base md:text-lg lg:text-xl my-8 tracking-wide break-words"
+			{...props}
+		/>
+	),
+	a: props => (
+		<a
+			className="border-b border-red-500 hover:text-white focus:text-white"
+			{...props}
+		/>
+	),
 	code: CodeBlock,
-	blockquote: props => <blockquote className="text-base md:text-lg lg:text-xl italic border-l-4 pl-3 quote whitespace-pre-wrap break-words cursor-text" {...props} />,
-	inlineCode: props => <code className="font-mono text-purple-400 bg-gray-900 p-1 rounded-sm whitespace-pre-wrap break-words cursor-text" {...props} />,
-	br: props => <br className="p-5" {...props} />,
-	hr: props => <hr className="my-10 border-white" {...props} />,
-	ul: props => <ul className="mt-8 ml-4 list-disc" {...props} />,
-	ol: props => <ol className="mt-8 ml-4 list-decimal" {...props} />,
-	li: props => <li className="mb-2 text-base md:text-lg lg:text-xl" {...props} />,
-	img: props => <img className="border-solid border-2 border-gray-800 rounded p-3 md:p-4 lg:p-5 m-auto" {...props} />,
+	blockquote: props => (
+		<blockquote
+			className="text-base md:text-lg lg:text-xl italic border-l-4 pl-3 quote whitespace-pre-wrap break-words cursor-text"
+			{...props}
+		/>
+	),
+	inlineCode: props => (
+		<code
+			className="font-mono text-purple-400 bg-gray-900 p-1 rounded-sm whitespace-pre-wrap break-words cursor-text"
+			{...props}
+		/>
+	),
+	br: props => (
+		<br
+			className="p-5"
+			{...props}
+		/>
+	),
+	hr: props => (
+		<hr
+			className="my-10 border-white"
+			{...props}
+		/>
+	),
+	ul: props => (
+		<ul
+			className="mt-8 ml-4 list-disc"
+			{...props}
+		/>
+	),
+	ol: props => (
+		<ol
+			className="mt-8 ml-4 list-decimal"
+			{...props}
+		/>
+	),
+	li: props => (
+		<li
+			className="mb-2 text-base md:text-lg lg:text-xl"
+			{...props}
+		/>
+	),
+	img: props => (
+		<img
+			className="border-solid border-2 border-gray-800 rounded p-3 md:p-4 lg:p-5 m-auto"
+			{...props}
+		/>
+	),
 	script: props => <script {...props} />,
-	strong: props => <strong className="font-bold" {...props} />,
+	strong: props => (
+		<strong
+			className="font-bold"
+			{...props}
+		/>
+	),
 };
 
 export default MDXComponents;

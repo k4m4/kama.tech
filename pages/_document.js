@@ -13,7 +13,10 @@ class MyDocument extends Document {
 
 	render() {
 		return (
-			<Html lang="en" className="bg-black">
+			<Html
+				lang="en"
+				className="bg-black"
+			>
 				<Head>
 					<Meta />
 					<GoogleAnalytics />

@@ -11,7 +11,11 @@ const Path = props => (
 );
 
 const MenuIcon = () => (
-	<svg width="21.5" height="19" viewBox="0 0 21.5 19">
+	<svg
+		width="21.5"
+		height="19"
+		viewBox="0 0 21.5 19"
+	>
 		<Path
 			variants={{
 				closed: { d: 'M 2 2.5 L 20 2.5' },
