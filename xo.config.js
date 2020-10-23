@@ -28,6 +28,12 @@ module.exports = {
 				when: 'always',
 			},
 		],
+		'react/jsx-closing-bracket-location': [
+			'error',
+			{
+				location: 'tag-aligned',
+			},
+		],
 	},
 	overrides: [
 		{
