@@ -1,10 +1,10 @@
 import Head from 'next/head';
 import { node } from 'prop-types';
-import BlogSEO from '../molecules/blog-seo';
+import PostSEO from '../molecules/post-seo';
 import Footer from '../organisms/footer';
 import Nav from '../organisms/nav';
 
-const BlogPage = ({ children, ...props }) => {
+const PostPage = ({ children, ...props }) => {
 	return (
 		<>
 			<Head>
@@ -25,7 +25,7 @@ const BlogPage = ({ children, ...props }) => {
 					crossOrigin="anonymous"
 				/>
 			</Head>
-			<BlogSEO {...props} />
+			<PostSEO {...props} />
 			<Nav />
 			<main>{children}</main>
 			<Footer />
@@ -33,8 +33,8 @@ const BlogPage = ({ children, ...props }) => {
 	);
 };
 
-BlogPage.propTypes = {
+PostPage.propTypes = {
 	children: node.isRequired,
 };
 
-export default BlogPage;
+export default PostPage;

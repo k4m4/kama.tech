@@ -1,7 +1,7 @@
 import { NextSeo as NextSEO, ArticleJsonLd } from 'next-seo';
 import { string } from 'prop-types';
 
-const BlogSEO = ({ title, summary, publishedAt, updatedAt, url }) => {
+const PostSEO = ({ title, summary, publishedAt, updatedAt, url }) => {
 	const datePublished = publishedAt && new Date(publishedAt).toISOString();
 	const dateModified = updatedAt && new Date(updatedAt).toISOString();
 	const fullTitle = `${title} – k4m4`;
@@ -48,7 +48,7 @@ const BlogSEO = ({ title, summary, publishedAt, updatedAt, url }) => {
 	);
 };
 
-BlogSEO.propTypes = {
+PostSEO.propTypes = {
 	title: string.isRequired,
 	summary: string.isRequired,
 	publishedAt: string.isRequired,
@@ -56,4 +56,4 @@ BlogSEO.propTypes = {
 	url: string.isRequired,
 };
 
-export default BlogSEO;
+export default PostSEO;

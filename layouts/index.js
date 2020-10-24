@@ -1,7 +1,7 @@
 import { MDXProvider } from '@mdx-js/react';
 import { node, shape, string } from 'prop-types';
 import MDXComponents from '../components/organisms/mdx-components';
-import BlogPage from '../components/templates/blog-page';
+import PostPage from '../components/templates/post-page';
 import formatDate from '../utils/format-date';
 
 const Layout = ({ children, frontMatter }) => {
@@ -10,7 +10,7 @@ const Layout = ({ children, frontMatter }) => {
 		.replace('.mdx', '');
 
 	return (
-		<BlogPage
+		<PostPage
 			url={`https://${process.env.DEFAULT_DOMAIN}/archive/${slug}`}
 			{...frontMatter}
 		>
@@ -27,7 +27,7 @@ const Layout = ({ children, frontMatter }) => {
 					</MDXProvider>
 				</div>
 			</div>
-		</BlogPage>
+		</PostPage>
 	);
 };
 
