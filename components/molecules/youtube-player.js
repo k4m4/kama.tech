@@ -3,21 +3,11 @@ import { string } from 'prop-types';
 const YoutubePlayer = ({ id }) => {
 	return (
 		<div
-			style={{
-				position: 'relative',
-				paddingBottom: '56.25%',
-				paddingTop: 25,
-				height: 0,
-			}}
+			className="relative pt-25 h-0"
+			style={{ paddingBottom: '56.25%' }}
 		>
 			<iframe
-				style={{
-					position: 'absolute',
-					top: 0,
-					left: 0,
-					width: '100%',
-					height: '100%',
-				}}
+				className="absolute top-0 left-0 w-full h-full"
 				src={`https://www.youtube.com/embed/${id}`}
 				frameBorder="0"
 			/>
