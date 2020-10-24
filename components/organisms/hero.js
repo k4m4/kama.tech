@@ -21,7 +21,7 @@ const Hero = ({ title, subtitle }) => {
 					</div>
 					<motion.div
 						whileHover={{ scale: 1.2 }}
-						className="inline-flex items-center justify-center"
+						className="inline-flex items-center justify-center text-gray-500 hover:text-white focus:text-white"
 					>
 						<Link
 							smooth
