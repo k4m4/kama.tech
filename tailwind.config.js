@@ -1,4 +1,9 @@
 module.exports = {
+	purge: [
+		'./components/**/*.js',
+		'./pages/*.js',
+		'./layouts/*.js',
+	],
 	theme: {
 		spacing: {
 			px: '1px',
