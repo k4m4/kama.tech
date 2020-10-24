@@ -13,13 +13,13 @@ const Nav = () => {
 	scrollY.onChange(distance => setIsNavTop(distance < 10));
 
 	return (
-		<nav className={`transition-all ease-in duration-200 fixed w-full ${isNavTop ? 'h-40 text-white' : 'h-24 text-gray-500 bg-black'} z-10 top-0`}>
+		<nav className={`transition-all ease-in duration-200 fixed w-full ${isNavTop ? 'h-40 text-gray-500' : 'h-24 text-gray-500 bg-black'} z-10 top-0`}>
 			<div className="relative flex items-center justify-between h-full w-10/12 lg:w-11/12 m-auto">
 				<Link
 					as={NextLink}
 					href="/"
 				>
-					<a className={`transition duration-200 ease-in ${isNavTop ? 'hover:text-gray-500 focus:text-gray-500' : 'hover:text-white focus:text-white'} focus:outline-none pb-4`}>
+					<a className={`transition duration-200 ease-in ${isNavTop ? 'text-white hover:text-gray-500 focus:text-gray-500' : 'hover:text-white focus:text-white'} focus:outline-none pb-4`}>
 						<Logo />
 					</a>
 				</Link>
@@ -49,7 +49,7 @@ const Nav = () => {
 							className="inline-flex items-center justify-center w-full"
 						>
 							<button
-								className={`lg:px-2 focus:outline-none ${isNavTop ? 'hover:text-gray-500' : 'hover:text-white'} transition-all ease-in duration-200`}
+								className="lg:px-2 focus:outline-none hover:text-white transition-all ease-in duration-200"
 								aria-label="Menu"
 								aria-expanded={isOpen}
 								type="button"
