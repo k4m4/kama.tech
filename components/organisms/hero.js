@@ -7,7 +7,17 @@ const Hero = ({ title, subtitle }) => {
 	return (
 		<div className="relative h-screen w-full">
 			<div className="relative flex flex-col h-full w-10/12 lg:w-11/12 m-auto">
-				<div className="absolute flex justify-between items-center w-full bottom-0 leading-loose mb-40 lg:mb-16">
+				<motion.div
+					initial={{ opacity: 0 }}
+					animate={{
+						opacity: 1,
+						transition: {
+							delay: 0.1,
+						},
+					}}
+					exit={{ opacity: 0 }}
+					className="absolute flex justify-between items-center w-full bottom-0 leading-loose mb-40 lg:mb-16"
+				>
 					<div className="relative max-w-3xl">
 						<h1 className="relative font-normal text-2xl md:text-3xl lg:text-4xl">
 							{title}
@@ -33,7 +43,7 @@ const Hero = ({ title, subtitle }) => {
 							<ArrowDown size={22} />
 						</Link>
 					</motion.div>
-				</div>
+				</motion.div>
 			</div>
 		</div>
 	);
