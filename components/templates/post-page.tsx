@@ -1,10 +1,15 @@
 import Head from 'next/head';
-import { node } from 'prop-types';
+import { ReactNode } from 'react';
 import PostSEO from '../molecules/post-seo';
 import Footer from '../organisms/footer';
 import Nav from '../organisms/nav';
 
-const PostPage = ({ children, ...props }) => {
+type PostPageProps = {
+	children: ReactNode;
+	url: string;
+} & FrontMatter;
+
+const PostPage = ({ children, ...props }: PostPageProps) => {
 	return (
 		<>
 			<Head>
@@ -31,10 +36,6 @@ const PostPage = ({ children, ...props }) => {
 			<Footer />
 		</>
 	);
-};
-
-PostPage.propTypes = {
-	children: node.isRequired,
 };
 
 export default PostPage;

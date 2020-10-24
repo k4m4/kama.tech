@@ -1,5 +1,4 @@
 import NextLink from 'next/link';
-import { string } from 'prop-types';
 import { frontMatter as MrRobotWriteup} from '../../pages/archive/mr-robot-1-writeup.mdx';
 import { frontMatter as NibblesWriteup } from '../../pages/archive/nibbles-hack-the-box-writeup.mdx';
 import { frontMatter as picoCTFWriteup } from '../../pages/archive/picoctf-2018-crypto-writeups.mdx';
@@ -8,14 +7,20 @@ import formatDate from '../../utils/format-date';
 import Link from '../atoms/link';
 import Card from '../molecules/card';
 
-const archivedPosts = [
+const archivedPosts: FrontMatter[] = [
 	picoCTFWriteup,
 	NibblesWriteup,
 	WhyDymergeSucks,
 	MrRobotWriteup,
 ];
 
-const ArchivedPost = ({ title, publishedAt, slug }) => {
+type ArchivedPost = {
+	title: string;
+	publishedAt: string;
+	slug: string;
+};
+
+const ArchivedPost = ({ title, publishedAt, slug }: ArchivedPost) => {
 	const iconPath = `/static/images/${slug.replace('archive/', '')}/icon.svg`;
 	return (
 		<Link
@@ -33,12 +38,6 @@ const ArchivedPost = ({ title, publishedAt, slug }) => {
 	);
 };
 
-ArchivedPost.propTypes = {
-	title: string.isRequired,
-	publishedAt: string.isRequired,
-	slug: string.isRequired,
-};
-
 const ArchivedPosts = () => {
 	return (
 		<div
@@ -48,8 +47,9 @@ const ArchivedPosts = () => {
 			{archivedPosts.map(post => (
 				<ArchivedPost
 					key={post.title}
+					title={post.title}
+					publishedAt={post.publishedAt}
 					slug={post.__resourcePath.replace('.mdx', '')}
-					{...post}
 				/>
 			))}
 		</div>

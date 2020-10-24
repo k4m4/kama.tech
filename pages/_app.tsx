@@ -1,8 +1,8 @@
 import debounce from 'lodash.debounce';
 import { DefaultSeo as DefaultSEO } from 'next-seo';
+import { AppProps } from 'next/app';
 import Router from 'next/router';
 import NProgress from 'nprogress';
-import { elementType, object } from 'prop-types';
 import SEO from '../next-seo.config';
 import { pageview } from '../utils/gtag';
 import 'nprogress/nprogress.css';
@@ -12,31 +12,26 @@ NProgress.configure({ showSpinner: false });
 
 const start = debounce(NProgress.start, 200);
 
-Router.onRouteChangeStart = () => start();
+Router.events.on('routeChangeStart', () => start());
 
-Router.onRouteChangeComplete = url => {
+Router.events.on('routeChangeComplete', (url: string) => {
 	start.cancel();
 	NProgress.done();
 	pageview(url);
-};
+});
 
-Router.onRouteChangeError = () => {
+Router.events.on('routeChangeError', () => {
 	start.cancel();
 	NProgress.done();
-};
+});
 
-const App = ({ Component, pageProps }) => {
+const App = ({ Component, pageProps }: AppProps) => {
 	return (
 		<>
 			<DefaultSEO {...SEO} />
 			<Component {...pageProps} />
 		</>
 	);
-};
-
-App.propTypes = {
-	Component: elementType,
-	pageProps: object,
 };
 
 export default App;

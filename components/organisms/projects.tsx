@@ -1,11 +1,22 @@
-import { string } from 'prop-types';
 import { projects } from '../../data/projects';
 import logOutboundLink from '../../utils/log-outbound-link';
 import Link from '../atoms/link';
 import OutboundLink from '../atoms/outbound-link';
 import Card from '../molecules/card';
 
-const Project = ({ name, description, iconPath, url }) => {
+type ProjectProps = {
+	name: string;
+	description: string;
+	iconPath: string;
+	url: string;
+};
+
+const Project = ({
+	name,
+	description,
+	iconPath,
+	url,
+}: ProjectProps) => {
 	return (
 		<Link
 			as={OutboundLink}
@@ -19,13 +30,6 @@ const Project = ({ name, description, iconPath, url }) => {
 			/>
 		</Link>
 	);
-};
-
-Project.propTypes = {
-	name: string.isRequired,
-	description: string.isRequired,
-	iconPath: string.isRequired,
-	url: string.isRequired,
 };
 
 const Projects = () => {

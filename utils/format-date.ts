@@ -1,6 +1,6 @@
 import { parseISO, format } from 'date-fns';
 
-const formatDate = string => {
+const formatDate = (string: string): string => {
 	return format(parseISO(string), 'MMMM dd, yyyy');
 };
 

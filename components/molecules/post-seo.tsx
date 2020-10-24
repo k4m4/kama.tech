@@ -1,7 +1,16 @@
 import { NextSeo as NextSEO, ArticleJsonLd } from 'next-seo';
-import { string } from 'prop-types';
 
-const PostSEO = ({ title, summary, publishedAt, updatedAt, url }) => {
+type PostSEOProps = {
+	url: string;
+} & FrontMatter;
+
+const PostSEO = ({
+	title,
+	summary,
+	publishedAt,
+	updatedAt,
+	url,
+}: PostSEOProps) => {
 	const datePublished = publishedAt && new Date(publishedAt).toISOString();
 	const dateModified = updatedAt && new Date(updatedAt).toISOString();
 	const fullTitle = `${title} – k4m4`;
@@ -38,7 +47,7 @@ const PostSEO = ({ title, summary, publishedAt, updatedAt, url }) => {
 				datePublished={datePublished}
 				dateModified={dateModified}
 				description={summary}
-				images={[image]}
+				images={[image.url]}
 				publisherLogo="/static/favicons/android-chrome-192x192.png"
 				publisherName="k4m4"
 				title={title}
@@ -46,14 +55,6 @@ const PostSEO = ({ title, summary, publishedAt, updatedAt, url }) => {
 			/>
 		</>
 	);
-};
-
-PostSEO.propTypes = {
-	title: string.isRequired,
-	summary: string.isRequired,
-	publishedAt: string.isRequired,
-	updatedAt: string,
-	url: string.isRequired,
 };
 
 export default PostSEO;

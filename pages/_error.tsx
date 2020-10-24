@@ -1,10 +1,14 @@
-import { number } from 'prop-types';
+import { NextPage, NextPageContext } from 'next';
 import Page from '../components/templates/page';
 
-const Error = ({ status }) => {
+type ErrorProps = {
+	status: number;
+};
+
+const Error: NextPage<ErrorProps> = ({ status }: ErrorProps) => {
 	return (
 		<Page
-			title={status ? status.toString() : 'Error'}
+			title={status.toString()}
 			description={status === 404 ? 'This page got lost in the void.' : 'Not a good place to be in.'}
 			showNav={false}
 		>
@@ -20,13 +24,9 @@ const Error = ({ status }) => {
 	);
 };
 
-Error.getInitialProps = ({ res, err }) => {
+Error.getInitialProps = ({ res, err }: NextPageContext) => {
 	const status = res ? res.statusCode : (err ? err.statusCode : 404);
 	return { status };
-};
-
-Error.propTypes = {
-	status: number.isRequired,
 };
 
 export default Error;

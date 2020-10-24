@@ -1,6 +1,10 @@
-import { string } from 'prop-types';
+type CardProps = {
+	title: string;
+	subtitle: string;
+	iconPath: string;
+};
 
-const Card = ({ title, subtitle, iconPath }) => {
+const Card = ({ title, subtitle, iconPath }: CardProps) => {
 	return (
 		<div className="relative border border-gray-900 bg-black px-10 lg:px-16 mb-10 lg:mb-0 block h-74 lg:h-48 w-full hover:border-white focus:border-white focus:outline-none overflow-x-scroll transition-all ease-in duration-200">
 			<div className="flex items-start lg:items-center justify-around lg:justify-between flex-col lg:flex-row h-full w-full py-10 lg:py-0">
@@ -20,12 +24,6 @@ const Card = ({ title, subtitle, iconPath }) => {
 			</div>
 		</div>
 	);
-};
-
-Card.propTypes = {
-	title: string.isRequired,
-	subtitle: string.isRequired,
-	iconPath: string.isRequired,
 };
 
 export default Card;

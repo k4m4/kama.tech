@@ -1,6 +1,8 @@
-import { string } from 'prop-types';
+type YoutubePlayerProps = {
+	id: string;
+};
 
-const YoutubePlayer = ({ id }) => {
+const YoutubePlayer = ({ id }: YoutubePlayerProps) => {
 	return (
 		<div
 			className="relative pt-25 h-0"
@@ -13,10 +15,6 @@ const YoutubePlayer = ({ id }) => {
 			/>
 		</div>
 	);
-};
-
-YoutubePlayer.propTypes = {
-	id: string.isRequired,
 };
 
 export default YoutubePlayer;

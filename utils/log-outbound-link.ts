@@ -1,6 +1,6 @@
 import { event } from './gtag';
 
-const logOutboundLink = label => {
+const logOutboundLink = (label: string): void => {
 	if (typeof window.gtag === 'function') {
 		event({
 			action: 'outbound_link',

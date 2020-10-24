@@ -1,8 +1,8 @@
 module.exports = {
 	purge: [
-		'./components/**/*.js',
-		'./pages/*.js',
-		'./layouts/*.js',
+		'./components/**/*.tsx',
+		'./pages/*.tsx',
+		'./layouts/*.tsx',
 	],
 	theme: {
 		spacing: {

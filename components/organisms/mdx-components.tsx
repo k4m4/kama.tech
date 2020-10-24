@@ -1,9 +1,14 @@
-import Highlight, { defaultProps } from 'prism-react-renderer';
-import { string, node, object } from 'prop-types';
+import Highlight, { defaultProps, Language } from 'prism-react-renderer';
+import { CSSProperties, ReactNode, HTMLAttributes, DetailedHTMLProps } from 'react';
 import { FaAnchor } from 'react-icons/fa';
-import prismTheme from '../../prism.config';
+import prismTheme from '../../prism-theme';
 
-const Heading = ({ as: Component, className, ...props }) => {
+type HeadingProps = {
+	as: 'h1' | 'h2' | 'h3' | 'h4';
+	children: ReactNode;
+} & DetailedHTMLProps<HTMLAttributes<HTMLHeadingElement>, HTMLHeadingElement>;
+
+const Heading = ({ as: Component, className, ...props }: HeadingProps) => {
 	const size = Number(Component.replace('h', ''));
 
 	if (!props.id) {
@@ -34,14 +39,13 @@ const Heading = ({ as: Component, className, ...props }) => {
 	);
 };
 
-Heading.propTypes = {
-	as: string.isRequired,
-	className: string,
-	children: node.isRequired,
-	id: string,
+type PreProps = {
+	children: ReactNode;
+	className?: string;
+	style?: CSSProperties;
 };
 
-const Pre = ({ children, className, style }) => {
+const Pre = ({ children, className, style }: PreProps) => {
 	return (
 		<pre
 			className={`bg-gray-900 text-purple-400 p-6 md:p-8 lg:p-10 rounded-lg my-4 overflow-x-scroll font-mono text-xs md:text-sm lg:text-base cursor-text${className ? className : ''}`}
@@ -52,14 +56,13 @@ const Pre = ({ children, className, style }) => {
 	);
 };
 
-Pre.propTypes = {
-	children: node.isRequired,
-	className: string,
-	style: object,
+type CodeBlockProps = {
+	children: ReactNode;
+	className?: string;
 };
 
-const CodeBlock = ({ children, className }) => {
-	const language = className && className.replace(/language-/, '');
+const CodeBlock = ({ children, className }: CodeBlockProps) => {
+	const language = className?.replace(/language-/, '') as Language;
 	if (!language) {
 		return (
 			<Pre>{children}</Pre>
@@ -70,7 +73,7 @@ const CodeBlock = ({ children, className }) => {
 		<Highlight
 			{...defaultProps}
 			theme={prismTheme}
-			code={children}
+			code={String(children)}
 			language={language}
 		>
 			{({ className, style, tokens, getLineProps, getTokenProps }) => (
@@ -95,11 +98,6 @@ const CodeBlock = ({ children, className }) => {
 			)}
 		</Highlight>
 	);
-};
-
-CodeBlock.propTypes = {
-	children: node.isRequired,
-	className: string,
 };
 
 const MDXComponents = {

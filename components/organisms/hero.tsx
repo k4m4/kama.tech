@@ -1,9 +1,13 @@
 import { motion } from 'framer-motion';
-import { string } from 'prop-types';
 import { FiChevronDown as ArrowDown } from 'react-icons/fi';
 import { Link } from 'react-scroll';
 
-const Hero = ({ title, subtitle }) => {
+type HeroProps = {
+	title: string;
+	subtitle?: string;
+};
+
+const Hero = ({ title, subtitle }: HeroProps) => {
 	return (
 		<div className="relative h-screen w-full">
 			<div className="relative flex flex-col h-full w-10/12 lg:w-11/12 m-auto">
@@ -47,11 +51,6 @@ const Hero = ({ title, subtitle }) => {
 			</div>
 		</div>
 	);
-};
-
-Hero.propTypes = {
-	title: string.isRequired,
-	subtitle: string,
 };
 
 export default Hero;

@@ -1,7 +1,22 @@
-import { string, bool, number } from 'prop-types';
 import { useEffect } from 'react';
 
-const AsciinemaPlayer = ({ id, autoplay, size, cols, rows, speed }) => {
+type AsciinemaPlayerProps = {
+	id: string;
+	autoplay?: boolean;
+	size?: string;
+	cols?: number;
+	rows?: number;
+	speed?: number;
+};
+
+const AsciinemaPlayer = ({
+	id,
+	autoplay,
+	size,
+	cols,
+	rows,
+	speed,
+}: AsciinemaPlayerProps) => {
 	const playerDivId = `div_${id}`;
 
 	useEffect(() => {
@@ -38,21 +53,12 @@ const AsciinemaPlayer = ({ id, autoplay, size, cols, rows, speed }) => {
 
 		return () => {
 			if (playerDiv) {
-				playerDiv.remove(script);
+				playerDiv.remove();
 			}
 		};
 	}, [playerDivId, id, autoplay, cols, rows, size, speed]);
 
 	return <div id={playerDivId} />;
-};
-
-AsciinemaPlayer.propTypes = {
-	id: string.isRequired,
-	autoplay: bool,
-	size: string,
-	cols: number,
-	rows: number,
-	speed: number,
 };
 
 export default AsciinemaPlayer;

@@ -1,3 +1,5 @@
+import { PrismTheme } from 'prism-react-renderer';
+
 /**
  * Duotone Dark (Modified)
  *
@@ -6,7 +8,7 @@
  * Generated with Base16 Builder (https://github.com/base16-builder/base16-builder)
  */
 
-module.exports = {
+const theme: PrismTheme = {
 	plain: {
 		color: '#b794f4',
 	},
@@ -100,3 +102,5 @@ module.exports = {
 		},
 	],
 };
+
+export default theme;

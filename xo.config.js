@@ -55,31 +55,31 @@ module.exports = {
 	},
 	overrides: [
 		{
-			files: 'utils/gtag.js',
+			files: 'utils/gtag.ts',
 			rules: {
 				camelcase: 0,
 			},
 		},
 		{
-			files: 'components/atoms/google-analytics.js',
+			files: 'components/atoms/google-analytics.tsx',
 			rules: {
 				'react/no-danger': 0,
 			},
 		},
 		{
-			files: 'components/organisms/hero.js',
+			files: 'components/organisms/hero.tsx',
 			rules: {
 				'react/no-danger': 0,
 			},
 		},
 		{
-			files: 'components/organisms/mdx-components.js',
+			files: 'components/organisms/mdx-components.tsx',
 			rules: {
 				'react/no-array-index-key': 0,
 			},
 		},
 		{
-			files: 'pages/_app.js',
+			files: 'pages/_app.tsx',
 			rules: {
 				'import/no-unassigned-import': 0,
 			},

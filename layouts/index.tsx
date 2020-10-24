@@ -1,11 +1,16 @@
 import { MDXProvider } from '@mdx-js/react';
-import { node, shape, string } from 'prop-types';
+import { ReactNode } from 'react';
 import MDXComponents from '../components/organisms/mdx-components';
 import PostPage from '../components/templates/post-page';
 import formatDate from '../utils/format-date';
 
-const Layout = ({ children, frontMatter }) => {
-	const slug = frontMatter.__resourcePath
+type LayoutProps = {
+	children: ReactNode;
+	frontMatter: FrontMatter;
+};
+
+const Layout = ({ children, frontMatter }: LayoutProps) => {
+	const slug: string = frontMatter.__resourcePath
 		.replace('archive/', '')
 		.replace('.mdx', '');
 
@@ -29,14 +34,6 @@ const Layout = ({ children, frontMatter }) => {
 			</div>
 		</PostPage>
 	);
-};
-
-Layout.propTypes = {
-	children: node.isRequired,
-	frontMatter: shape({
-		title: string.isRequired,
-		publishedAt: string.isRequired,
-	}).isRequired,
 };
 
 export default Layout;
