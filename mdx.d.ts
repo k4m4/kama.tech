@@ -3,3 +3,11 @@ declare module '*.mdx' {
 	export default MDXComponent;
 	export const frontMatter: FrontMatter;
 }
+
+interface FrontMatter {
+	__resourcePath: string;
+	title: string;
+	publishedAt: string;
+	updatedAt?: string;
+	summary: string;
+}

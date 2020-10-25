@@ -19,7 +19,7 @@
     "jsx": "preserve"
   },
   "include": [
-    "types/*.d.ts",
+    "*.d.ts",
     "**/*.(t|j)s",
     "**/*.tsx"
   ],
