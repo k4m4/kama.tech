@@ -7,6 +7,7 @@ import SEO from '../next-seo.config';
 import { pageview } from '../utils/gtag';
 import 'nprogress/nprogress.css';
 import '../styles/index.css';
+import '../styles/lazy-load-image.css';
 
 NProgress.configure({ showSpinner: false });
 

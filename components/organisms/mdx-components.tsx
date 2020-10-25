@@ -1,6 +1,7 @@
 import Highlight, { defaultProps, Language } from 'prism-react-renderer';
 import { CSSProperties, ReactNode, HTMLAttributes, DetailedHTMLProps } from 'react';
 import { FaAnchor } from 'react-icons/fa';
+import { LazyLoadImage } from 'react-lazy-load-image-component';
 import prismTheme from '../../prism-theme';
 
 type HeadingProps = {
@@ -100,6 +101,23 @@ const CodeBlock = ({ children, className }: CodeBlockProps) => {
 	);
 };
 
+type ImageProps = {
+	src: string;
+};
+
+const Image = ({ src, ...props }: ImageProps) => {
+	return (
+		<span className="flex justify-center items-center w-full">
+			<LazyLoadImage
+				effect="blur"
+				src={`/static/images/${src}`}
+				className="border-solid border-2 border-gray-800 rounded p-3 md:p-4 lg:p-5"
+				{...props}
+			/>
+		</span>
+	);
+};
+
 const MDXComponents = {
 	h1: props => (
 		<Heading
@@ -184,12 +202,7 @@ const MDXComponents = {
 			{...props}
 		/>
 	),
-	img: props => (
-		<img
-			className="border-solid border-2 border-gray-800 rounded p-3 md:p-4 lg:p-5 m-auto"
-			{...props}
-		/>
-	),
+	img: Image,
 	script: props => <script {...props} />,
 	strong: props => (
 		<strong

@@ -36,7 +36,7 @@ Nmap done: 1 IP address (1 host up) scanned in 13.97 seconds
 
 Looks like we have a webserver. Let's fire up our browser and have a look.
 
-![10.10.10.75](/static/images/nibbles-hack-the-box-writeup/10.10.10.75.png)
+![10.10.10.75](nibbles-hack-the-box-writeup/10.10.10.75.png)
 
 Hello to you too! A simple `view-source` reveals an interesting directory:
 
@@ -49,7 +49,7 @@ Hello to you too! A simple `view-source` reveals an interesting directory:
 
 Navigating to the new directory, we find an empty blog.
 
-![nibbleblog](/static/images/nibbles-hack-the-box-writeup/nibbleblog.png)
+![nibbleblog](nibbles-hack-the-box-writeup/nibbleblog.png)
 
 Let's try to `dirb` for any suspicious files within this 'empty' blog.
 
@@ -92,13 +92,13 @@ DOWNLOADED: 4612 - FOUND: 3
 
 The `admin.php` page seems interesting; we should have a look.
 
-![admin](/static/images/nibbles-hack-the-box-writeup/admin.png)
+![admin](nibbles-hack-the-box-writeup/admin.png)
 
 A login screen. Let's give it some guessing shots to see if we can get lucky.
 
 After a few tries, we notice that there's some sort of WAF, blacklisting users after consecutive failed authentication attempts.
 
-![blacklist](/static/images/nibbles-hack-the-box-writeup/blacklist.png)
+![blacklist](nibbles-hack-the-box-writeup/blacklist.png)
 
 A few minutes later, we were able to retry.
 
@@ -116,7 +116,7 @@ echo shell_exec($_GET['e']);
 
 Once we upload our 'image' onto the bloggin platform, we can navigate to [10.10.10.75/nibbleblog/content/private/plugins/my_image/image.php](http://10.10.10.75/nibbleblog/content/private/plugins/my_image/image.php?e=id) to see that we are now able to execute commands through our url bar!
 
-![id](/static/images/nibbles-hack-the-box-writeup/id.png)
+![id](nibbles-hack-the-box-writeup/id.png)
 
 Evidently, we now have 'nibbler' privileges (i.e. user privileges). So, let's pop a reverse shell.
 
