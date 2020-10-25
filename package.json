@@ -9,18 +9,18 @@
     "lint": "xo"
   },
   "dependencies": {
-    "@mdx-js/react": "^1.6.18",
+    "@mdx-js/react": "^1.6.19",
     "date-fns": "^2.16.1",
     "framer-motion": "^2.9.4",
     "lodash.debounce": "^4.0.8",
     "next": "^9.5.5",
     "next-mdx-enhanced": "^4.0.0",
-    "next-seo": "^4.11.0",
+    "next-seo": "^4.14.0",
     "nprogress": "^0.2.0",
     "postcss-preset-env": "^6.7.0",
     "prism-react-renderer": "^1.1.1",
-    "react": "^16.13.1",
-    "react-dom": "^16.13.1",
+    "react": "^16.14.0",
+    "react-dom": "^16.14.0",
     "react-icons": "^3.11.0",
     "react-lazy-load-image-component": "^1.5.0",
     "react-scroll": "^1.8.1",
@@ -29,14 +29,14 @@
     "remark-autolink-headings": "^6.0.1",
     "remark-math": "^3.0.1",
     "remark-slug": "^6.0.0",
-    "tailwindcss": "^1.8.13"
+    "tailwindcss": "^1.9.6"
   },
   "devDependencies": {
     "@types/gtag.js": "0.0.3",
     "@types/react": "^16.9.53",
     "eslint-config-xo-react": "^0.23.0",
-    "eslint-plugin-react": "^7.21.4",
-    "eslint-plugin-react-hooks": "^4.1.2",
+    "eslint-plugin-react": "^7.21.5",
+    "eslint-plugin-react-hooks": "^4.2.0",
     "typescript": "^4.0.3",
     "xo": "^0.33.1"
   }
