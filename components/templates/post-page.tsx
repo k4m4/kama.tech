@@ -1,3 +1,4 @@
+import { Box } from '@chakra-ui/core';
 import Head from 'next/head';
 import { ReactNode } from 'react';
 import PostSEO from '../molecules/post-seo';
@@ -32,7 +33,9 @@ const PostPage = ({ children, ...props }: PostPageProps) => {
 			</Head>
 			<PostSEO {...props} />
 			<Nav />
-			<main>{children}</main>
+			<Box as="main">
+				{children}
+			</Box>
 			<Footer />
 		</>
 	);

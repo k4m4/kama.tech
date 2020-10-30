@@ -1,7 +1,7 @@
+import { Link, Box, Flex, Center } from '@chakra-ui/core';
 import { motion, useCycle, useViewportScroll } from 'framer-motion';
 import NextLink from 'next/link';
-import { useState } from 'react';
-import Link from '../atoms/link';
+import { useState, useEffect } from 'react';
 import Logo from '../atoms/logo';
 import MenuIcon from '../molecules/menu-icon';
 
@@ -10,58 +10,115 @@ const Nav = () => {
 	const [isOpen, toggleOpen] = useCycle(false, true);
 
 	const { scrollY } = useViewportScroll();
-	scrollY.onChange(distance => setIsNavTop(distance < 10));
+	useEffect(() => {
+		const unsubscribe = scrollY.onChange(distance => setIsNavTop(distance < 10));
+		return () => {
+			unsubscribe();
+		};
+	}, [scrollY]);
 
 	return (
-		<nav className={`transition-all ease-in duration-200 fixed w-full ${isNavTop ? 'h-40 text-gray-500' : 'h-24 text-gray-500 bg-black'} z-10 top-0`}>
-			<div className="relative flex items-center justify-between h-full w-10/12 lg:w-11/12 m-auto">
-				<Link
-					as={NextLink}
-					href="/"
-				>
-					<a className={`transition duration-200 ease-in ${isNavTop ? 'text-white hover:text-gray-500 focus:text-gray-500' : 'hover:text-white focus:text-white'} focus:outline-none pb-4`}>
+		<Box
+			as="nav"
+			transition="all 0.2s ease-in"
+			w="full"
+			position="fixed"
+			color="gray.400"
+			top={0}
+			zIndex={10}
+			h={isNavTop ? 40 : 24}
+			bg={isNavTop ? 'transparent' : 'black'}
+		>
+			<Flex
+				align="center"
+				justify="space-between"
+				w={['85%', '85%', '85%', '90%']}
+				mx="auto"
+				h="full"
+			>
+				<NextLink href="/">
+					<Link
+						as="a"
+						transition="all 0.2s ease-in"
+						color={isNavTop ? 'white' : 'gray.400'}
+						_hover={{
+							color: isNavTop ? 'gray.400' : 'white',
+						}}
+						_focus={{
+							color: isNavTop ? 'gray.400' : 'white',
+							outline: 'none',
+						}}
+						pb={4}
+					>
 						<Logo />
-					</a>
-				</Link>
-				<div className="flex items-center font-space h-full ml-2">
-					<div className="flex-1 flex items-stretch justify-start">
-						<motion.div
-							initial="hidden"
-							animate={isOpen ? 'visible' : 'hidden'}
-							variants={{
-								visible: { opacity: 1 },
-								hidden: { opacity: 0 },
-							}}
-							className={`${isOpen ? 'block' : 'hidden'} mr-4 lg:mr-7 flex tracking-wider uppercase`}
+					</Link>
+				</NextLink>
+				<Flex
+					align="center"
+					fontFamily="'Space', sans-serif"
+					h="full"
+					ml={2}
+				>
+					<motion.div
+						initial="hidden"
+						animate={isOpen ? 'visible' : 'hidden'}
+						variants={{
+							visible: { opacity: 1 },
+							hidden: { opacity: 0 },
+						}}
+					>
+						<Flex
+							mr={[4, 4, 4, 7]}
+							display={isOpen ? 'block' : 'none'}
+							letterSpacing="wider"
+							textTransform="uppercase"
 						>
-							<Link
-								as={NextLink}
-								href="/archive"
-							>
-								<a className="ml-3 lg:ml-4 px-2 md:px-3 lg:px-4 py-2 text-base font-medium leading-5 text-gray-500 hover:text-white focus:outline-none focus:text-white transition duration-150 ease-in-out">
+							<NextLink href="/archive">
+								<Link
+									as="a"
+									transition="all 0.15s ease-in-out"
+									ml={[3, 3, 3, 4]}
+									px={[2, 2, 3, 4]}
+									py={2}
+									fontSize="md"
+									fontWeight="500"
+									lineHeight="shorter"
+									color="gray.400"
+									_focus={{
+										outline: 'none',
+										color: 'white',
+									}}
+									_hover={{ color: 'white' }}
+								>
 									Archive
-								</a>
-							</Link>
-						</motion.div>
+								</Link>
+							</NextLink>
+						</Flex>
+					</motion.div>
+					<Center>
 						<motion.div
 							initial={false}
 							animate={isOpen ? 'open' : 'closed'}
-							className="inline-flex items-center justify-center w-full"
 						>
-							<button
-								className="lg:px-2 focus:outline-none hover:text-white transition-all ease-in duration-200"
+							<Box
 								aria-label="Menu"
 								aria-expanded={isOpen}
-								type="button"
+								_hover={{ color: 'white' }}
+								_focus={{
+									outline: 'none',
+									color: 'white',
+								}}
+								mx={{ lg: 2 }}
+								cursor="pointer"
 								onClick={() => toggleOpen()}
 							>
 								<MenuIcon />
-							</button>
+							</Box>
 						</motion.div>
-					</div>
-				</div>
-			</div>
-		</nav>
+					</Center>
+				</Flex>
+			</Flex>
+		</Box>
 	);
 };
 

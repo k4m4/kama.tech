@@ -1,12 +1,13 @@
+import { ChakraProvider } from '@chakra-ui/core';
 import debounce from 'lodash.debounce';
 import { DefaultSeo as DefaultSEO } from 'next-seo';
 import { AppProps } from 'next/app';
 import Router from 'next/router';
 import NProgress from 'nprogress';
 import SEO from '../next-seo.config';
+import customTheme from '../theme';
 import { pageview } from '../utils/gtag';
 import 'nprogress/nprogress.css';
-import '../styles/index.css';
 import '../styles/lazy-load-image.css';
 
 NProgress.configure({ showSpinner: false });
@@ -30,7 +31,9 @@ const App = ({ Component, pageProps }: AppProps) => {
 	return (
 		<>
 			<DefaultSEO {...SEO} />
-			<Component {...pageProps} />
+			<ChakraProvider theme={customTheme}>
+				<Component {...pageProps} />
+			</ChakraProvider>
 		</>
 	);
 };

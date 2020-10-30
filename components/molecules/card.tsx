@@ -1,28 +1,61 @@
+import {
+	Box,
+	Flex,
+	Heading,
+	Text,
+} from '@chakra-ui/core';
+
 type CardProps = {
 	title: string;
 	subtitle: string;
-	iconPath: string;
+	icon: JSX.Element;
 };
 
-const Card = ({ title, subtitle, iconPath }: CardProps) => {
+const Card = ({ title, subtitle, icon }: CardProps) => {
 	return (
-		<div className="relative border border-gray-900 bg-black px-10 lg:px-16 mb-10 lg:mb-0 block h-74 lg:h-48 w-full hover:border-white focus:border-white focus:outline-none overflow-x-scroll transition-all ease-in duration-200">
-			<div className="flex items-start lg:items-center justify-around lg:justify-between flex-col lg:flex-row h-full w-full py-10 lg:py-0">
-				<div className="mt-16 lg:mt-0 order-2 lg:order-none w-full">
-					<h2 className="mb-6 font-bold font-mono text-xl">
+		<Box
+			backgroundColor="black"
+			borderColor="gray.800"
+			borderWidth="1px"
+			p={[10, 10, 10, 16]}
+			mb={[10, 10, 10, 0]}
+			transition="all 0.2s ease-in"
+			overflowX="scroll"
+			_hover={{
+				borderColor: 'white',
+			}}
+			_focus={{
+				borderColor: 'white',
+				outline: 'none',
+			}}
+		>
+			<Flex
+				align={['flex-start', 'flex-start', 'flex-start', 'center']}
+				direction={['column', 'column', 'column', 'row']}
+				justify={{ base: 'space-around', xl: 'space-between' }}
+			>
+				<Box
+					mt={[16, 16, 16, 0]}
+					order={[2, 2, 2, 0]}
+				>
+					<Heading
+						as="h2"
+						mb={6}
+						fontSize="xl"
+						fontWeight={700}
+					>
 						{title}
-					</h2>
-					<p className="font-light font-space-mono text-gray-500">
+					</Heading>
+					<Text
+						color="gray.400"
+						fontWeight={300}
+					>
 						{subtitle}
-					</p>
-				</div>
-				<img
-					className="pointer-events-none w-10 lg:w-12"
-					src={iconPath}
-					alt={title}
-				/>
-			</div>
-		</div>
+					</Text>
+				</Box>
+				{icon}
+			</Flex>
+		</Box>
 	);
 };
 
