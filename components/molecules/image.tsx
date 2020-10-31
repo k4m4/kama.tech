@@ -16,7 +16,10 @@ const Image = ({ src, width, height, ...props }: ImageProps) => {
 	};
 
 	return (
-		<Center w="full">
+		<Center
+			mt={4}
+			w="full"
+		>
 			{isUnsized ? (
 				<NextImage
 					unsized
