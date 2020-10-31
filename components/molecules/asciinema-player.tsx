@@ -27,7 +27,7 @@ const AsciinemaPlayer = ({
 		script.async = true;
 
 		if (autoplay) {
-			script.dataset.autoplay = autoplay.toString();
+			script.dataset.autoplay = String(autoplay);
 		}
 
 		if (size) {
@@ -35,15 +35,15 @@ const AsciinemaPlayer = ({
 		}
 
 		if (cols) {
-			script.dataset.cols = cols.toString();
+			script.dataset.cols = String(cols);
 		}
 
 		if (rows) {
-			script.dataset.rows = rows.toString();
+			script.dataset.rows = String(rows);
 		}
 
 		if (speed) {
-			script.dataset.speed = speed.toString();
+			script.dataset.speed = String(speed);
 		}
 
 		const playerDiv = document.querySelector(`#${playerDivId}`);

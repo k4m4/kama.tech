@@ -11,7 +11,7 @@ const Error: NextPage<ErrorProps> = ({ status }: ErrorProps) => {
 		<Page
 			description={status === 404 ? 'This page got lost in the void.' : 'Not a good place to be in.'}
 			showNav={false}
-			title={status.toString()}
+			title={String(status)}
 		>
 			<Flex
 				align="center"
