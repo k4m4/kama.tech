@@ -11,7 +11,7 @@ const Home = () => {
 		>
 			<Box
 				color="white"
-				mb={{ lg: 16 }}
+				mb={{ md: 16 }}
 			>
 				<Hero
 					title="Archive"

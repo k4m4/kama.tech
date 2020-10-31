@@ -31,6 +31,7 @@ const SocialLink = ({ name, children, ...props }: SocialLinkProps) => {
 				color: 'white',
 			}}
 			flex="1"
+			py={{ base: 8, md: 0 }}
 			onClick={() => logOutboundLink(`Footer > ${name}`)}
 			{...props}
 		>
@@ -48,31 +49,27 @@ const Footer = () => {
 			color="gray.400"
 		>
 			<Flex
-				w={['85%', '85%', '85%', '90%']}
+				w={{ base: '85%', md: '90%' }}
 				mx="auto"
 				direction="column"
 			>
 				<Flex
 					align="center"
 					justify="space-between"
-					direction={['column', 'column', 'column', 'row']}
-					h={['auto', 'auto', 'auto', 40]}
-					py={[10, 10, 10, 0]}
+					direction={{ base: 'column', md: 'row' }}
+					h={{ base: 'auto', md: 40 }}
+					py={{ base: 10, md: 0 }}
 					overflow="hidden"
 					borderWidth={1}
 					borderBottomWidth={0}
 					borderColor="gray.800"
 				>
-					<Flex
-						w={['full', 'full', 'full', '33.3%']}
-						h="full"
-						align="center"
-						justify="center"
+					<Center
 						borderColor="gray.800"
-						borderRightWidth={[0, 0, 0, 1]}
-						order={[2, 2, 2, 0]}
-						mt={[12, 12, 12, 0]}
-						mb={[7, 7, 7, 0]}
+						borderRightWidth={{ base: 0, md: 1 }}
+						order={{ base: 2, md: 0 }}
+						w={{ base: 'full', md: '33.3%' }}
+						h={{ base: '60px', md: 'full' }}
 					>
 						<Text
 							fontFamily="mono"
@@ -80,7 +77,7 @@ const Footer = () => {
 						>
 							&copy; 2020
 						</Text>
-					</Flex>
+					</Center>
 					<NextLink href="/">
 						<Box
 							as="a"
@@ -92,25 +89,29 @@ const Footer = () => {
 							}}
 							_hover={{ color: 'white' }}
 							cursor="pointer"
-							mb={[12, 12, 12, 0]}
+							h="52px"
 						>
-							<Center h="full">
+							<Center
+								h="full"
+								pb={4}
+							>
 								<Logo />
 							</Center>
 						</Box>
 					</NextLink>
 					<Center
-						px={[16, 16, 16, 0]}
-						h="full"
-						w={['full', 'full', 'full', '33.3%']}
-						borderLeftWidth={[0, 0, 0, 1]}
+						h={{ base: '60px', md: 'full' }}
+						w={{ base: 'full', md: '33.3%' }}
+						borderLeftWidth={{ base: 0, md: 1 }}
 						borderColor="gray.800"
-						fontSize={['2xl', '2xl', '2xl', 'xl']}
+						fontSize={{ base: '2xl', md: 'xl' }}
+						px={{ base: 16, md: 0 }}
+						my={{ base: 6, md: 0 }}
 					>
 						<SocialLink
 							href="https://github.com/k4m4"
 							name="GitHub"
-							ml={{ lg: 4 }}
+							ml={{ md: 4 }}
 						>
 							<GitHubIcon />
 						</SocialLink>
@@ -123,7 +124,7 @@ const Footer = () => {
 						<SocialLink
 							href="mailto:nikolaskam@gmail.com"
 							name="Email"
-							mr={{ lg: 4 }}
+							mr={{ md: 4 }}
 						>
 							<EmailIcon />
 						</SocialLink>

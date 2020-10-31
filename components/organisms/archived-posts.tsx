@@ -39,7 +39,7 @@ const ArchivedPost = ({ title, publishedAt, slug }: ArchivedPost) => {
 							src={iconPath}
 							alt={title}
 							pointerEvents="none"
-							w={[10, 10, 10, 12]}
+							w={{ base: 10, md: 12 }}
 							ml={2}
 						/>
 					}
@@ -55,7 +55,7 @@ const ArchivedPosts = () => {
 			id="archived-posts"
 			mx="auto"
 			mb={0}
-			w={['85%', '85%', '85%', '90%']}
+			w={{ base: '85%', md: '90%' }}
 			boxSizing="border-box"
 		>
 			{archivedPosts.map(post => (

@@ -17,8 +17,8 @@ const Card = ({ title, subtitle, icon }: CardProps) => {
 			backgroundColor="black"
 			borderColor="gray.800"
 			borderWidth="1px"
-			p={[10, 10, 10, 16]}
-			mb={[10, 10, 10, 0]}
+			p={{ base: 10, md: 16 }}
+			mb={{ base: 10, md: 0 }}
 			transition="all 0.2s ease-in"
 			overflowX="scroll"
 			_hover={{
@@ -30,13 +30,13 @@ const Card = ({ title, subtitle, icon }: CardProps) => {
 			}}
 		>
 			<Flex
-				align={['flex-start', 'flex-start', 'flex-start', 'center']}
-				direction={['column', 'column', 'column', 'row']}
-				justify={{ base: 'space-around', xl: 'space-between' }}
+				align={{ base: 'flex-start', md: 'center' }}
+				direction={{ base: 'column', md: 'row' }}
+				justify={{ base: 'space-around', md: 'space-between' }}
 			>
 				<Box
-					mt={[16, 16, 16, 0]}
-					order={[2, 2, 2, 0]}
+					mt={{ base: 16, md: 0 }}
+					order={{ base: 2, md: 0 }}
 				>
 					<Heading
 						as="h2"

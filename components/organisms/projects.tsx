@@ -32,7 +32,7 @@ const Project = ({
 						src={iconPath}
 						alt={name}
 						pointerEvents="none"
-						w={[10, 10, 10, 12]}
+						w={{ base: 10, md: 12 }}
 						ml={2}
 					/>
 				}
@@ -47,7 +47,7 @@ const Projects = () => {
 			id="projects"
 			mx="auto"
 			mb={0}
-			w={['85%', '85%', '85%', '90%']}
+			w={{ base: '85%', md: '90%' }}
 			boxSizing="border-box"
 		>
 			{projects.map(project => (

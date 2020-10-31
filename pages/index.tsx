@@ -8,7 +8,7 @@ const Home = () => {
 		<Page>
 			<Box
 				color="white"
-				mb={{ lg: 16 }}
+				mb={{ md: 16 }}
 			>
 				<Hero title="Full-stack Software Engineer &amp; Open Sourcerer." />
 				<Projects />

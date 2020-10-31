@@ -19,7 +19,7 @@ const Hero = ({ title, subtitle }: HeroProps) => {
 				position="relative"
 				direction="column"
 				h="full"
-				w={['85%', '85%', '85%', '90%']}
+				w={{ base: '85%', md: '90%' }}
 				mx="auto"
 			>
 				<motion.div
@@ -38,7 +38,7 @@ const Hero = ({ title, subtitle }: HeroProps) => {
 						align="center"
 						w="full"
 						bottom={0}
-						mb={[40, 40, 40, 16]}
+						mb={{ base: 40, md: 16 }}
 					>
 						<Box maxW="3xl">
 							<Heading
@@ -46,7 +46,7 @@ const Hero = ({ title, subtitle }: HeroProps) => {
 								fontFamily="body"
 								fontWeight={500}
 								lineHeight="taller"
-								fontSize={['2xl', '2xl', '3xl', '4xl']}
+								fontSize={{ base: '2xl', md: '3xl', xl: '4xl' }}
 							>
 								{title}
 							</Heading>
@@ -57,7 +57,7 @@ const Hero = ({ title, subtitle }: HeroProps) => {
 									color="gray.300"
 									fontWeight={100}
 									mt={2}
-									fontSize={['md', 'md', 'lg', 'xl']}
+									fontSize={{ base: 'md', md: 'lg', xl: 'xl' }}
 									dangerouslySetInnerHTML={{ __html: subtitle }}
 								/>
 							)}

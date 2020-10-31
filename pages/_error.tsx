@@ -23,7 +23,7 @@ const Error: NextPage<ErrorProps> = ({ status }: ErrorProps) => {
 			>
 				<Heading
 					as="h1"
-					fontSize={['6xl', '6xl', '7xl', '6vw']}
+					fontSize={{ base: '6xl', md: '7xl', xl: '6vw' }}
 					fontStyle="mono"
 					fontWeight={600}
 				>

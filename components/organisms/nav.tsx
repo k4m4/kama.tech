@@ -32,7 +32,7 @@ const Nav = () => {
 			<Flex
 				align="center"
 				justify="space-between"
-				w={['85%', '85%', '85%', '90%']}
+				w={{ base: '85%', md: '90%' }}
 				mx="auto"
 				h="full"
 			>
@@ -68,7 +68,7 @@ const Nav = () => {
 						}}
 					>
 						<Flex
-							mr={[4, 4, 4, 7]}
+							mr={{ base: 4, md: 7 }}
 							display={isOpen ? 'block' : 'none'}
 							letterSpacing="wider"
 							textTransform="uppercase"
@@ -77,8 +77,8 @@ const Nav = () => {
 								<Link
 									as="a"
 									transition="all 0.15s ease-in-out"
-									ml={[3, 3, 3, 4]}
-									px={[2, 2, 3, 4]}
+									ml={{ base: 3, md: 4 }}
+									px={{ base: 2, md: 3, xl: 4 }}
 									py={2}
 									fontSize="md"
 									fontWeight="500"

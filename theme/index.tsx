@@ -3,7 +3,6 @@ import { extendTheme } from '@chakra-ui/core';
 const monoFontFamily = 'Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace';
 
 const overrides = ({
-	breakpoints: ['30em', '48em', '62em', '80em'],
 	fonts: {
 		heading: monoFontFamily,
 		mono: monoFontFamily,

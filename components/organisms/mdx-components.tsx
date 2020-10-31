@@ -109,11 +109,11 @@ const Pre = (props: PreProps) => {
 			as="pre"
 			bg="gray.800"
 			color="purple.300"
-			p={[6, 6, 8, 10]}
+			p={{ base: 6, md: 8, xl: 10 }}
 			my={4}
 			overflowX="scroll"
 			fontFamily="mono"
-			fontSize={['xs', 'xs', 'sm', 'md']}
+			fontSize={{ base: 'xs', md: 'sm', xl: 'md' }}
 			cursor="text"
 			{...props}
 		/>
@@ -220,7 +220,7 @@ const MDXComponents = {
 	p: props => (
 		<Text
 			color="gray.400"
-			fontSize={['md', 'md', 'lg', 'xl']}
+			fontSize={{ base: 'md', md: 'lg', xl: 'xl' }}
 			my={8}
 			letterSpacing="wide"
 			wordBreak="break-word"
@@ -240,7 +240,7 @@ const MDXComponents = {
 	blockquote: props => (
 		<Box
 			as="blockquote"
-			fontSize={['md', 'md', 'lg', 'xl']}
+			fontSize={{ base: 'md', md: 'lg', xl: 'xl' }}
 			fontStyle="italic"
 			borderLeftWidth={4}
 			whiteSpace="pre-wrap"
@@ -291,7 +291,7 @@ const MDXComponents = {
 	li: props => (
 		<ListItem
 			mb={2}
-			fontSize={['sm', 'sm', 'md', 'lg']}
+			fontSize={{ base: 'sm', md: 'md', xl: 'lg' }}
 			{...props}
 		/>
 	),
