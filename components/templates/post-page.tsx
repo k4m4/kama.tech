@@ -1,5 +1,4 @@
 import { Box } from '@chakra-ui/core';
-import Head from 'next/head';
 import { ReactNode } from 'react';
 import PostSEO from '../molecules/post-seo';
 import Footer from '../organisms/footer';
