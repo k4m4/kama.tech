@@ -1,7 +1,6 @@
 import {
 	Box,
 	Link,
-	Center,
 	Heading,
 	HeadingProps,
 	List,
@@ -11,9 +10,9 @@ import {
 import NextLink from 'next/link';
 import Highlight, { defaultProps, Language } from 'prism-react-renderer';
 import { CSSProperties, ReactNode } from 'react';
-import { LazyLoadImage } from 'react-lazy-load-image-component';
 import { AnchorIcon } from '../../theme/icons';
 import prismTheme from '../../theme/prism';
+import Image from '../molecules/image';
 
 const CustomHeading = (props: HeadingProps) => {
 	if (!props.id) {
@@ -166,26 +165,6 @@ const CodeBlock = ({ children, className }: CodeBlockProps) => {
 	);
 };
 
-type ImageProps = {
-	src: string;
-};
-
-const Image = ({ src, ...props }: ImageProps) => {
-	return (
-		<Center
-			as="span"
-			w="full"
-		>
-			<LazyLoadImage
-				className="border-solid border-2 border-gray-800 p-3 md:p-4 lg:p-5"
-				effect="blur"
-				src={`/static/images/${src}`}
-				{...props}
-			/>
-		</Center>
-	);
-};
-
 const MDXComponents = {
 	h1: props => (
 		<CustomHeading
@@ -297,7 +276,7 @@ const MDXComponents = {
 			{...props}
 		/>
 	),
-	img: Image,
+	Image,
 	strong: props => (
 		<Text
 			as="strong"

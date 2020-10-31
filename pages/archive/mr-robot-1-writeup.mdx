@@ -5,7 +5,10 @@ updatedAt: "2020-10-12"
 summary: "Writeup of Vulnhub's Mr-Robot:1 CTF challenge."
 ---
 
-![Our Democracy Has Been Hacked](mr-robot-1-writeup/our-democracy-has-been-hacked.jpg)
+<Image
+    alt="Our Democracy Has Been Hacked"
+    src="mr-robot-1-writeup/our-democracy-has-been-hacked.jpg"
+/>
 
 - Type: Boot2Root
 - Level: Begginer-Intermediate
@@ -17,7 +20,10 @@ summary: "Writeup of Vulnhub's Mr-Robot:1 CTF challenge."
 
 **Mr-Robot: 1** is one of vulnhub's CTF challenges, based on the favored TV series "Mr. Robot" (which is, by the way, premiering season 2 Wednesday July 13th). There are apparently 3 hidden keys in the VM. Our objective is to locate all 3 keys.
 
-![Mr Robot](mr-robot-1-writeup/mr-robot.gif)
+<Image 
+    alt="Mr Robot"
+    src="mr-robot-1-writeup/mr-robot.gif"
+/>
 
 ## Let The Hacking Begin!
 
@@ -40,7 +46,10 @@ There we go. We found both our IP and accessible ports.
 
 Apparently, ports **80** and **443** are open. Let's fire up our browser!
 
-![Website](mr-robot-1-writeup/website.png)
+<Image
+    alt="Website"
+    src="mr-robot-1-writeup/website.png"
+/>
 
 The website seems to be very well made, with some *real* JavaScript. Pretty cool I must admit. Now let's hack into it!
 
@@ -82,7 +91,10 @@ At this stage, we can use our friend `dirb` so as to uncover any other hidden di
 
 Nice! It seems that we're going to be dealing with some WordPress authentication bruteforce (`/wp-admin/`).
 
-![WordPress Login](mr-robot-1-writeup/wp-login.png)
+<Image
+    alt="WordPress Login"
+    src="mr-robot-1-writeup/wp-login.png"
+/>
 
 The error message we get once we enter invalid credentials is `ERROR: Invalid username`. So if we find a valid username, a different error message will be displayed.
 
@@ -163,7 +175,10 @@ If everything is correctly done, we should now be able to execute commands throu
 
 > `http://TARGET_IP/wp-content/plugins/shell.php_/shell.php?e=whoami`
 
-![whoami](mr-robot-1-writeup/whoami_daemon.png)
+<Image
+    alt="whoami"
+    src="mr-robot-1-writeup/whoami_daemon.png"
+/>
 
 Excellent! It works perfectly! Use your browser's *view page source* to be able to clearly see the result. (It should be at the very top of the page - ignore the rest.)
 
@@ -277,7 +292,10 @@ Let's use our best friend `google` to see if we can find the base10 password, hi
 
 And of course, google gave us the answer. (You could also use `hashcat` or any other cracking tool if you'd like, instead.) The password is simply the english alphabet. 
 
-![MD5 Decrypted Hash](mr-robot-1-writeup/md5_hash.png)
+<Image
+    alt="MD5 Decrypted Hash"
+    src="mr-robot-1-writeup/md5_hash.png"
+/>
 
 Now, let's try to login as `robot` with the password we found.
 
@@ -373,7 +391,10 @@ Stay tuned for similar walkthroughs and much more coming up in the near future!
 
 &#9889; **k4m4** from 127.0.0.1
 
-![FSociety Outro](mr-robot-1-writeup/fsociety_outro.gif)
+<Image
+    alt="FSociety Outro"
+    src="mr-robot-1-writeup/fsociety_outro.gif"
+/>
 
 - Post Image by [Alisa Vysochina](https://dribbble.com/shots/2255868-Mr-Robot)
 - Our Democracy Image from [NBCUniversalStore](https://www.nbcuniversalstore.com/)
