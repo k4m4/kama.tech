@@ -19,7 +19,7 @@ const Image = ({ src, width, height, ...props }: ImageProps) => {
 		<Center
 			borderColor="gray.800"
 			borderWidth="5px"
-			p={3}
+			p={{ base: 1, md: 3 }}
 			w="full"
 		>
 			{isUnsized ? (
