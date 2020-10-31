@@ -93,7 +93,7 @@ const Footer = () => {
 						>
 							<Center
 								h="full"
-								pb={4}
+								pb={3}
 							>
 								<Logo />
 							</Center>
