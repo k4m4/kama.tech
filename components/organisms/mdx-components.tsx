@@ -38,6 +38,7 @@ const CustomHeading = (props: HeadingProps) => {
 			<Box
 				alignItems="center"
 				d="inline-flex"
+				wordBreak="break-all"
 			>
 				{props.children}
 				<Link
