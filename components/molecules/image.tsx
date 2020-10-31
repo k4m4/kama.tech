@@ -10,6 +10,7 @@ type ImageProps = {
 const Image = ({ src, width, height, ...props }: ImageProps) => {
 	const isUnsized = !width || !height;
 	const commonProps = {
+		quality: 90,
 		src: `/static/images/${src}`,
 		...props,
 	};
