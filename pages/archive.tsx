@@ -1,3 +1,4 @@
+import { Box } from '@chakra-ui/core';
 import ArchivedPosts from '../components/organisms/archived-posts';
 import Hero from '../components/organisms/hero';
 import Page from '../components/templates/page';
@@ -5,16 +6,19 @@ import Page from '../components/templates/page';
 const Home = () => {
 	return (
 		<Page
-			title="Archive"
 			description="A collection of archived posts."
+			title="Archive"
 		>
-			<div className="min-h-full w-full font-normal p-0 m-0 font-space-mono bg-black text-white lg:mb-16">
+			<Box
+				color="white"
+				mb={{ md: 16 }}
+			>
 				<Hero
-					title="Archive"
 					subtitle="A collection of archived posts, carried over from the archaic <em>nikolaskama.me</em> blog."
+					title="Archive"
 				/>
 				<ArchivedPosts />
-			</div>
+			</Box>
 		</Page>
 	);
 };

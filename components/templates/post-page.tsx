@@ -1,3 +1,4 @@
+import { Box } from '@chakra-ui/core';
 import Head from 'next/head';
 import { ReactNode } from 'react';
 import PostSEO from '../molecules/post-seo';
@@ -14,10 +15,10 @@ const PostPage = ({ children, ...props }: PostPageProps) => {
 		<>
 			<Head>
 				<link
-					rel="stylesheet"
+					crossOrigin="anonymous"
 					href="https://cdn.jsdelivr.net/npm/katex@0.11.0/dist/katex.min.css"
 					integrity="sha384-BdGj8xC2eZkQaxoQ8nSLefg4AV4/AwB3Fj+8SUSo7pnKP6Eoy18liIKTPn9oBYNG"
-					crossOrigin="anonymous"
+					rel="stylesheet"
 				/>
 				<link
 					href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/contrib/copy-tex.css"
@@ -25,14 +26,16 @@ const PostPage = ({ children, ...props }: PostPageProps) => {
 					type="text/css"
 				/>
 				<script
-					src="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/contrib/copy-tex.min.js"
-					integrity="sha384-XhWAe6BtVcvEdS3FFKT7Mcft4HJjPqMQvi5V4YhzH9Qxw497jC13TupOEvjoIPy7"
 					crossOrigin="anonymous"
+					integrity="sha384-XhWAe6BtVcvEdS3FFKT7Mcft4HJjPqMQvi5V4YhzH9Qxw497jC13TupOEvjoIPy7"
+					src="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/contrib/copy-tex.min.js"
 				/>
 			</Head>
 			<PostSEO {...props} />
 			<Nav />
-			<main>{children}</main>
+			<Box as="main">
+				{children}
+			</Box>
 			<Footer />
 		</>
 	);

@@ -1,7 +1,6 @@
+import { Link, Box, Image } from '@chakra-ui/core';
 import { projects } from '../../data/projects';
 import logOutboundLink from '../../utils/log-outbound-link';
-import Link from '../atoms/link';
-import OutboundLink from '../atoms/outbound-link';
 import Card from '../molecules/card';
 
 type ProjectProps = {
@@ -19,14 +18,24 @@ const Project = ({
 }: ProjectProps) => {
 	return (
 		<Link
-			as={OutboundLink}
+			isExternal
+			_focus={{ outline: 'none' }}
+			_hover={{ textDecoration: 'none' }}
 			href={url}
 			onClick={() => logOutboundLink(`Projects > ${name}`)}
 		>
 			<Card
-				title={name}
+				icon={
+					<Image
+						alt={name}
+						ml={2}
+						pointerEvents="none"
+						src={iconPath}
+						w={{ base: 10, md: 12 }}
+					/>
+				}
 				subtitle={description}
-				iconPath={iconPath}
+				title={name}
 			/>
 		</Link>
 	);
@@ -34,9 +43,12 @@ const Project = ({
 
 const Projects = () => {
 	return (
-		<div
+		<Box
+			boxSizing="border-box"
 			id="projects"
-			className="relative mx-auto mb-0 w-10/12 lg:w-11/12 box-border"
+			mb={0}
+			mx="auto"
+			w={{ base: '85%', md: '90%' }}
 		>
 			{projects.map(project => (
 				<Project
@@ -44,7 +56,7 @@ const Projects = () => {
 					{...project}
 				/>
 			))}
-		</div>
+		</Box>
 	);
 };
 

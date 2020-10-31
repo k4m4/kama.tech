@@ -1,3 +1,4 @@
+import { Box } from '@chakra-ui/core';
 import { NextSeo as NextSEO } from 'next-seo';
 import type { OpenGraph } from 'next-seo/lib/types';
 import { useRouter } from 'next/router';
@@ -40,13 +41,15 @@ const Page = ({
 	return (
 		<>
 			<NextSEO
-				title={fullTitle}
-				description={description}
 				canonical={url}
+				description={description}
 				openGraph={openGraph}
+				title={fullTitle}
 			/>
 			{showNav && <Nav />}
-			<main>{children}</main>
+			<Box as="main">
+				{children}
+			</Box>
 			<Footer />
 		</>
 	);

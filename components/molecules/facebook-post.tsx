@@ -1,3 +1,5 @@
+import { AspectRatio } from '@chakra-ui/core';
+
 type FacebookPostProps = {
 	href: string;
 	height: string;
@@ -5,15 +7,14 @@ type FacebookPostProps = {
 
 const FacebookPost = ({ href, height }: FacebookPostProps) => {
 	return (
-		<iframe
-			src={`https://www.facebook.com/plugins/post.php?href=${href}&show_text=true&width=auto`}
-			height={height}
-			scrolling="no"
-			frameBorder="0"
-			allow="encrypted-media"
-			className="w-full"
-			style={{ maxWidth: '550px' }}
-		/>
+		<AspectRatio maxWidth="550px">
+			<iframe
+				allow="encrypted-media"
+				height={height}
+				src={`https://www.facebook.com/plugins/post.php?href=${href}&show_text=true&width=auto`}
+				width="full"
+			/>
+		</AspectRatio>
 	);
 };
 

@@ -1,62 +1,108 @@
+import {
+	Box,
+	Flex,
+	Text,
+	Center,
+} from '@chakra-ui/core';
 import NextLink from 'next/link';
 import {
-	FiGithub as GitHubIcon,
-	FiTwitter as TwitterIcon,
-	FiAtSign as MailIcon,
-} from 'react-icons/fi';
-import logOutboundLink from '../../utils/log-outbound-link';
-import Link from '../atoms/link';
+	GitHubIcon,
+	TwitterIcon,
+	EmailIcon,
+} from '../../theme/icons';
 import Logo from '../atoms/logo';
-import OutboundLink from '../atoms/outbound-link';
+import SocialLink from '../atoms/social-link';
 
 const Footer = () => {
 	return (
-		<footer className="text-gray-500 font-mono">
-			<div className="flex flex-col h-full w-10/12 lg:w-11/12 m-auto">
-				<div className="flex flex-col lg:flex-row items-center justify-between h-auto lg:h-40 py-10 lg:py-0 overflow-hidden border bg-black border-b-0 border-gray-900">
-					<p className="flex items-center justify-center w-full lg:w-1/3 h-full text-lg lg:border-r border-gray-900 order-2 lg:order-none mt-12 lg:mt-0 mb-7 lg:mb-0">
-						&copy; 2020
-					</p>
-					<Link
-						as={NextLink}
-						href="/"
+		<Box
+			as="footer"
+			color="gray.400"
+		>
+			<Flex
+				direction="column"
+				mx="auto"
+				w={{ base: '85%', md: '90%' }}
+			>
+				<Flex
+					align="center"
+					borderBottom="none"
+					borderColor="gray.800"
+					borderWidth={1}
+					direction={{ base: 'column', md: 'row' }}
+					h={{ base: 'auto', md: 40 }}
+					justify="space-between"
+					overflow="hidden"
+					py={{ base: 10, md: 0 }}
+				>
+					<Center
+						borderColor="gray.800"
+						borderRightWidth={{ base: 0, md: 1 }}
+						h={{ base: '60px', md: 'full' }}
+						order={{ base: 2, md: 0 }}
+						w={{ base: 'full', md: '33.3%' }}
 					>
-						<a className="flex items-center justify-center h-full w-full text-center mb-6 lg:mb-3 transition duration-200 ease-in hover:text-white focus:text-white focus:outline-none">
-							<Logo />
-						</a>
-					</Link>
-					<div className="flex items-center justify-center w-full lg:w-1/3 h-full px-16 lg:px-0 lg:border-l border-gray-900 text-2xl lg:text-xl">
-						<Link
-							as={OutboundLink}
+						<Text
+							fontFamily="mono"
+							fontSize="lg"
+						>
+							&copy; 2020
+						</Text>
+					</Center>
+					<NextLink href="/">
+						<Box
+							_focus={{
+								outline: 'none',
+								color: 'white',
+							}}
+							_hover={{ color: 'white' }}
+							as="a"
+							cursor="pointer"
+							h="52px"
+							transition="all 0.2s ease-in"
+							w="full"
+						>
+							<Center
+								h="full"
+								pb={3}
+							>
+								<Logo />
+							</Center>
+						</Box>
+					</NextLink>
+					<Center
+						borderColor="gray.800"
+						borderLeftWidth={{ base: 0, md: 1 }}
+						fontSize={{ base: '2xl', md: 'xl' }}
+						h={{ base: '60px', md: 'full' }}
+						my={{ base: 6, md: 0 }}
+						px={{ base: 16, md: 0 }}
+						w={{ base: 'full', md: '33.3%' }}
+					>
+						<SocialLink
 							href="https://github.com/k4m4"
-							className="relative flex items-center justify-center flex-row flex-1 lg:ml-4 transition duration-200 ease-in hover:text-white focus:text-white focus:outline-none"
-							aria-label="GitHub"
-							onClick={() => logOutboundLink('Footer > GitHub')}
+							ml={{ md: 4 }}
+							name="GitHub"
 						>
 							<GitHubIcon />
-						</Link>
-						<Link
-							as={OutboundLink}
+						</SocialLink>
+						<SocialLink
 							href="https://twitter.com/nikolaskama"
-							className="relative flex items-center justify-center flex-row flex-1 transition duration-200 ease-in hover:text-white focus:text-white focus:outline-none"
-							aria-label="Twitter"
-							onClick={() => logOutboundLink('Footer > Twitter')}
+							name="Twitter"
 						>
 							<TwitterIcon />
-						</Link>
-						<Link
-							as={OutboundLink}
+						</SocialLink>
+						<SocialLink
 							href="mailto:nikolaskam@gmail.com"
-							className="relative flex items-center justify-center flex-row flex-1 lg:mr-4 transition duration-200 ease-in hover:text-white focus:text-white focus:outline-none"
-							aria-label="Email"
-							onClick={() => logOutboundLink('Footer > Email')}
+							mr={{ md: 4 }}
+							name="Email"
 						>
-							<MailIcon />
-						</Link>
-					</div>
-				</div>
-			</div>
-		</footer>
+							<EmailIcon />
+						</SocialLink>
+					</Center>
+				</Flex>
+			</Flex>
+		</Box>
 	);
 };
 

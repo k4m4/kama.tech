@@ -1,4 +1,6 @@
+import { theme } from '@chakra-ui/core';
 import { PrismTheme } from 'prism-react-renderer';
+const { colors } = theme;
 
 /**
  * Duotone Dark (Modified)
@@ -8,15 +10,15 @@ import { PrismTheme } from 'prism-react-renderer';
  * Generated with Base16 Builder (https://github.com/base16-builder/base16-builder)
  */
 
-const theme: PrismTheme = {
+const customTheme: PrismTheme = {
 	plain: {
-		color: '#b794f4',
+		color: colors.purple[300],
 	},
 	styles: [
 		{
 			types: ['comment', 'prolog', 'doctype', 'cdata', 'punctuation'],
 			style: {
-				color: '#a0aec0',
+				color: colors.gray[400],
 			},
 		},
 		{
@@ -28,25 +30,25 @@ const theme: PrismTheme = {
 		{
 			types: ['tag', 'operator', 'number'],
 			style: {
-				color: '#f6ad55',
+				color: colors.orange[300],
 			},
 		},
 		{
 			types: ['property', 'function'],
 			style: {
-				color: '#b794f4',
+				color: colors.purple[300],
 			},
 		},
 		{
 			types: ['tag-id', 'selector', 'atrule-id'],
 			style: {
-				color: '#ebf8ff',
+				color: colors.blue[50],
 			},
 		},
 		{
 			types: ['attr-name'],
 			style: {
-				color: '#d6bcfa',
+				color: colors.purple[200],
 			},
 		},
 		{
@@ -67,7 +69,7 @@ const theme: PrismTheme = {
 				'variable',
 			],
 			style: {
-				color: '#fbd38d',
+				color: colors.orange[200],
 			},
 		},
 		{
@@ -97,10 +99,10 @@ const theme: PrismTheme = {
 		{
 			types: ['important'],
 			style: {
-				color: '#d6bcfa',
+				color: colors.purple[200],
 			},
 		},
 	],
 };
 
-export default theme;
+export default customTheme;

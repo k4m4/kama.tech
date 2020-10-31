@@ -4,8 +4,8 @@ const GoogleAnalytics = () => {
 	return (
 		<>
 			<link
-				rel="dns-prefetch"
 				href="https://www.google-analytics.com"
+				rel="dns-prefetch"
 			/>
 			<script
 				async

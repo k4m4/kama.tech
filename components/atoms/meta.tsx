@@ -2,28 +2,28 @@ const Meta = () => {
 	return (
 		<>
 			<meta
-				name="viewport"
 				content="width=device-width, initial-scale=1.0"
+				name="viewport"
 			/>
 			<meta
-				httpEquiv="Content-Language"
 				content="en"
+				httpEquiv="Content-Language"
 			/>
 			<meta
-				name="author"
 				content="Nikolaos Kamarinakis"
+				name="author"
 			/>
 			<meta
-				name="apple-mobile-web-app-title"
 				content="k4m4"
+				name="apple-mobile-web-app-title"
 			/>
 			<meta
+				content="#ffffff"
 				name="msapplication-TileColor"
-				content="#ffffff"
 			/>
 			<meta
-				name="theme-color"
 				content="#ffffff"
+				name="theme-color"
 			/>
 		</>
 	);

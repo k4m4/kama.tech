@@ -1,8 +1,15 @@
+import { Heading } from '@chakra-ui/core';
+
 const Logo = () => {
 	return (
-		<h2 className="font-extralight font-meie text-6xl">
+		<Heading
+			as="h2"
+			fontFamily="'Meie Script', cursive"
+			fontSize="6xl"
+			fontWeight={200}
+		>
 			k4m4
-		</h2>
+		</Heading>
 	);
 };
 

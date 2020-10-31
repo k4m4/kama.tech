@@ -1,3 +1,4 @@
+import { Box, Flex, Heading, Text } from '@chakra-ui/core';
 import { NextPage, NextPageContext } from 'next';
 import Page from '../components/templates/page';
 
@@ -8,18 +9,34 @@ type ErrorProps = {
 const Error: NextPage<ErrorProps> = ({ status }: ErrorProps) => {
 	return (
 		<Page
-			title={status.toString()}
 			description={status === 404 ? 'This page got lost in the void.' : 'Not a good place to be in.'}
 			showNav={false}
+			title={status.toString()}
 		>
-			<div className="h-screen w-full flex flex-col items-center justify-center bg-black text-white">
-				<h1 className="text-6xl md:text-7xl lg:text-6vw font-mono">{status || '1337'}</h1>
+			<Flex
+				align="center"
+				bg="black"
+				color="white"
+				h="100vh"
+				justify="center"
+				w="full"
+			>
+				<Heading
+					as="h1"
+					fontSize={{ base: '6xl', md: '7xl', xl: '6vw' }}
+					fontStyle="mono"
+					fontWeight={600}
+				>
+					{status || '1337'}
+				</Heading>
 				{status !== 404 && (
-					<div className="font-mono">
-						<p className="text-base">An unexpected error has occured.</p>
-					</div>
+					<Box fontFamily="mono">
+						<Text fontSize="md">
+							An unexpected error has occured.
+						</Text>
+					</Box>
 				)}
-			</div>
+			</Flex>
 		</Page>
 	);
 };

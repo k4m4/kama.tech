@@ -1,3 +1,4 @@
+import { Box } from '@chakra-ui/core';
 import Document, {
 	Html,
 	Main,
@@ -19,20 +20,17 @@ class MyDocument extends Document {
 
 	render() {
 		return (
-			<Html
-				lang="en"
-				className="bg-black"
-			>
+			<Html lang="en">
 				<Head>
 					<Meta />
 					<GoogleAnalytics />
 					<Fonts />
 					<Favicons />
 				</Head>
-				<body>
+				<Box as="body">
 					<Main />
 					<NextScript />
-				</body>
+				</Box>
 			</Html>
 		);
 	}

@@ -27,9 +27,8 @@ const PostSEO = ({
 	return (
 		<>
 			<NextSEO
-				title={fullTitle}
-				description={summary}
 				canonical={url}
+				description={summary}
 				openGraph={{
 					type: 'article',
 					article: {
@@ -41,11 +40,12 @@ const PostSEO = ({
 					description: summary,
 					images: [image],
 				}}
+				title={fullTitle}
 			/>
 			<ArticleJsonLd
 				authorName="Nikolaos Kamarinakis"
-				datePublished={datePublished}
 				dateModified={dateModified}
+				datePublished={datePublished}
 				description={summary}
 				images={[image.url]}
 				publisherLogo="/static/favicons/android-chrome-192x192.png"

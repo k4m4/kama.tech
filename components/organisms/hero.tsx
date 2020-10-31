@@ -1,5 +1,6 @@
+import { Box, Flex, Heading, Center } from '@chakra-ui/core';
+import { ChevronDownIcon } from '@chakra-ui/icons';
 import { motion } from 'framer-motion';
-import { FiChevronDown as ArrowDown } from 'react-icons/fi';
 import { Link } from 'react-scroll';
 
 type HeroProps = {
@@ -9,10 +10,19 @@ type HeroProps = {
 
 const Hero = ({ title, subtitle }: HeroProps) => {
 	return (
-		<div className="relative h-screen w-full">
-			<div className="relative flex flex-col h-full w-10/12 lg:w-11/12 m-auto">
+		<Box
+			h="100vh"
+			position="relative"
+			w="full"
+		>
+			<Flex
+				direction="column"
+				h="full"
+				mx="auto"
+				position="relative"
+				w={{ base: '85%', md: '90%' }}
+			>
 				<motion.div
-					initial={{ opacity: 0 }}
 					animate={{
 						opacity: 1,
 						transition: {
@@ -20,36 +30,65 @@ const Hero = ({ title, subtitle }: HeroProps) => {
 						},
 					}}
 					exit={{ opacity: 0 }}
-					className="absolute flex justify-between items-center w-full bottom-0 leading-loose mb-40 lg:mb-16"
+					initial={{ opacity: 0 }}
 				>
-					<div className="relative max-w-3xl">
-						<h1 className="relative font-normal text-2xl md:text-3xl lg:text-4xl">
-							{title}
-						</h1>
-						{subtitle && (
-							<h2
-								dangerouslySetInnerHTML={{ __html: subtitle }}
-								className="relative text-gray-400 font-hairline text-base md:text-lg lg:text-xl mt-2"
-							/>
-						)}
-					</div>
-					<motion.div
-						whileHover={{ scale: 1.2 }}
-						className="inline-flex items-center justify-center text-gray-500 hover:text-white focus:text-white ml-2"
+					<Flex
+						align="center"
+						bottom={0}
+						justify="space-between"
+						mb={{ base: 40, md: 16 }}
+						position="absolute"
+						w="full"
 					>
-						<Link
-							smooth
-							to={title.toLowerCase() === 'archive' ? 'archived-posts' : 'projects'}
-							duration={500}
-							offset={-100}
-							className="cursor-pointer lg:p-2"
+						<Box maxW="3xl">
+							<Heading
+								as="h1"
+								fontFamily="body"
+								fontSize={{ base: '2xl', md: '3xl', xl: '4xl' }}
+								fontWeight={500}
+								lineHeight="taller"
+							>
+								{title}
+							</Heading>
+							{subtitle && (
+								<Heading
+									as="h2"
+									color="gray.300"
+									dangerouslySetInnerHTML={{ __html: subtitle }}
+									fontSize={{ base: 'md', md: 'lg', xl: 'xl' }}
+									fontWeight={100}
+									lineHeight="taller"
+									mt={2}
+								/>
+							)}
+						</Box>
+						<Center
+							d="inline-flex"
+							ml={2}
 						>
-							<ArrowDown size={22} />
-						</Link>
-					</motion.div>
+							<motion.div whileHover={{ scale: 1.2 }}>
+								<Link
+									smooth
+									duration={500}
+									offset={-100}
+									to={title.toLowerCase() === 'archive' ? 'archived-posts' : 'projects'}
+								>
+									<Box
+										_focus={{ color: 'white' }}
+										_hover={{ color: 'white '}}
+										color="gray.400"
+										cursor="pointer"
+										p={{ lg: 2 }}
+									>
+										<ChevronDownIcon boxSize="22px" />
+									</Box>
+								</Link>
+							</motion.div>
+						</Center>
+					</Flex>
 				</motion.div>
-			</div>
-		</div>
+			</Flex>
+		</Box>
 	);
 };
 

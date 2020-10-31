@@ -1,3 +1,4 @@
+import { Flex, Box, Heading, Text } from '@chakra-ui/core';
 import { MDXProvider } from '@mdx-js/react';
 import { ReactNode } from 'react';
 import MDXComponents from '../components/organisms/mdx-components';
@@ -19,19 +20,50 @@ const Layout = ({ children, frontMatter }: LayoutProps) => {
 			url={`https://${process.env.DEFAULT_DOMAIN}/archive/${slug}`}
 			{...frontMatter}
 		>
-			<div className="bg-black text-gray-400 font-space font-light leading-loose mt-40 mb-16">
-				<div className="text-white px-16 md:px-20 lg:px-24 py-16">
-					<h1 className="text-4xl lg:text-5xl font-semibold text-center pb-5 leading-relaxed">{frontMatter.title}</h1>
-					<span className="text-sm font-space-mono flex items-center justify-center flex-wrap uppercase">
-						{formatDate(frontMatter.publishedAt)}
-					</span>
-				</div>
-				<div className="w-full md:w-11/12 lg:w-4/5 m-auto p-10 md:p-15 lg:p-20 leading-loose">
+			<Box
+				mb={16}
+				mt={40}
+			>
+				<Box
+					color="white"
+					px={{ base: 16, md: 20, xl: 24 }}
+					py={16}
+				>
+					<Heading
+						as="h1"
+						fontSize={{ base: '3xl', lg: '4xl' }}
+						fontWeight={600}
+						lineHeight="tall"
+						pb={5}
+						textAlign="center"
+					>
+						{frontMatter.title}
+					</Heading>
+					<Flex
+						align="center"
+						flexWrap="wrap"
+						justify="center"
+						textTransform="uppercase"
+					>
+						<Text
+							as="span"
+							fontSize="sm"
+						>
+							{formatDate(frontMatter.publishedAt)}
+						</Text>
+					</Flex>
+				</Box>
+				<Box
+					lineHeight="taller"
+					mx="auto"
+					p={{ base: 10, md: 15, xl: 20 }}
+					w={{ base: 'full', md: '90%', xl: '80%' }}
+				>
 					<MDXProvider components={MDXComponents}>
 						{children}
 					</MDXProvider>
-				</div>
-			</div>
+				</Box>
+			</Box>
 		</PostPage>
 	);
 };

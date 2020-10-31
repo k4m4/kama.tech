@@ -1,42 +1,101 @@
+import {
+	Box,
+	Link,
+	Center,
+	Heading,
+	HeadingProps,
+	List,
+	ListItem,
+	Text,
+} from '@chakra-ui/core';
+import NextLink from 'next/link';
 import Highlight, { defaultProps, Language } from 'prism-react-renderer';
-import { CSSProperties, ReactNode, HTMLAttributes, DetailedHTMLProps } from 'react';
-import { FaAnchor } from 'react-icons/fa';
+import { CSSProperties, ReactNode } from 'react';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
-import prismTheme from '../../prism-theme';
+import { AnchorIcon } from '../../theme/icons';
+import prismTheme from '../../theme/prism';
 
-type HeadingProps = {
-	as: 'h1' | 'h2' | 'h3' | 'h4';
-	children: ReactNode;
-} & DetailedHTMLProps<HTMLAttributes<HTMLHeadingElement>, HTMLHeadingElement>;
-
-const Heading = ({ as: Component, className, ...props }: HeadingProps) => {
-	const size = Number(Component.replace('h', ''));
-
+const CustomHeading = (props: HeadingProps) => {
 	if (!props.id) {
 		return (
-			<Component
-				className={className}
-				{...props}
-			/>
+			<Heading {...props} />
 		);
 	}
 
 	return (
-		<Component
-			className={`text-white font-medium text-${5 - size}xl lg:text-${6 - size}xl anchor-link ${className ? className : ''}`}
+		<Heading
+			css={{
+				'&[id]::before': {
+					display: 'block',
+					height: '6rem',
+					marginTop: '-6rem',
+					visibility: 'hidden',
+					content: '""',
+				},
+			}}
 			{...props}
 		>
-			<div className="inline-flex items-center">
+			<Box
+				alignItems="center"
+				d="inline-flex"
+				wordBreak="break-all"
+			>
 				{props.children}
-				<a
-					className="inline-flex items-center opacity-50 hover:opacity-100 transition-all duration-200 ease-in-out hover:text-red-500"
-					href={`#${props.id}`}
+				<Link
+					alignItems="center"
 					aria-label="Anchor Link"
+					as="a"
+					d="inline-flex"
+					href={`#${props.id}`}
+					ml={2}
+					transition="all 0.2s ease-in-out"
 				>
-					<FaAnchor className="pl-2 text-2xl h-full" />
-				</a>
-			</div>
-		</Component>
+					<Box
+						_hover={{
+							opacity: 1,
+							color: 'red.400',
+						}}
+						color="gray.400"
+						cursor="pointer"
+						fontSize="md"
+						h="full"
+						opacity={0.5}
+					>
+						<AnchorIcon />
+					</Box>
+				</Link>
+			</Box>
+		</Heading>
+	);
+};
+
+type CustomLinkProps = {
+	href: string;
+};
+
+const CustomLink = ({ href, ...props }: CustomLinkProps) => {
+	const isInternalLink = href && (href.startsWith('/') || href.startsWith('#'));
+
+	if (isInternalLink) {
+		return (
+			<NextLink
+				passHref
+				href={href}
+			>
+				<Link
+					as="a"
+					{...props}
+				/>
+			</NextLink>
+		);
+	}
+
+	return (
+		<Link
+			isExternal
+			href={href}
+			{...props}
+		/>
 	);
 };
 
@@ -46,14 +105,20 @@ type PreProps = {
 	style?: CSSProperties;
 };
 
-const Pre = ({ children, className, style }: PreProps) => {
+const Pre = (props: PreProps) => {
 	return (
-		<pre
-			className={`bg-gray-900 text-purple-400 p-6 md:p-8 lg:p-10 rounded-lg my-4 overflow-x-scroll font-mono text-xs md:text-sm lg:text-base cursor-text${className ? className : ''}`}
-			style={style}
-		>
-			{children}
-		</pre>
+		<Box
+			as="pre"
+			bg="gray.800"
+			color="purple.300"
+			cursor="text"
+			fontFamily="mono"
+			fontSize={{ base: 'xs', md: 'sm', xl: 'md' }}
+			my={4}
+			overflowX="scroll"
+			p={{ base: 6, md: 8, xl: 10 }}
+			{...props}
+		/>
 	);
 };
 
@@ -73,9 +138,9 @@ const CodeBlock = ({ children, className }: CodeBlockProps) => {
 	return (
 		<Highlight
 			{...defaultProps}
-			theme={prismTheme}
 			code={String(children)}
 			language={language}
+			theme={prismTheme}
 		>
 			{({ className, style, tokens, getLineProps, getTokenProps }) => (
 				<Pre
@@ -107,106 +172,136 @@ type ImageProps = {
 
 const Image = ({ src, ...props }: ImageProps) => {
 	return (
-		<span className="flex justify-center items-center w-full">
+		<Center
+			as="span"
+			w="full"
+		>
 			<LazyLoadImage
+				className="border-solid border-2 border-gray-800 p-3 md:p-4 lg:p-5"
 				effect="blur"
 				src={`/static/images/${src}`}
-				className="border-solid border-2 border-gray-800 rounded p-3 md:p-4 lg:p-5"
 				{...props}
 			/>
-		</span>
+		</Center>
 	);
 };
 
 const MDXComponents = {
 	h1: props => (
-		<Heading
+		<CustomHeading
 			as="h1"
-			className="mt-24"
+			mt={24}
+			textStyle="h1"
 			{...props}
 		/>
 	),
 	h2: props => (
-		<Heading
+		<CustomHeading
 			as="h2"
-			className="mt-20"
+			mt={20}
+			textStyle="h2"
 			{...props}
 		/>
 	),
 	h3: props => (
-		<Heading
+		<CustomHeading
 			as="h3"
-			className="mt-16"
+			mt={16}
+			textStyle="h3"
 			{...props}
 		/>
 	),
 	h4: props => (
-		<Heading
+		<CustomHeading
 			as="h4"
-			className="mt-12"
+			mt={12}
+			textStyle="h4"
 			{...props}
 		/>
 	),
 	p: props => (
-		<p
-			className="text-base md:text-lg lg:text-xl my-8 tracking-wide break-words"
+		<Text
+			color="gray.400"
+			fontSize={{ base: 'md', md: 'lg', xl: 'xl' }}
+			letterSpacing="wide"
+			my={8}
+			wordBreak="break-word"
 			{...props}
 		/>
 	),
 	a: props => (
-		<a
-			className="border-b border-red-500 hover:text-white focus:text-white"
+		<CustomLink
+			_focus={{ color: 'white' }}
+			_hover={{ color: 'white' }}
+			borderBottomWidth={1}
+			borderColor="red.400"
 			{...props}
 		/>
 	),
 	code: CodeBlock,
 	blockquote: props => (
-		<blockquote
-			className="text-base md:text-lg lg:text-xl italic border-l-4 pl-3 quote whitespace-pre-wrap break-words cursor-text"
+		<Box
+			as="blockquote"
+			borderLeftWidth={4}
+			cursor="text"
+			fontSize={{ base: 'md', md: 'lg', xl: 'xl' }}
+			fontStyle="italic"
+			pl={3}
+			whiteSpace="pre-wrap"
+			wordBreak="break-word"
 			{...props}
 		/>
 	),
 	inlineCode: props => (
-		<code
-			className="font-mono text-purple-400 bg-gray-900 p-1 rounded-sm whitespace-pre-wrap break-words cursor-text"
-			{...props}
-		/>
-	),
-	br: props => (
-		<br
-			className="p-5"
+		<Text
+			as="code"
+			bg="gray.800"
+			color="purple.300"
+			cursor="text"
+			fontStyle="mono"
+			p={1}
+			whiteSpace="pre-wrap"
+			wordBreak="break-word"
 			{...props}
 		/>
 	),
 	hr: props => (
-		<hr
-			className="my-10 border-white"
+		<Box
+			as="hr"
+			borderColor="white"
+			my={10}
 			{...props}
 		/>
 	),
 	ul: props => (
-		<ul
-			className="mt-8 ml-4 list-disc"
+		<List
+			color="gray.400"
+			mt={8}
+			styleType="disc"
 			{...props}
 		/>
 	),
 	ol: props => (
-		<ol
-			className="mt-8 ml-4 list-decimal"
+		<List
+			as="ol"
+			color="gray.400"
+			mt={8}
+			styleType="disc"
 			{...props}
 		/>
 	),
 	li: props => (
-		<li
-			className="mb-2 text-base md:text-lg lg:text-xl"
+		<ListItem
+			fontSize={{ base: 'sm', md: 'md', xl: 'lg' }}
+			mb={2}
 			{...props}
 		/>
 	),
 	img: Image,
-	script: props => <script {...props} />,
 	strong: props => (
-		<strong
-			className="font-bold"
+		<Text
+			as="strong"
+			fontWeight={700}
 			{...props}
 		/>
 	),
