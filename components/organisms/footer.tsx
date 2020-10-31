@@ -30,7 +30,7 @@ const SocialLink = ({ name, children, ...props }: SocialLinkProps) => {
 			_hover={{ color: 'white' }}
 			aria-label={name}
 			flex="1"
-			py={{ base: 8, md: 0 }}
+			py={{ base: 8, md: 4 }}
 			transition="all 0.2s ease-in"
 			onClick={() => logOutboundLink(`Footer > ${name}`)}
 			{...props}
