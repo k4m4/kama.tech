@@ -17,11 +17,17 @@ const Card = ({ title, subtitle, icon }: CardProps) => {
 	return (
 		<Box
 			_focus={{
-				borderColor: 'white',
+				borderColor: {
+					base: 'none',
+					md: 'white',
+				},
 				outline: 'none',
 			}}
 			_hover={{
-				borderColor: 'white',
+				borderColor: {
+					base: 'none',
+					md: 'white',
+				},
 			}}
 			backgroundColor="black"
 			borderColor="gray.800"
@@ -38,7 +44,7 @@ const Card = ({ title, subtitle, icon }: CardProps) => {
 				justify={{ base: 'space-around', md: 'space-between' }}
 			>
 				<Box
-					mt={{ base: 16, md: 0 }}
+					mt={{ base: 20, md: 0 }}
 					order={{ base: 2, md: 0 }}
 				>
 					<Heading
@@ -52,6 +58,7 @@ const Card = ({ title, subtitle, icon }: CardProps) => {
 					<Text
 						color="gray.400"
 						fontWeight={300}
+						lineHeight="tall"
 					>
 						{subtitle}
 					</Text>
