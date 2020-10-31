@@ -93,6 +93,7 @@ const CustomLink = ({ href, ...props }: CustomLinkProps) => {
 	return (
 		<Link
 			isExternal
+			href={href}
 			{...props}
 		/>
 	);
