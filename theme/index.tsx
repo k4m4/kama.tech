@@ -62,25 +62,25 @@ const overrides = ({
 	},
 	textStyles: {
 		h1: {
-			fontSize: '4xl',
+			fontSize: { base: '3xl', lg: '4xl' },
 			fontWeight: 'bold',
 			lineHeight: 'taller',
 			color: 'white',
 		},
 		h2: {
-			fontSize: '3xl',
+			fontSize: { base: '2xl', lg: '3xl' },
 			fontWeight: 'semibold',
 			lineHeight: 'tall',
 			color: 'white',
 		},
 		h3: {
-			fontSize: '2xl',
+			fontSize: { base: 'xl', lg: '2xl' },
 			fontWeight: 'medium',
 			lineHeight: 'base',
 			color: 'white',
 		},
 		h4: {
-			fontSize: 'xl',
+			fontSize: { base: 'lg', lg: 'xl' },
 			fontWeight: 'medium',
 			lineHeight: 'base',
 			color: 'white',
