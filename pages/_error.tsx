@@ -9,17 +9,17 @@ type ErrorProps = {
 const Error: NextPage<ErrorProps> = ({ status }: ErrorProps) => {
 	return (
 		<Page
-			title={status.toString()}
 			description={status === 404 ? 'This page got lost in the void.' : 'Not a good place to be in.'}
 			showNav={false}
+			title={status.toString()}
 		>
 			<Flex
-				h="100vh"
-				w="full"
 				align="center"
-				justify="center"
 				bg="black"
 				color="white"
+				h="100vh"
+				justify="center"
+				w="full"
 			>
 				<Heading
 					as="h1"

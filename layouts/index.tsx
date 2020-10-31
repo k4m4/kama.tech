@@ -21,8 +21,8 @@ const Layout = ({ children, frontMatter }: LayoutProps) => {
 			{...frontMatter}
 		>
 			<Box
-				mt={40}
 				mb={16}
+				mt={40}
 			>
 				<Box
 					color="white"
@@ -33,16 +33,16 @@ const Layout = ({ children, frontMatter }: LayoutProps) => {
 						as="h1"
 						fontSize={{ base: '3xl', lg: '4xl' }}
 						fontWeight={600}
-						textAlign="center"
-						pb={5}
 						lineHeight="tall"
+						pb={5}
+						textAlign="center"
 					>
 						{frontMatter.title}
 					</Heading>
 					<Flex
 						align="center"
-						justify="center"
 						flexWrap="wrap"
+						justify="center"
 						textTransform="uppercase"
 					>
 						<Text
@@ -54,10 +54,10 @@ const Layout = ({ children, frontMatter }: LayoutProps) => {
 					</Flex>
 				</Box>
 				<Box
-					w={{ base: 'full', md: '90%', xl: '80%' }}
+					lineHeight="taller"
 					mx="auto"
 					p={{ base: 10, md: 15, xl: 20 }}
-					lineHeight="taller"
+					w={{ base: 'full', md: '90%', xl: '80%' }}
 				>
 					<MDXProvider components={MDXComponents}>
 						{children}

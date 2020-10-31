@@ -11,19 +11,18 @@ type HeroProps = {
 const Hero = ({ title, subtitle }: HeroProps) => {
 	return (
 		<Box
-			position="relative"
 			h="100vh"
+			position="relative"
 			w="full"
 		>
 			<Flex
-				position="relative"
 				direction="column"
 				h="full"
-				w={{ base: '85%', md: '90%' }}
 				mx="auto"
+				position="relative"
+				w={{ base: '85%', md: '90%' }}
 			>
 				<motion.div
-					initial={{ opacity: 0 }}
 					animate={{
 						opacity: 1,
 						transition: {
@@ -31,34 +30,35 @@ const Hero = ({ title, subtitle }: HeroProps) => {
 						},
 					}}
 					exit={{ opacity: 0 }}
+					initial={{ opacity: 0 }}
 				>
 					<Flex
-						position="absolute"
-						justify="space-between"
 						align="center"
-						w="full"
 						bottom={0}
+						justify="space-between"
 						mb={{ base: 40, md: 16 }}
+						position="absolute"
+						w="full"
 					>
 						<Box maxW="3xl">
 							<Heading
 								as="h1"
 								fontFamily="body"
+								fontSize={{ base: '2xl', md: '3xl', xl: '4xl' }}
 								fontWeight={500}
 								lineHeight="taller"
-								fontSize={{ base: '2xl', md: '3xl', xl: '4xl' }}
 							>
 								{title}
 							</Heading>
 							{subtitle && (
 								<Heading
 									as="h2"
-									lineHeight="taller"
 									color="gray.300"
-									fontWeight={100}
-									mt={2}
-									fontSize={{ base: 'md', md: 'lg', xl: 'xl' }}
 									dangerouslySetInnerHTML={{ __html: subtitle }}
+									fontSize={{ base: 'md', md: 'lg', xl: 'xl' }}
+									fontWeight={100}
+									lineHeight="taller"
+									mt={2}
 								/>
 							)}
 						</Box>
@@ -69,16 +69,16 @@ const Hero = ({ title, subtitle }: HeroProps) => {
 							<motion.div whileHover={{ scale: 1.2 }}>
 								<Link
 									smooth
-									to={title.toLowerCase() === 'archive' ? 'archived-posts' : 'projects'}
 									duration={500}
 									offset={-100}
+									to={title.toLowerCase() === 'archive' ? 'archived-posts' : 'projects'}
 								>
 									<Box
+										_focus={{ color: 'white' }}
+										_hover={{ color: 'white '}}
 										color="gray.400"
 										cursor="pointer"
 										p={{ lg: 2 }}
-										_hover={{ color: 'white '}}
-										_focus={{ color: 'white' }}
 									>
 										<ChevronDownIcon boxSize="22px" />
 									</Box>

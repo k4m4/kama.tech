@@ -6,16 +6,16 @@ import Page from '../components/templates/page';
 const Home = () => {
 	return (
 		<Page
-			title="Archive"
 			description="A collection of archived posts."
+			title="Archive"
 		>
 			<Box
 				color="white"
 				mb={{ md: 16 }}
 			>
 				<Hero
-					title="Archive"
 					subtitle="A collection of archived posts, carried over from the archaic <em>nikolaskama.me</em> blog."
+					title="Archive"
 				/>
 				<ArchivedPosts />
 			</Box>

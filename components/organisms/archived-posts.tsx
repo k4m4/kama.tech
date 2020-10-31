@@ -28,21 +28,21 @@ const ArchivedPost = ({ title, publishedAt, slug }: ArchivedPost) => {
 			href={`/${slug}`}
 		>
 			<Link
-				_hover={{ textDecoration: 'none' }}
 				_focus={{ outline: 'none' }}
+				_hover={{ textDecoration: 'none' }}
 			>
 				<Card
-					title={title}
-					subtitle={formatDate(publishedAt)}
 					icon={
 						<Image
-							src={iconPath}
 							alt={title}
-							pointerEvents="none"
-							w={{ base: 10, md: 12 }}
 							ml={2}
+							pointerEvents="none"
+							src={iconPath}
+							w={{ base: 10, md: 12 }}
 						/>
 					}
+					subtitle={formatDate(publishedAt)}
+					title={title}
 				/>
 			</Link>
 		</NextLink>
@@ -52,18 +52,18 @@ const ArchivedPost = ({ title, publishedAt, slug }: ArchivedPost) => {
 const ArchivedPosts = () => {
 	return (
 		<Box
-			id="archived-posts"
-			mx="auto"
-			mb={0}
-			w={{ base: '85%', md: '90%' }}
 			boxSizing="border-box"
+			id="archived-posts"
+			mb={0}
+			mx="auto"
+			w={{ base: '85%', md: '90%' }}
 		>
 			{archivedPosts.map(post => (
 				<ArchivedPost
 					key={post.title}
-					title={post.title}
 					publishedAt={post.publishedAt}
 					slug={post.__resourcePath.replace('.mdx', '')}
+					title={post.title}
 				/>
 			))}
 		</Box>

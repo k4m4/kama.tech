@@ -9,9 +9,9 @@ const FacebookPost = ({ href, height }: FacebookPostProps) => {
 	return (
 		<AspectRatio maxWidth="550px">
 			<iframe
-				src={`https://www.facebook.com/plugins/post.php?href=${href}&show_text=true&width=auto`}
-				height={height}
 				allow="encrypted-media"
+				height={height}
+				src={`https://www.facebook.com/plugins/post.php?href=${href}&show_text=true&width=auto`}
 				width="full"
 			/>
 		</AspectRatio>

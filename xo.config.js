@@ -52,6 +52,14 @@ module.exports = {
 				},
 			},
 		],
+		'react/jsx-sort-props': [
+			'error',
+			{
+				callbacksLast: true,
+				shorthandFirst: true,
+				reservedFirst: true,
+			},
+		],
 	},
 	overrides: [
 		{

@@ -41,10 +41,10 @@ const Page = ({
 	return (
 		<>
 			<NextSEO
-				title={fullTitle}
-				description={description}
 				canonical={url}
+				description={description}
 				openGraph={openGraph}
+				title={fullTitle}
 			/>
 			{showNav && <Nav />}
 			<Box as="main">

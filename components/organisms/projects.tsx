@@ -19,23 +19,23 @@ const Project = ({
 	return (
 		<Link
 			isExternal
-			href={url}
-			_hover={{ textDecoration: 'none' }}
 			_focus={{ outline: 'none' }}
+			_hover={{ textDecoration: 'none' }}
+			href={url}
 			onClick={() => logOutboundLink(`Projects > ${name}`)}
 		>
 			<Card
-				title={name}
-				subtitle={description}
 				icon={
 					<Image
-						src={iconPath}
 						alt={name}
-						pointerEvents="none"
-						w={{ base: 10, md: 12 }}
 						ml={2}
+						pointerEvents="none"
+						src={iconPath}
+						w={{ base: 10, md: 12 }}
 					/>
 				}
+				subtitle={description}
+				title={name}
 			/>
 		</Link>
 	);
@@ -44,11 +44,11 @@ const Project = ({
 const Projects = () => {
 	return (
 		<Box
-			id="projects"
-			mx="auto"
-			mb={0}
-			w={{ base: '85%', md: '90%' }}
 			boxSizing="border-box"
+			id="projects"
+			mb={0}
+			mx="auto"
+			w={{ base: '85%', md: '90%' }}
 		>
 			{projects.map(project => (
 				<Project

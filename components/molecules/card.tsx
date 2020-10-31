@@ -14,20 +14,20 @@ type CardProps = {
 const Card = ({ title, subtitle, icon }: CardProps) => {
 	return (
 		<Box
-			backgroundColor="black"
-			borderColor="gray.800"
-			borderWidth="1px"
-			p={{ base: 10, md: 16 }}
-			mb={{ base: 10, md: 0 }}
-			transition="all 0.2s ease-in"
-			overflowX="scroll"
-			_hover={{
-				borderColor: 'white',
-			}}
 			_focus={{
 				borderColor: 'white',
 				outline: 'none',
 			}}
+			_hover={{
+				borderColor: 'white',
+			}}
+			backgroundColor="black"
+			borderColor="gray.800"
+			borderWidth="1px"
+			mb={{ base: 10, md: 0 }}
+			overflowX="scroll"
+			p={{ base: 10, md: 16 }}
+			transition="all 0.2s ease-in"
 		>
 			<Flex
 				align={{ base: 'flex-start', md: 'center' }}
@@ -40,9 +40,9 @@ const Card = ({ title, subtitle, icon }: CardProps) => {
 				>
 					<Heading
 						as="h2"
-						mb={6}
 						fontSize="xl"
 						fontWeight={700}
+						mb={6}
 					>
 						{title}
 					</Heading>

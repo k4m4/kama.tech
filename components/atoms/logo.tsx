@@ -4,9 +4,9 @@ const Logo = () => {
 	return (
 		<Heading
 			as="h2"
+			fontFamily="'Meie Script', cursive"
 			fontSize="6xl"
 			fontWeight={200}
-			fontFamily="'Meie Script', cursive"
 		>
 			k4m4
 		</Heading>

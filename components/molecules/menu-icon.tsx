@@ -3,18 +3,18 @@ import { motion } from 'framer-motion';
 const Path = props => (
 	<motion.path
 		fill="transparent"
-		strokeWidth="1.5"
 		stroke="currentColor"
 		strokeLinecap="round"
+		strokeWidth="1.5"
 		{...props}
 	/>
 );
 
 const MenuIcon = () => (
 	<svg
-		width="21.5"
 		height="19"
 		viewBox="0 0 21.5 19"
+		width="21.5"
 	>
 		<Path
 			variants={{
@@ -24,11 +24,11 @@ const MenuIcon = () => (
 		/>
 		<Path
 			d="M 2 9.423 L 20 9.423"
+			transition={{ duration: 0.1 }}
 			variants={{
 				closed: { opacity: 1 },
 				open: { opacity: 0 },
 			}}
-			transition={{ duration: 0.1 }}
 		/>
 		<Path
 			variants={{

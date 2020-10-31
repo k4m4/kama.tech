@@ -36,29 +36,29 @@ const CustomHeading = (props: HeadingProps) => {
 			{...props}
 		>
 			<Box
-				d="inline-flex"
 				alignItems="center"
+				d="inline-flex"
 			>
 				{props.children}
 				<Link
+					alignItems="center"
+					aria-label="Anchor Link"
 					as="a"
 					d="inline-flex"
-					alignItems="center"
-					transition="all 0.2s ease-in-out"
 					href={`#${props.id}`}
-					aria-label="Anchor Link"
 					ml={2}
+					transition="all 0.2s ease-in-out"
 				>
 					<Box
-						color="gray.400"
-						cursor="pointer"
-						opacity={0.5}
 						_hover={{
 							opacity: 1,
 							color: 'red.400',
 						}}
+						color="gray.400"
+						cursor="pointer"
 						fontSize="md"
 						h="full"
+						opacity={0.5}
 					>
 						<AnchorIcon />
 					</Box>
@@ -109,12 +109,12 @@ const Pre = (props: PreProps) => {
 			as="pre"
 			bg="gray.800"
 			color="purple.300"
-			p={{ base: 6, md: 8, xl: 10 }}
-			my={4}
-			overflowX="scroll"
+			cursor="text"
 			fontFamily="mono"
 			fontSize={{ base: 'xs', md: 'sm', xl: 'md' }}
-			cursor="text"
+			my={4}
+			overflowX="scroll"
+			p={{ base: 6, md: 8, xl: 10 }}
 			{...props}
 		/>
 	);
@@ -136,9 +136,9 @@ const CodeBlock = ({ children, className }: CodeBlockProps) => {
 	return (
 		<Highlight
 			{...defaultProps}
-			theme={prismTheme}
 			code={String(children)}
 			language={language}
+			theme={prismTheme}
 		>
 			{({ className, style, tokens, getLineProps, getTokenProps }) => (
 				<Pre
@@ -175,9 +175,9 @@ const Image = ({ src, ...props }: ImageProps) => {
 			w="full"
 		>
 			<LazyLoadImage
+				className="border-solid border-2 border-gray-800 p-3 md:p-4 lg:p-5"
 				effect="blur"
 				src={`/static/images/${src}`}
-				className="border-solid border-2 border-gray-800 p-3 md:p-4 lg:p-5"
 				{...props}
 			/>
 		</Center>
@@ -188,32 +188,32 @@ const MDXComponents = {
 	h1: props => (
 		<CustomHeading
 			as="h1"
-			textStyle="h1"
 			mt={24}
+			textStyle="h1"
 			{...props}
 		/>
 	),
 	h2: props => (
 		<CustomHeading
 			as="h2"
-			textStyle="h2"
 			mt={20}
+			textStyle="h2"
 			{...props}
 		/>
 	),
 	h3: props => (
 		<CustomHeading
 			as="h3"
-			textStyle="h3"
 			mt={16}
+			textStyle="h3"
 			{...props}
 		/>
 	),
 	h4: props => (
 		<CustomHeading
 			as="h4"
-			textStyle="h4"
 			mt={12}
+			textStyle="h4"
 			{...props}
 		/>
 	),
@@ -221,18 +221,18 @@ const MDXComponents = {
 		<Text
 			color="gray.400"
 			fontSize={{ base: 'md', md: 'lg', xl: 'xl' }}
-			my={8}
 			letterSpacing="wide"
+			my={8}
 			wordBreak="break-word"
 			{...props}
 		/>
 	),
 	a: props => (
 		<CustomLink
+			_focus={{ color: 'white' }}
+			_hover={{ color: 'white' }}
 			borderBottomWidth={1}
 			borderColor="red.400"
-			_hover={{ color: 'white' }}
-			_focus={{ color: 'white' }}
 			{...props}
 		/>
 	),
@@ -240,24 +240,24 @@ const MDXComponents = {
 	blockquote: props => (
 		<Box
 			as="blockquote"
+			borderLeftWidth={4}
+			cursor="text"
 			fontSize={{ base: 'md', md: 'lg', xl: 'xl' }}
 			fontStyle="italic"
-			borderLeftWidth={4}
+			pl={3}
 			whiteSpace="pre-wrap"
 			wordBreak="break-word"
-			pl={3}
-			cursor="text"
 			{...props}
 		/>
 	),
 	inlineCode: props => (
 		<Text
 			as="code"
-			fontStyle="mono"
-			color="purple.300"
 			bg="gray.800"
-			p={1}
+			color="purple.300"
 			cursor="text"
+			fontStyle="mono"
+			p={1}
 			whiteSpace="pre-wrap"
 			wordBreak="break-word"
 			{...props}
@@ -266,32 +266,32 @@ const MDXComponents = {
 	hr: props => (
 		<Box
 			as="hr"
-			my={10}
 			borderColor="white"
+			my={10}
 			{...props}
 		/>
 	),
 	ul: props => (
 		<List
-			styleType="disc"
 			color="gray.400"
 			mt={8}
+			styleType="disc"
 			{...props}
 		/>
 	),
 	ol: props => (
 		<List
 			as="ol"
-			styleType="disc"
 			color="gray.400"
 			mt={8}
+			styleType="disc"
 			{...props}
 		/>
 	),
 	li: props => (
 		<ListItem
-			mb={2}
 			fontSize={{ base: 'sm', md: 'md', xl: 'lg' }}
+			mb={2}
 			{...props}
 		/>
 	),
