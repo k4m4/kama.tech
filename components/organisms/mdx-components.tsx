@@ -27,7 +27,7 @@ const CustomHeading = (props: HeadingProps) => {
 			css={{
 				'&[id]::before': {
 					display: 'block',
-					height: ' 6rem',
+					height: '6rem',
 					marginTop: '-6rem',
 					visibility: 'hidden',
 					content: '""',
