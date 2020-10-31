@@ -28,7 +28,7 @@ const Project = ({
 				icon={
 					<Image
 						alt={name}
-						ml={2}
+						ml={{ base: 0, md: 2 }}
 						pointerEvents="none"
 						src={iconPath}
 						w={{ base: 10, md: 12 }}

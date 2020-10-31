@@ -35,7 +35,7 @@ const ArchivedPost = ({ title, publishedAt, slug }: ArchivedPost) => {
 					icon={
 						<Image
 							alt={title}
-							ml={2}
+							ml={{ base: 0, md: 2 }}
 							pointerEvents="none"
 							src={iconPath}
 							w={{ base: 10, md: 12 }}
