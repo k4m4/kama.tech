@@ -8,6 +8,7 @@ import NextLink from 'next/link';
 import {
 	GitHubIcon,
 	TwitterIcon,
+	KeybaseIcon,
 	EmailIcon,
 } from '../../theme/icons';
 import Logo from '../atoms/logo';
@@ -91,6 +92,12 @@ const Footer = () => {
 							name="Twitter"
 						>
 							<TwitterIcon />
+						</SocialLink>
+						<SocialLink
+							href="https://keybase.io/k4m4"
+							name="Keybase"
+						>
+							<KeybaseIcon />
 						</SocialLink>
 						<SocialLink
 							href="mailto:nikolaskam@gmail.com"
