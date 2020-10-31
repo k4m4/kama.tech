@@ -85,3 +85,24 @@ export const KeybaseIcon: FC<IconProps> = createIcon({
 		</g>
 	),
 });
+
+export const ArrowUpRightIcon: FC<IconProps> = createIcon({
+	displayName: 'ArrowUpRight',
+	path: (
+		<g
+			fill="none"
+			stroke="currentColor"
+			strokeLinecap="round"
+			strokeLinejoin="round"
+			strokeWidth="2"
+		>
+			<line
+				x1="7"
+				x2="17"
+				y1="17"
+				y2="7"
+			/>
+			<polyline points="7 7 17 7 17 17" />
+		</g>
+	),
+});

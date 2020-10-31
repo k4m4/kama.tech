@@ -3,7 +3,9 @@ import {
 	Flex,
 	Heading,
 	Text,
+	Center,
 } from '@chakra-ui/core';
+import { ArrowUpRightIcon } from '../../theme/icons';
 
 type CardProps = {
 	title: string;
@@ -27,6 +29,7 @@ const Card = ({ title, subtitle, icon }: CardProps) => {
 			mb={{ base: 10, md: 0 }}
 			overflowX="scroll"
 			p={{ base: 10, md: 16 }}
+			position="relative"
 			transition="all 0.2s ease-in"
 		>
 			<Flex
@@ -53,7 +56,23 @@ const Card = ({ title, subtitle, icon }: CardProps) => {
 						{subtitle}
 					</Text>
 				</Box>
-				{icon}
+				<Box>
+					<Center
+						borderBottomWidth="1px"
+						borderColor="gray.800"
+						borderLeftWidth="1px"
+						className="block-icon icon"
+						color="gray.500"
+						display={{ base: 'block', md: 'none' }}
+						p={5}
+						position="absolute"
+						right={0}
+						top={0}
+					>
+						<ArrowUpRightIcon boxSize={5} />
+					</Center>
+					{icon}
+				</Box>
 			</Flex>
 		</Box>
 	);
