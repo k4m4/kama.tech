@@ -40,6 +40,9 @@ const overrides = ({
 			'html, body': {
 				bg: 'black',
 			},
+			'*, *::before, ::after': {
+				wordWrap: 'normal',
+			},
 			'::selection': {
 				bg: 'red.400',
 			},
