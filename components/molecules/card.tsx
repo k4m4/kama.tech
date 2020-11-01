@@ -59,6 +59,7 @@ const Card = ({ title, subtitle, icon }: CardProps) => {
 						color="gray.400"
 						fontWeight={300}
 						lineHeight="tall"
+						fontFamily="'Space Mono', monospace"
 					>
 						{subtitle}
 					</Text>
