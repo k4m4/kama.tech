@@ -6,7 +6,7 @@ const overrides = ({
 	fonts: {
 		heading: monoFontFamily,
 		mono: monoFontFamily,
-		body: '"Space Mono", monospace',
+		body: '"Space", monospace',
 	},
 	fontSizes: {
 		xs: '0.75rem',
