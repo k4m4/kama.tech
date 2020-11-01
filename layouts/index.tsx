@@ -28,6 +28,7 @@ const Layout = ({ children, frontMatter }: LayoutProps) => {
 					color="white"
 					px={{ base: 16, md: 20, xl: 24 }}
 					py={16}
+					wordBreak="break-word"
 				>
 					<Heading
 						as="h1"
