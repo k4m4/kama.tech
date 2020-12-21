@@ -20,7 +20,13 @@ module.exports = {
 		'@typescript-eslint/comma-dangle': 0,
 		'comma-dangle': [
 			'error',
-			'always-multiline',
+			{
+				arrays: 'always-multiline',
+				objects: 'always-multiline',
+				imports: 'always-multiline',
+				exports: 'always-multiline',
+				functions: 'never',
+			},
 		],
 		'react/jsx-max-props-per-line': [
 			'error',
