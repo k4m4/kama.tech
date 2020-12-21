@@ -8,6 +8,8 @@ summary: "Writeup of Vulnhub's Mr-Robot:1 CTF challenge."
 <Image
     alt="Our Democracy Has Been Hacked"
     src="mr-robot-1-writeup/our-democracy-has-been-hacked.jpg"
+    width={1000}
+    height={1000}
 />
 
 - Type: Boot2Root
@@ -23,6 +25,8 @@ summary: "Writeup of Vulnhub's Mr-Robot:1 CTF challenge."
 <Image 
     alt="Mr Robot"
     src="mr-robot-1-writeup/mr-robot.gif"
+    width={800}
+    height={199}
 />
 
 ## Let The Hacking Begin!
@@ -49,6 +53,8 @@ Apparently, ports **80** and **443** are open. Let's fire up our browser!
 <Image
     alt="Website"
     src="mr-robot-1-writeup/website.png"
+    width={2098}
+    height={966}
 />
 
 The website seems to be very well made, with some *real* JavaScript. Pretty cool I must admit. Now let's hack into it!
@@ -94,6 +100,8 @@ Nice! It seems that we're going to be dealing with some WordPress authentication
 <Image
     alt="WordPress Login"
     src="mr-robot-1-writeup/wp-login.png"
+    width={2104}
+    height={1098}
 />
 
 The error message we get once we enter invalid credentials is `ERROR: Invalid username`. So if we find a valid username, a different error message will be displayed.
@@ -178,6 +186,8 @@ If everything is correctly done, we should now be able to execute commands throu
 <Image
     alt="whoami"
     src="mr-robot-1-writeup/whoami_daemon.png"
+    width={1234}
+    height={114}
 />
 
 Excellent! It works perfectly! Use your browser's *view page source* to be able to clearly see the result. (It should be at the very top of the page - ignore the rest.)
@@ -295,6 +305,8 @@ And of course, google gave us the answer. (You could also use `hashcat` or any o
 <Image
     alt="MD5 Decrypted Hash"
     src="mr-robot-1-writeup/md5_hash.png"
+    width={1472}
+    height={148}
 />
 
 Now, let's try to login as `robot` with the password we found.
@@ -394,6 +406,8 @@ Stay tuned for similar walkthroughs and much more coming up in the near future!
 <Image
     alt="FSociety Outro"
     src="mr-robot-1-writeup/fsociety_outro.gif"
+    width={684}
+    height={386}
 />
 
 - Post Image by [Alisa Vysochina](https://dribbble.com/shots/2255868-Mr-Robot)

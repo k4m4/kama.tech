@@ -39,6 +39,8 @@ Looks like we have a webserver. Let's fire up our browser and have a look.
 <Image
     alt="10.10.10.75"
     src="nibbles-hack-the-box-writeup/10.10.10.75.png"
+    width={1244}
+    height={538}
 />
 
 Hello to you too! A simple `view-source` reveals an interesting directory:
@@ -55,6 +57,8 @@ Navigating to the new directory, we find an empty blog.
 <Image
     alt="nibbleblog"
     src="nibbles-hack-the-box-writeup/nibbleblog.png"
+    width={1330}
+    height={1392}
 />
 
 Let's try to `dirb` for any suspicious files within this 'empty' blog.
@@ -101,6 +105,8 @@ The `admin.php` page seems interesting; we should have a look.
 <Image
     alt="admin"
     src="nibbles-hack-the-box-writeup/admin.png"
+    width={1332}
+    height={1218}
 />
 
 A login screen. Let's give it some guessing shots to see if we can get lucky.
@@ -110,6 +116,8 @@ After a few tries, we notice that there's some sort of WAF, blacklisting users a
 <Image
     alt="blacklist"
     src="nibbles-hack-the-box-writeup/blacklist.png"
+    width={1330}
+    height={536}
 />
 
 A few minutes later, we were able to retry.
@@ -131,6 +139,8 @@ Once we upload our 'image' onto the bloggin platform, we can navigate to [10.10.
 <Image
     alt="id"
     src="nibbles-hack-the-box-writeup/id.png"
+    width={1736}
+    height={240}
 />
 
 Evidently, we now have 'nibbler' privileges (i.e. user privileges). So, let's pop a reverse shell.
