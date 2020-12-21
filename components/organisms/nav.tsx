@@ -47,7 +47,6 @@ const Nav = () => {
 						}}
 						as="a"
 						color={isNavTop ? 'white' : 'gray.400'}
-						pb={3}
 						transition="all 0.2s ease-in"
 					>
 						<Logo />

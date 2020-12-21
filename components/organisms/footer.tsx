@@ -63,10 +63,7 @@ const Footer = () => {
 							transition="all 0.2s ease-in"
 							w="full"
 						>
-							<Center
-								h="full"
-								pb={3}
-							>
+							<Center h="full">
 								<Logo />
 							</Center>
 						</Box>

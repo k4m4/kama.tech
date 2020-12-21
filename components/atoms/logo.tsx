@@ -1,15 +1,11 @@
-import { Heading } from '@chakra-ui/react';
+import { LogoIcon } from '../../theme/icons';
 
 const Logo = () => {
 	return (
-		<Heading
-			as="h2"
-			fontFamily="'Meie Script', cursive"
-			fontSize="6xl"
-			fontWeight={200}
-		>
-			k4m4
-		</Heading>
+		<LogoIcon
+			h={18.75}
+			w={125}
+		/>
 	);
 };
 
