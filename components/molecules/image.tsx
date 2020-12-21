@@ -1,4 +1,4 @@
-import { Center } from '@chakra-ui/core';
+import { Center } from '@chakra-ui/react';
 import NextImage from 'next/image';
 
 type ImageProps = {

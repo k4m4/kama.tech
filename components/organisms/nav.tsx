@@ -1,4 +1,4 @@
-import { Link, Box, Flex, Center } from '@chakra-ui/core';
+import { Link, Box, Flex, Center } from '@chakra-ui/react';
 import { motion, useCycle, useViewportScroll } from 'framer-motion';
 import NextLink from 'next/link';
 import { useState, useEffect } from 'react';

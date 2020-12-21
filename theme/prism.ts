@@ -1,4 +1,4 @@
-import { theme } from '@chakra-ui/core';
+import { theme } from '@chakra-ui/react';
 import { PrismTheme } from 'prism-react-renderer';
 const { colors } = theme;
 

@@ -1,4 +1,4 @@
-import { Box } from '@chakra-ui/core';
+import { Box } from '@chakra-ui/react';
 import { NextSeo as NextSEO } from 'next-seo';
 import type { OpenGraph } from 'next-seo/lib/types';
 import { useRouter } from 'next/router';

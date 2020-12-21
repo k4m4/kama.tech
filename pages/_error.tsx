@@ -1,4 +1,4 @@
-import { Box, Flex, Heading, Text } from '@chakra-ui/core';
+import { Box, Flex, Heading, Text } from '@chakra-ui/react';
 import { NextPage, NextPageContext } from 'next';
 import Page from '../components/templates/page';
 

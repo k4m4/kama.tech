@@ -6,7 +6,7 @@ import {
 	List,
 	ListItem,
 	Text,
-} from '@chakra-ui/core';
+} from '@chakra-ui/react';
 import NextLink from 'next/link';
 import Highlight, { defaultProps, Language } from 'prism-react-renderer';
 import { CSSProperties, ReactNode } from 'react';

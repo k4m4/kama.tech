@@ -1,4 +1,4 @@
-import { Box } from '@chakra-ui/core';
+import { Box } from '@chakra-ui/react';
 import { ReactNode } from 'react';
 import PostSEO from '../molecules/post-seo';
 import Footer from '../organisms/footer';

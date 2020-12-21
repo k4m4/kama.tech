@@ -1,4 +1,4 @@
-import { Flex, Box, Heading, Text } from '@chakra-ui/core';
+import { Flex, Box, Heading, Text } from '@chakra-ui/react';
 import { MDXProvider } from '@mdx-js/react';
 import { ReactNode } from 'react';
 import MDXComponents from '../components/organisms/mdx-components';

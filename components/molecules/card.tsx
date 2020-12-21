@@ -4,7 +4,7 @@ import {
 	Heading,
 	Text,
 	Center,
-} from '@chakra-ui/core';
+} from '@chakra-ui/react';
 import { ArrowUpRightIcon } from '../../theme/icons';
 
 type CardProps = {

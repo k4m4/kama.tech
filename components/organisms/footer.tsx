@@ -3,7 +3,7 @@ import {
 	Flex,
 	Text,
 	Center,
-} from '@chakra-ui/core';
+} from '@chakra-ui/react';
 import NextLink from 'next/link';
 import {
 	GitHubIcon,

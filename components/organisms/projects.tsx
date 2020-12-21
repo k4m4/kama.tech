@@ -1,4 +1,4 @@
-import { Link, Box, Image } from '@chakra-ui/core';
+import { Link, Box, Image } from '@chakra-ui/react';
 import { projects } from '../../data/projects';
 import logOutboundLink from '../../utils/log-outbound-link';
 import Card from '../molecules/card';

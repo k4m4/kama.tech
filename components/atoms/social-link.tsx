@@ -2,7 +2,7 @@ import {
 	Link,
 	Center,
 	LinkProps,
-} from '@chakra-ui/core';
+} from '@chakra-ui/react';
 import logOutboundLink from '../../utils/log-outbound-link';
 
 type SocialLinkProps = {

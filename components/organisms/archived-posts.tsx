@@ -1,4 +1,4 @@
-import { Link, Box, Image } from '@chakra-ui/core';
+import { Link, Box, Image } from '@chakra-ui/react';
 import NextLink from 'next/link';
 import { frontMatter as MrRobotWriteup} from '../../pages/archive/mr-robot-1-writeup.mdx';
 import { frontMatter as NibblesWriteup } from '../../pages/archive/nibbles-hack-the-box-writeup.mdx';

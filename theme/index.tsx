@@ -1,4 +1,4 @@
-import { extendTheme } from '@chakra-ui/core';
+import { extendTheme } from '@chakra-ui/react';
 
 const monoFontFamily = 'Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace';
 

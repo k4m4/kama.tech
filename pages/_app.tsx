@@ -1,4 +1,4 @@
-import { ChakraProvider } from '@chakra-ui/core';
+import { ChakraProvider } from '@chakra-ui/react';
 import debounce from 'lodash.debounce';
 import { DefaultSeo as DefaultSEO } from 'next-seo';
 import { AppProps } from 'next/app';

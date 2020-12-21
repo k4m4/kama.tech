@@ -1,4 +1,4 @@
-import { AspectRatio } from '@chakra-ui/core';
+import { AspectRatio } from '@chakra-ui/react';
 
 type FacebookPostProps = {
 	href: string;

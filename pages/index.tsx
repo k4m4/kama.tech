@@ -1,4 +1,4 @@
-import { Box } from '@chakra-ui/core';
+import { Box } from '@chakra-ui/react';
 import Hero from '../components/organisms/hero';
 import Projects from '../components/organisms/projects';
 import Page from '../components/templates/page';
