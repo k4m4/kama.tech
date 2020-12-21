@@ -44,7 +44,7 @@ const Hero = ({ title, subtitle }: HeroProps) => {
 							<Heading
 								as="h1"
 								fontFamily="body"
-								fontSize={{ base: '2xl', md: '3xl', xl: '4xl' }}
+								fontSize={{ base: '2xl', md: '3xl', xl: '5xl' }}
 								fontWeight={500}
 								lineHeight="taller"
 							>
