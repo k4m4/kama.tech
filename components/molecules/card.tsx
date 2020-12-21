@@ -79,7 +79,12 @@ const Card = ({ title, subtitle, icon }: CardProps) => {
 					>
 						<ArrowUpRightIcon boxSize={5} />
 					</Center>
-					{icon}
+					<Box
+						ml={{ base: 0, md: 2 }}
+						pointerEvents="none"
+					>
+						{icon}
+					</Box>
 				</Box>
 			</Flex>
 		</Box>

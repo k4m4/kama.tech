@@ -1,4 +1,5 @@
-import { Link, Box, Image } from '@chakra-ui/react';
+import { Link, Box } from '@chakra-ui/react';
+import Image from 'next/image';
 import NextLink from 'next/link';
 import { frontMatter as MrRobotWriteup} from '../../pages/archive/mr-robot-1-writeup.mdx';
 import { frontMatter as NibblesWriteup } from '../../pages/archive/nibbles-hack-the-box-writeup.mdx';
@@ -35,10 +36,9 @@ const ArchivedPost = ({ title, publishedAt, slug }: ArchivedPost) => {
 					icon={
 						<Image
 							alt={title}
-							ml={{ base: 0, md: 2 }}
-							pointerEvents="none"
+							height={50}
 							src={iconPath}
-							w={{ base: 10, md: 12 }}
+							width={50}
 						/>
 					}
 					subtitle={formatDate(publishedAt)}

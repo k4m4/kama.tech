@@ -1,4 +1,5 @@
-import { Link, Box, Image } from '@chakra-ui/react';
+import { Link, Box } from '@chakra-ui/react';
+import Image from 'next/image';
 import { projects } from '../../data/projects';
 import logOutboundLink from '../../utils/log-outbound-link';
 import Card from '../molecules/card';
@@ -28,10 +29,9 @@ const Project = ({
 				icon={
 					<Image
 						alt={name}
-						ml={{ base: 0, md: 2 }}
-						pointerEvents="none"
+						height={50}
 						src={iconPath}
-						w={{ base: 10, md: 12 }}
+						width={50}
 					/>
 				}
 				subtitle={description}
