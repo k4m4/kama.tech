@@ -20,7 +20,7 @@ const Nav = () => {
 	return (
 		<Box
 			as="nav"
-			bg={isNavTop ? 'transparent' : 'black'}
+			bg="black"
 			color="gray.400"
 			h={isNavTop ? 40 : 24}
 			position="fixed"
