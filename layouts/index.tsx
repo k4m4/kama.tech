@@ -1,6 +1,6 @@
 import { Flex, Box, Heading, Text } from '@chakra-ui/react';
 import { MDXProvider } from '@mdx-js/react';
-import { ReactNode } from 'react';
+import { memo, ReactNode, useMemo } from 'react';
 import MDXComponents from '../components/organisms/mdx-components';
 import PostPage from '../components/templates/post-page';
 import formatDate from '../utils/format-date';
@@ -14,6 +14,11 @@ const Layout = ({ children, frontMatter }: LayoutProps) => {
 	const slug: string = frontMatter.__resourcePath
 		.replace('archive/', '')
 		.replace('.mdx', '');
+
+	const formattedDate = useMemo(
+		() => formatDate(frontMatter.publishedAt),
+		[frontMatter.publishedAt]
+	);
 
 	return (
 		<PostPage
@@ -50,7 +55,7 @@ const Layout = ({ children, frontMatter }: LayoutProps) => {
 							as="span"
 							fontSize="sm"
 						>
-							{formatDate(frontMatter.publishedAt)}
+							{formattedDate}
 						</Text>
 					</Flex>
 				</Box>
@@ -69,4 +74,4 @@ const Layout = ({ children, frontMatter }: LayoutProps) => {
 	);
 };
 
-export default Layout;
+export default memo(Layout);

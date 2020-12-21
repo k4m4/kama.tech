@@ -1,6 +1,7 @@
 import { Link, Box } from '@chakra-ui/react';
 import Image from 'next/image';
 import NextLink from 'next/link';
+import { useMemo } from 'react';
 import { frontMatter as MrRobotWriteup} from '../../pages/archive/mr-robot-1-writeup.mdx';
 import { frontMatter as NibblesWriteup } from '../../pages/archive/nibbles-hack-the-box-writeup.mdx';
 import { frontMatter as picoCTFWriteup } from '../../pages/archive/picoctf-2018-crypto-writeups.mdx';
@@ -23,6 +24,11 @@ type ArchivedPost = {
 
 const ArchivedPost = ({ title, publishedAt, slug }: ArchivedPost) => {
 	const iconPath = `/static/images/${slug.replace('archive/', '')}/icon.svg`;
+	const formattedDate = useMemo(
+		() => formatDate(publishedAt),
+		[publishedAt]
+	);
+
 	return (
 		<NextLink
 			passHref
@@ -41,7 +47,7 @@ const ArchivedPost = ({ title, publishedAt, slug }: ArchivedPost) => {
 							width={50}
 						/>
 					}
-					subtitle={formatDate(publishedAt)}
+					subtitle={formattedDate}
 					title={title}
 				/>
 			</Link>
