@@ -57,9 +57,9 @@ const Card = ({ title, subtitle, icon }: CardProps) => {
 					</Heading>
 					<Text
 						color="gray.400"
+						fontFamily="'Space Mono', monospace"
 						fontWeight={300}
 						lineHeight="tall"
-						fontFamily="'Space Mono', monospace"
 					>
 						{subtitle}
 					</Text>
