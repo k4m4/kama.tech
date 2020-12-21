@@ -17,6 +17,7 @@ module.exports = {
 				mdx: 'always',
 			},
 		],
+		'@typescript-eslint/comma-dangle': 0,
 		'comma-dangle': [
 			'error',
 			'always-multiline',
