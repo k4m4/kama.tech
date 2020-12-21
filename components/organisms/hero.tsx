@@ -1,5 +1,5 @@
-import { Box, Flex, Heading, Center } from '@chakra-ui/react';
 import { ChevronDownIcon } from '@chakra-ui/icons';
+import { Box, Flex, Heading, Center } from '@chakra-ui/react';
 import { motion } from 'framer-motion';
 import { Link } from 'react-scroll';
 
