@@ -61,6 +61,9 @@ const overrides = ({
 			'a > code:hover': {
 				color: 'white',
 			},
+			'.katex, .katex-display': {
+				userSelect: 'all',
+			},
 		},
 	},
 	textStyles: {

@@ -1,5 +1,4 @@
 import { NextSeo as NextSEO, ArticleJsonLd } from 'next-seo';
-import KaTeX from '../atoms/katex';
 
 type PostSEOProps = {
 	url: string;
@@ -27,7 +26,6 @@ const PostSEO = ({
 
 	return (
 		<>
-			<KaTeX />
 			<NextSEO
 				canonical={url}
 				description={summary}
