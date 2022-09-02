@@ -30,13 +30,6 @@ const projects = [
 		year: 2019,
 		at: 'meeshkan',
 	},
-	{
-		name: 'CryptAddress',
-		description: 'A minimal service to detect which cryptocurrency an address corresponds to.',
-		iconPath: '/static/icons/cryptaddress.svg',
-		url: 'https://github.com/k4m4/cryptaddress.now',
-		year: 2016,
-	},
 ];
 
 module.exports = {
