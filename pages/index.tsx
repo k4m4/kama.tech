@@ -10,7 +10,7 @@ const Home = () => {
 				color="white"
 				mb={{ md: 16 }}
 			>
-				<Hero title="Full-stack Software Engineer &amp; Open Sourcerer." />
+				<Hero title="Into smart contracts, these days." />
 				<Projects />
 			</Box>
 		</Page>
